@@ -1,0 +1,1 @@
+// helper för kortrelaterade funktioner

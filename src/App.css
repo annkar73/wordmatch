@@ -1,0 +1,10 @@
+#root {
+  max-width: 1280px;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(to bottom, #f9e7fe, #dafcfc);  /* pinkish peach to light blue gradient */
+  /* background: linear-gradient(to bottom, #ffe998, #57370d); */ /* golden brown gradient*/
+
+}
