@@ -1,12 +1,12 @@
 import './App.css'
-import { TestComponent } from './Components/TestComponent'
+import Router from './Router'
+//import Home from './Pages/Home'
+//import { TestComponent } from './Components/TestComponent'
 
 function App() {
 
   return (
-    <>
-      <TestComponent />
-    </>
+    <Router />
   )
 }
 
