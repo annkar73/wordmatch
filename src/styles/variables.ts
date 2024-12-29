@@ -5,17 +5,6 @@ export const breakpoints = {
     desktop: '1024px',
 };
 
-// variables for colors
-
-export const colors = {
-    primary: '#00284c', // primary color (very dark blue)
-    secondary: '#ededed', // secondary color (medium light warm grey)
-    accent: '#ff69b4', // accent color for buttons etc (hot pink)
-    background: '#f6f6f6', // text background (very light grey)
-    textPrimary: '#28728b', // primary text color (medium bluish grey) for headers etc
-    textSecondary: '#003332', // secondary text color (blackish) for buttons, texts etc
-};
-
 // variables for font sizes
 
 export const fontSizes = {

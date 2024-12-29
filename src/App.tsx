@@ -1,13 +1,29 @@
-import './App.css'
-import Router from './Router'
-//import Home from './Pages/Home'
-//import { TestComponent } from './Components/TestComponent'
+import { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { BrowserRouter } from "react-router-dom";
+import { GlobalStyles } from "./styles/globalStyles";
+import { lightTheme, darkTheme, getDefaultTheme } from "./styles/theme";
+import Router from "./Router"; // Din router
+import Header from "./Components/Header";
 
-function App() {
+const App = () => {
+  const [theme, setTheme] = useState(getDefaultTheme());
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme.name === "light" ? darkTheme : lightTheme));
+  };
 
   return (
-    <Router />
-  )
-}
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <BrowserRouter>
+        {/* Header med temat */}
+        <Header onThemeToggle={toggleTheme} themeName={theme.name} />
+        {/* Dina sidor */}
+        <Router />
+      </BrowserRouter>
+    </ThemeProvider>
+  );
+};
 
-export default App
+export default App;

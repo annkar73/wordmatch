@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { colors, shadows } from "../../helpers/variables";
+import { shadows } from "../../styles/variables";
 
 // page wrapper for each page
 export const PageWrapper = styled.section`
@@ -16,8 +16,6 @@ export const PageWrapper = styled.section`
 export const TextWrapper = styled.div`
   width: 80%;
   max-width: 800px;
-  background-color: ${colors.background};
-  color: black;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -41,7 +39,6 @@ export const GameWrapper = styled.div`
 export const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: ${colors.accent};
   width: 100vw;
   height: 75px;
   position: fixed;
