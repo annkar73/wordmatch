@@ -37,6 +37,7 @@ const CenterSection = styled.div`
 const RightSection = styled.nav`
   display: flex;
   justify-content: flex-end;
+  margin-right: 35px;
   gap: 15px; /* Lägger till mellanrum mellan länkar */
 `;
 
