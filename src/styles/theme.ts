@@ -1,3 +1,5 @@
+import { borderRadius, breakpoints, fontSizes, shadows, spacing } from "./variables";
+
 export const lightTheme = {
     name: "light",
     background: "#b8c3b1",
@@ -9,7 +11,12 @@ export const lightTheme = {
     toggleBg: "#1a1a1a",
     toggleHandle: "#ccc",
     headerBg: "#d2d9ce", 
-    headerText: "#090909", 
+    headerText: "#090909",
+    borderRadius,
+    spacing,
+    shadows,
+    fontSizes,
+    breakpoints, 
   };
   
   export const darkTheme = {
@@ -23,7 +30,13 @@ export const lightTheme = {
     toggleBg: "#b8c3b1",
     toggleHandle: "#ccc",
     headerBg: "#3f3f2f", 
-    headerText: "#f5f5f5", 
+    headerText: "#f5f5f5",
+    borderRadius,
+    spacing,
+    shadows,
+    fontSizes,
+    breakpoints, 
+
   };
   
   export const getDefaultTheme = () =>
