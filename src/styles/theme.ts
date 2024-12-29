@@ -2,44 +2,43 @@ import { borderRadius, breakpoints, fontSizes, shadows, spacing } from "./variab
 
 export const lightTheme = {
     name: "light",
-    background: "#b8c3b1",
-    text: "#090909",
-    buttonBackground: "#ffffff",
-    buttonText: "#b8c3b1",
-    buttonHoverBackground: "#42503f",
+    background: "#f8e2f3",
+    text: "#3c2a47",
+    buttonBackground: "#f9c3e0",
+    buttonText: "#3c2a47",
+    buttonHoverBackground: "#f18db2",
     buttonHoverText: "#ffffff",
-    toggleBg: "#1a1a1a",
-    toggleHandle: "#ccc",
-    headerBg: "#d2d9ce", 
-    headerText: "#090909",
+    toggleBg: "#3c2a47",
+    toggleHandle: "#fff",
+    headerBg: "#f4c9d6",
+    headerText: "#3c2a47",
     borderRadius,
     spacing,
     shadows,
     fontSizes,
-    breakpoints, 
-  };
-  
-  export const darkTheme = {
-    name: "dark",
-    background: "#1a1a1a",
-    text: "#f5f5f5",
-    buttonBackground: "#444",
-    buttonText: "#f5f5f5",
-    buttonHoverBackground: "#222",
-    buttonHoverText: "#ffffff",
-    toggleBg: "#b8c3b1",
-    toggleHandle: "#ccc",
-    headerBg: "#3f3f2f", 
-    headerText: "#f5f5f5",
-    borderRadius,
-    spacing,
-    shadows,
-    fontSizes,
-    breakpoints, 
+    breakpoints,
+};
 
-  };
-  
-  export const getDefaultTheme = () =>
+export const darkTheme = {
+    name: "dark",
+    background: "#82cbde",
+    text: "#34495e",
+    buttonBackground: "#34495e",
+    buttonText: "#ecf0f1",
+    buttonHoverBackground: "#1abc9c",
+    buttonHoverText: "#ffffff",
+    toggleBg: "#1abc9c",
+    toggleHandle: "#fff",
+    headerBg: "#16a085",
+    headerText: "#ecf0f1",
+    borderRadius,
+    spacing,
+    shadows,
+    fontSizes,
+    breakpoints,
+};
+
+export const getDefaultTheme = () =>
     window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
       ? darkTheme
       : lightTheme;

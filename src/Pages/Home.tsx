@@ -75,7 +75,7 @@ const NavButton = styled(NavLink)`
 const Home = () => {
   return (
     <Container>
-      <Title>Välkommen till MemOrd!</Title>
+      <Title>Välkommen till OrdMatch!</Title>
       <Description>
         Här kan du träna på att koppla bild till ord, eller spela ett klassiskt memory. Utmana dig själv och ha roligt samtidigt!
       </Description>

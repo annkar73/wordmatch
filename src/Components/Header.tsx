@@ -70,12 +70,12 @@ export const Header = ({ onThemeToggle, themeName }: HeaderProps) => {
         <ThemeToggleButton onClick={onThemeToggle} themeName={themeName} />
       </LeftSection>
       <CenterSection>
-        <Title>WordMatch</Title>
+        <Title>OrdMatch</Title>
       </CenterSection>
       <RightSection>
-        <StyledNavLink to="/">Home</StyledNavLink>
-        <StyledNavLink to="/matching-game">Matching Game</StyledNavLink>
-        <StyledNavLink to="/classic-memory">Classic Memory</StyledNavLink>
+        <StyledNavLink to="/">Hem</StyledNavLink>
+        <StyledNavLink to="/matching-game">Matcha ord</StyledNavLink>
+        <StyledNavLink to="/classic-memory">Klassiskt Memory</StyledNavLink>
         <StyledNavLink to="/faq">FAQ</StyledNavLink>
       </RightSection>
     </HeaderContainer>
