@@ -2,7 +2,7 @@ import { borderRadius, breakpoints, fontSizes, shadows, spacing } from "./variab
 
 export const lightTheme = {
     name: "light",
-    background: "#f8e2f3",
+    background: "#f9ecf6",
     text: "#3c2a47",
     buttonBackground: "#f9c3e0",
     buttonText: "#3c2a47",
