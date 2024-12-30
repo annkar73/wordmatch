@@ -1,52 +1,56 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { PageWrapper } from "../Components/styled/Wrappers";
+import { shadows, fontSizes, spacing, breakpoints, borderRadius } from "../styles/variables";
 
 // Styled Components
 const Container = styled.div`
   text-align: center;
-  margin: 2rem auto;
-  padding: 2rem;
-  max-width: 600px;
- //border: 2px solid ${(props) => props.theme.borderColor};
-  //border-radius: 8px;
+  margin: ${spacing.large} auto;
+  padding: ${spacing.large};
   background-color: ${(props) => props.theme.background};
   color: ${(props) => props.theme.text};
-  //box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  @media (max-width: 768px) {
-    padding: 1.5rem;
-    margin: 1rem auto;
+  @media (min-width: ${breakpoints.tablet}) {
+    max-width: 600px;
+    padding: ${spacing.xLarge};
+    margin: ${spacing.xLarge} auto;
   }
 `;
 
 const Title = styled.h1`
-  font-size: 2.5rem;
-  color: ${(props) => props.theme.primary};
-  margin-bottom: 1rem;
+  font-size: ${fontSizes.h2};
+  color: ${(props) => props.theme.text};
+  margin-bottom: ${spacing.medium};
 
-  @media (max-width: 768px) {
-    font-size: 2rem;
+  @media (min-width: ${breakpoints.tablet}) {
+    font-size: ${fontSizes.heading};
   }
 `;
 
 const Description = styled.p`
-  font-size: 1.2rem;
-  color: ${(props) => props.theme.textSecondary};
-  margin: 1rem 0 2rem;
+  font-size: ${fontSizes.base};
+  color: ${(props) => props.theme.text};
+  margin: ${spacing.small} 0 ${spacing.large};
 
-  @media (max-width: 768px) {
-    font-size: 1rem;
+  @media (min-width: ${breakpoints.tablet}) {
+    font-size: ${fontSizes.h4};
   }
 `;
 
 const NavContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: ${spacing.medium};
 
-  @media (min-width: 768px) {
+  @media (min-width: ${breakpoints.tablet}) {
     flex-direction: row;
     justify-content: center;
+    gap: ${spacing.large};
   }
 `;
 
@@ -54,37 +58,44 @@ const NavButton = styled(NavLink)`
   text-decoration: none;
   color: ${(props) => props.theme.buttonText};
   background-color: ${(props) => props.theme.buttonBackground};
-  padding: 0.8rem 1.2rem;
-  border-radius: 4px;
-  font-size: 1rem;
+  padding: ${spacing.small} ${spacing.medium};
+  border-radius: ${borderRadius.medium};
+  font-size: ${fontSizes.base};
   font-weight: bold;
   transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: ${shadows.medium};
+  display: inline-block;
+  text-align: center;
 
   &:hover {
-    background-color: ${(props) => props.theme.buttonHover};
+    background-color: ${(props) => props.theme.buttonHoverBackground};
+    color: ${(props) => props.theme.buttonHoverText};
     transform: scale(1.05);
   }
 
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-    padding: 0.6rem 1rem;
+  @media (min-width: ${breakpoints.tablet}) {
+    font-size: ${fontSizes.h4};
+    padding: ${spacing.medium} ${spacing.large};
   }
 `;
 
 // Component
 const Home = () => {
   return (
-    <Container>
-      <Title>Välkommen till OrdMatch!</Title>
-      <Description>
-        Här kan du träna på att koppla bild till ord, eller spela ett klassiskt memory. Utmana dig själv och ha roligt samtidigt!
-      </Description>
-      <NavContainer>
-        <NavButton to="/matching-game">Spela ordmatchning</NavButton>
-        <NavButton to="/classic-memory">Spela klassiskt memory</NavButton>
-        <NavButton to="/faq">Vanliga frågor</NavButton>
-      </NavContainer>
-    </Container>
+    <PageWrapper>
+      <Container>
+        <Title>Välkommen till OrdMatch!</Title>
+        <Description>
+          Här kan du träna på att koppla bild till ord, eller spela ett klassiskt memory. Utmana dig själv och ha roligt samtidigt!
+        </Description>
+        <NavContainer>
+          <NavButton to="/matching-game">Spela ordmatchning</NavButton>
+          <NavButton to="/classic-memory">Spela klassiskt memory</NavButton>
+          <NavButton to="/faq">Vanliga frågor</NavButton>
+        </NavContainer>
+      </Container>
+    </PageWrapper>
   );
 };
 

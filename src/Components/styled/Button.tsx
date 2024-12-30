@@ -17,5 +17,5 @@ export const Button = styled.button`
     text-align: center;
     justify-content: center;
     align-items: center;
-    box-shadow: ${shadows.heavy};
+    box-shadow: ${shadows.medium};
 `;

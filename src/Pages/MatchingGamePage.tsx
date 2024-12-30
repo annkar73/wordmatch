@@ -8,6 +8,29 @@ interface Card {
   matched: boolean;
 }
 
+const GameGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+`;
+
+const Card = styled.div<{ flipped: boolean }>`
+  width: 100px;
+  height: 100px;
+  background-color: ${(props) => (props.flipped ? "white" : "gray")};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+const BackSide = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+`;
+
+
 const MatchingGamePage = () => {
   const [cards, setCards] = useState<Card[]>([]);
   const [flipped, setFlipped] = useState<number[]>([]);
@@ -70,26 +93,5 @@ const MatchingGamePage = () => {
   );
 };
 
-const GameGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 10px;
-`;
-
-const Card = styled.div<{ flipped: boolean }>`
-  width: 100px;
-  height: 100px;
-  background-color: ${(props) => (props.flipped ? "white" : "gray")};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-`;
-
-const BackSide = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #ccc;
-`;
 
 export default MatchingGamePage;
