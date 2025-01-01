@@ -12,7 +12,7 @@ interface CardProps {
 }
 
 // Typa CardContainer korrekt genom att använda CardProps
-const CardContainer = styled.div<CardProps>`
+const CardContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -30,7 +30,7 @@ const Card = styled.div<{ $isFlipped: boolean; $isMatched: boolean }>`
   transition: transform 0.5s;
   position: relative;
   transform: ${({ $isFlipped }) => ($isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)')};
-  opacity: ${({ $isMatched }) => ($isMatched ? 0.5 : 1)};
+  opacity: ${({ $isMatched }) => ($isMatched ? 1 : 1)};
   pointer-events: ${({ $isMatched }) => ($isMatched ? 'none' : 'auto')};
 `;
 
@@ -72,14 +72,7 @@ const CardComponent = ({ id, image, $isFlipped, $isMatched, onClick }: CardProps
   };
 
   return (
-    <CardContainer 
-      onClick={handleClick} 
-      data-id={id} 
-      $isFlipped={$isFlipped} 
-      $isMatched={$isMatched}
-      id={id} // Skicka vidare id
-      image={image} // Skicka vidare image
-    >
+    <CardContainer onClick={handleClick} data-id={id}>
       <Card $isFlipped={$isFlipped} $isMatched={$isMatched}>
         <CardFront>
           {$isFlipped ? <img src={image} alt="card front" /> : null}
