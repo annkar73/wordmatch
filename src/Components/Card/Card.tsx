@@ -66,6 +66,7 @@ const CardBack = styled.div`
 // Själva Card-komponenten
 const CardComponent = ({ id, image, $isFlipped, $isMatched, onClick }: CardProps) => {
   const handleClick = () => {
+    // Korten ska inte flipppas om de är matchade
     if (!$isFlipped && !$isMatched) {
       onClick(); // Anrop på onClick för att vända kortet om det inte redan är vänd eller matchat
     }

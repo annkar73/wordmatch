@@ -147,29 +147,30 @@ const MemoryGame = () => {
     if (
       flippedCards.length === 2 ||
       flippedCards.includes(card.id) ||
-      matchedCards.includes(card.id)
+      matchedCards.includes(card.id) // Kontrollera om kortet redan är matchat
     ) {
       return;
     }
-
+  
     setFlippedCards((prev) => {
       const newFlippedCards = [...prev, card.id];
-
+  
       if (newFlippedCards.length === 2) {
         const [firstCardId, secondCardId] = newFlippedCards;
-
+  
         if (firstCardId === secondCardId) {
           setMatchedCards((prev) => [...prev, firstCardId, secondCardId]);
         }
-
+  
         setTimeout(() => {
           setFlippedCards([]);
         }, 1000);
       }
-
+  
       return newFlippedCards;
     });
   };
+  
 
   const restartGame = () => {
     setMatchedCards([]);
