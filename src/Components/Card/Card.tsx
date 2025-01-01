@@ -1,16 +1,18 @@
-import React from "react";
-import { styled } from "styled-components";
+import styled from 'styled-components';
 
+// Typen för dina props
 interface CardProps {
-  id: string;
+  id: number;
   image: string;
-  isFlipped: boolean;
-  isMatched: boolean;
+  word?: string;
+  pairId?: string;
+  $isFlipped: boolean;
+  $isMatched: boolean;
   onClick: () => void;
 }
 
-// Container för hela kortet
-const CardContainer = styled.div`
+// Typa CardContainer korrekt genom att använda CardProps
+const CardContainer = styled.div<CardProps>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -18,41 +20,26 @@ const CardContainer = styled.div`
   align-items: center;
   cursor: pointer;
   perspective: 1000px;
-
-  &:hover {
-    filter: brightness(1.1); /* Visuell feedback vid hover */
-  }
 `;
 
-// Själva kortet som kan flippas
 const Card = styled.div<{ $isFlipped: boolean; $isMatched: boolean }>`
   width: 100%;
   height: 100%;
   border-radius: 8px;
   transform-style: preserve-3d;
-  transform: ${({ $isFlipped }) => ($isFlipped ? "rotateY(180deg)" : "rotateY(0deg)")};
   transition: transform 0.5s;
-
   position: relative;
-
-  ${({ $isMatched }) => $isMatched && `
-    opacity: 0.5; /* Gör kortet genomskinligt om det är matchat */
-    pointer-events: none; /* Inaktivera klick */
-  `}
+  transform: ${({ $isFlipped }) => ($isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)')};
+  opacity: ${({ $isMatched }) => ($isMatched ? 0.5 : 1)};
+  pointer-events: ${({ $isMatched }) => ($isMatched ? 'none' : 'auto')};
 `;
 
-// Bas för fram- och baksidan av kortet
-const CardFace = styled.div`
+const CardFront = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
   border-radius: 8px;
-`;
-
-// Framsidan av kortet
-const CardFront = styled(CardFace)`
-  background-color: #f0f0f0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,33 +52,42 @@ const CardFront = styled(CardFace)`
   }
 `;
 
-// Baksidan av kortet
-const CardBack = styled(CardFace)`
+const CardBack = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
   background-image: url('/assets/cardbg.png');
   background-color: black;
   background-size: cover;
   background-position: center;
 `;
 
-// Komponent för kortet
-const CardComponent = React.memo(({ id, image, isFlipped, isMatched, onClick }: CardProps) => {
-  // Spärra klick om kortet redan är flippat eller matchat
+// Själva Card-komponenten
+const CardComponent = ({ id, image, $isFlipped, $isMatched, onClick }: CardProps) => {
   const handleClick = () => {
-    if (!isFlipped && !isMatched) {
-      onClick();
+    if (!$isFlipped && !$isMatched) {
+      onClick(); // Anrop på onClick för att vända kortet om det inte redan är vänd eller matchat
     }
   };
 
   return (
-    <CardContainer onClick={handleClick} data-id={id}>
-      <Card $isFlipped={isFlipped} $isMatched={isMatched}>
+    <CardContainer 
+      onClick={handleClick} 
+      data-id={id} 
+      $isFlipped={$isFlipped} 
+      $isMatched={$isMatched}
+      id={id} // Skicka vidare id
+      image={image} // Skicka vidare image
+    >
+      <Card $isFlipped={$isFlipped} $isMatched={$isMatched}>
         <CardFront>
-          {isFlipped ? <img src={image} alt="card front" /> : null}
+          {$isFlipped ? <img src={image} alt="card front" /> : null}
         </CardFront>
         <CardBack />
       </Card>
     </CardContainer>
   );
-});
+};
 
 export default CardComponent;

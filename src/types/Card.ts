@@ -7,7 +7,7 @@ export type Card = {
 }
 
 export type MemoryCard = {
-    id: string;
+    id: number;
     image: string;
 }
 

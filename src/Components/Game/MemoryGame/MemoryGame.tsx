@@ -2,15 +2,11 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { fetchCards } from "../../../services/fetchCards";
 import { MemoryCard } from "../../../types/Card";
-
-// Importera CardComponent här
-import CardComponent from "../../Card/Card"; // Förutsatt att den är i samma nivå som MemoryGame
-
+import CardComponent from "../../Card/Card";
 import { PageWrapper, GameWrapper } from "../../styled/Wrappers";
 import { Button } from "../../styled/Button";
 import { breakpoints, fontSizes, spacing, borderRadius } from "../../../styles/variables";
 
-// Styled Components (samma som tidigare)
 const DifficultySelector = styled.div`
   margin-bottom: ${spacing.medium};
   padding: ${spacing.small};
@@ -82,11 +78,11 @@ const RightColumn = styled.div`
 const CardGrid = styled.div<{ columns: number, rows: number }>`
   display: grid;
   grid-template-columns: ${({ columns }) => `repeat(${columns}, 1fr)`};
-  grid-template-rows: ${({ rows }) => `repeat(${rows}, 1fr)`}; /* Lägg till för att definiera höjd */
-  gap: 10px; /* Kan justeras för att ge lite avstånd mellan korten */
+  grid-template-rows: ${({ rows }) => `repeat(${rows}, 1fr)`};
+  gap: 10px;
   width: 100%;
-  max-width: 600px; /* Kan justeras beroende på din layout */
-  height: 80vh; /* Tar upp 80% av höjden på sidan */
+  max-width: 600px;
+  height: 80vh;
   background-color: transparent;
   margin: 0 auto;
 
@@ -113,13 +109,12 @@ const ControlWrapper = styled.div`
 const MemoryGame = () => {
   const [cards, setCards] = useState<MemoryCard[]>([]);
   const [shuffledCards, setShuffledCards] = useState<MemoryCard[]>([]);
-  const [flippedCards, setFlippedCards] = useState<MemoryCard[]>([]);
-  const [matchedCards, setMatchedCards] = useState<MemoryCard[]>([]);
-  const [difficulty, setDifficulty] = useState<number>(16); // Default to 16 cards (4x4)
-  const [columns, setColumns] = useState<number>(4); // Default to 4 columns
+  const [flippedCards, setFlippedCards] = useState<number[]>([]);
+  const [matchedCards, setMatchedCards] = useState<number[]>([]);
+  const [difficulty, setDifficulty] = useState<number>(16);
+  const [columns, setColumns] = useState<number>(4);
   const [rows, setRows] = useState<number>(4);
 
-  // Hämta kort när komponenten laddas
   useEffect(() => {
     const getCards = async () => {
       try {
@@ -132,83 +127,71 @@ const MemoryGame = () => {
     getCards();
   }, []);
 
-  // Uppdatera de blandade korten när korten eller svårighetsgraden ändras
   useEffect(() => {
     if (cards.length > 0) {
       const pairedCards = cards
         .flatMap((card) => [
           card,
-          { ...card, id: `${card.id}_duplicate` },
-        ]) // Skapa duplikat av varje kort
-        .sort(() => Math.random() - 0.5); // Blanda korten
-      setShuffledCards(pairedCards.slice(0, difficulty)); // Begränsa korten till valt antal
+          { ...card, id: card.id + 1000 },
+        ])
+        .sort(() => Math.random() - 0.5);
+      setShuffledCards(pairedCards.slice(0, difficulty));
     }
-  }, [cards, difficulty]); // Ta bort shuffledCards här
+  }, [cards, difficulty]);
 
-  // Justera antalet kolumner baserat på svårighetsgraden
   useEffect(() => {
     setColumns(difficulty === 16 ? 4 : difficulty === 36 ? 6 : 4);
   }, [difficulty]);
 
-  // Hantera klick på kort
   const handleCardClick = (card: MemoryCard) => {
     if (
-      flippedCards.length === 2 || 
-      flippedCards.some((flippedCard) => flippedCard.id === card.id) || 
-      matchedCards.some((matchedCard) => matchedCard.id === card.id)
+      flippedCards.length === 2 ||
+      flippedCards.includes(card.id) ||
+      matchedCards.includes(card.id)
     ) {
-      return; 
+      return;
     }
-  
+
     setFlippedCards((prev) => {
-      const newFlippedCards = [...prev, card];
-  
-      // Kontrollera om två kort är vända
+      const newFlippedCards = [...prev, card.id];
+
       if (newFlippedCards.length === 2) {
-        const [firstCard, secondCard] = newFlippedCards;
-  
-        // Kontrollera om korten matchar
-        if (
-          firstCard.id === secondCard.id || 
-          firstCard.id === `${secondCard.id}_duplicate` ||
-          `${firstCard.id}_duplicate` === secondCard.id
-        ) {
-          setMatchedCards((prev) => [...prev, firstCard, secondCard]);
+        const [firstCardId, secondCardId] = newFlippedCards;
+
+        if (firstCardId === secondCardId) {
+          setMatchedCards((prev) => [...prev, firstCardId, secondCardId]);
         }
-  
-        // Vänta en sekund innan korten vänds tillbaka (om de inte matchade)
+
         setTimeout(() => {
           setFlippedCards([]);
         }, 1000);
       }
-  
+
       return newFlippedCards;
     });
   };
-      
-  // Restart game
+
   const restartGame = () => {
     setMatchedCards([]);
     setFlippedCards([]);
     const shuffled = [...cards].flatMap((card) => [
       card,
-      { ...card, id: `${card.id}_duplicate` },
+      { ...card, id: card.id + 1000 },
     ]).sort(() => Math.random() - 0.5);
     setShuffledCards(shuffled.slice(0, difficulty));
   };
 
-  // Reset game to standard
   const resetGame = () => {
     setMatchedCards([]);
     setFlippedCards([]);
-    setDifficulty(16); // Reset to 16 cards (4x4)
-    setColumns(4); // Reset to 4 columns
+    setDifficulty(16);
+    setColumns(4);
     setRows(4);
     const shuffled = [...cards].flatMap((card) => [
       card,
-      { ...card, id: `${card.id}_duplicate` },
+      { ...card, id: card.id + 1000 },
     ]).sort(() => Math.random() - 0.5);
-    setShuffledCards(shuffled.slice(0, 16)); // Default to 16 cards
+    setShuffledCards(shuffled.slice(0, 16));
   };
 
   return (
@@ -241,8 +224,8 @@ const MemoryGame = () => {
                     key={card.id}
                     id={card.id}
                     image={card.image}
-                    isFlipped={flippedCards.some((flippedCard) => flippedCard.id === card.id)}
-                    isMatched={matchedCards.some((matchedCard) => matchedCard.id === card.id)}
+                    $isFlipped={flippedCards.includes(card.id)}
+                    $isMatched={matchedCards.includes(card.id)}
                     onClick={() => handleCardClick(card)}
                   />
                 ))
