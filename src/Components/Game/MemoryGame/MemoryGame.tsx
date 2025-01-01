@@ -94,6 +94,7 @@ const CardGrid = styled.div<{ columns: number, rows: number }>`
     max-width: 100%;
   }
 `;
+
 const ControlWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -142,7 +143,7 @@ const MemoryGame = () => {
         .sort(() => Math.random() - 0.5); // Blanda korten
       setShuffledCards(pairedCards.slice(0, difficulty)); // Begränsa korten till valt antal
     }
-  }, [cards, difficulty, shuffledCards]);
+  }, [cards, difficulty]); // Ta bort shuffledCards här
 
   // Justera antalet kolumner baserat på svårighetsgraden
   useEffect(() => {
@@ -151,28 +152,41 @@ const MemoryGame = () => {
 
   // Hantera klick på kort
   const handleCardClick = (card: MemoryCard) => {
-    // Förhindra att korten vänds tillbaka om de redan har matchats eller om det finns en pågående vändning
-    if (flippedCards.length === 2 || flippedCards.includes(card) || matchedCards.includes(card)) return;
-
-
-    setFlippedCards((prev) => [...prev, card]);
-
-    if (flippedCards.length === 1) {
-      const [firstCard] = flippedCards;
-
-      // Kontrollera om de två korten matchar
-      if (firstCard.id === card.id || firstCard.id === `${card.id}_duplicate`) {
-        setMatchedCards((prev) => [...prev, firstCard, card]);
-      }
-
-      // Vänta en sekund innan korten vänds tillbaka (om de inte matchade)
-      setTimeout(() => {
-        setFlippedCards([]);
-      }, 1000);
+    if (
+      flippedCards.length === 2 || 
+      flippedCards.some((flippedCard) => flippedCard.id === card.id) || 
+      matchedCards.some((matchedCard) => matchedCard.id === card.id)
+    ) {
+      return; 
     }
+  
+    setFlippedCards((prev) => {
+      const newFlippedCards = [...prev, card];
+  
+      // Kontrollera om två kort är vända
+      if (newFlippedCards.length === 2) {
+        const [firstCard, secondCard] = newFlippedCards;
+  
+        // Kontrollera om korten matchar
+        if (
+          firstCard.id === secondCard.id || 
+          firstCard.id === `${secondCard.id}_duplicate` ||
+          `${firstCard.id}_duplicate` === secondCard.id
+        ) {
+          setMatchedCards((prev) => [...prev, firstCard, secondCard]);
+        }
+  
+        // Vänta en sekund innan korten vänds tillbaka (om de inte matchade)
+        setTimeout(() => {
+          setFlippedCards([]);
+        }, 1000);
+      }
+  
+      return newFlippedCards;
+    });
   };
-
-  // Starta om spelet
+      
+  // Restart game
   const restartGame = () => {
     setMatchedCards([]);
     setFlippedCards([]);
@@ -183,7 +197,7 @@ const MemoryGame = () => {
     setShuffledCards(shuffled.slice(0, difficulty));
   };
 
-  // Återställ spelet till standardinställningar
+  // Reset game to standard
   const resetGame = () => {
     setMatchedCards([]);
     setFlippedCards([]);
@@ -208,8 +222,8 @@ const MemoryGame = () => {
                 onChange={(e) => setDifficulty(Number(e.target.value))}
                 value={difficulty}
               >
-                <option value={16}>Lätt (16 kort)</option>
-                <option value={36}>Svår (36 kort)</option>
+                <option value={16}>Liten (16 kort)</option>
+                <option value={36}>Stor (36 kort)</option>
               </select>
             </DifficultySelector>
 
@@ -224,11 +238,13 @@ const MemoryGame = () => {
               {shuffledCards.length > 0 ? (
                 shuffledCards.map((card) => (
                   <CardComponent
-                        key={card.id}
-                        id={card.id} // Använd id för att säkerställa att varje kort är unikt
-                        image={card.image}
-                        isFlipped={flippedCards.includes(card) || matchedCards.includes(card)}
-                        onClick={() => handleCardClick(card)} isMatched={false}                  />
+                    key={card.id}
+                    id={card.id}
+                    image={card.image}
+                    isFlipped={flippedCards.some((flippedCard) => flippedCard.id === card.id)}
+                    isMatched={matchedCards.some((matchedCard) => matchedCard.id === card.id)}
+                    onClick={() => handleCardClick(card)}
+                  />
                 ))
               ) : (
                 <p>Laddar kort...</p>
