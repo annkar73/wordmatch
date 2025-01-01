@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+// Uppdaterad typ för HamburgerButton med $isOpen
 interface HamburgerButtonProps {
-  isOpen: boolean;
+  $isOpen: boolean;
 }
 
 const NavContainer = styled.nav`
@@ -33,15 +34,15 @@ const HamburgerButton = styled.button<HamburgerButtonProps>`
     transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
 
     &:nth-child(1) {
-      transform: ${({ isOpen }) =>
-        isOpen ? "rotate(45deg) translate(5px, 5px)" : "none"};
+      transform: ${({ $isOpen }) =>
+        $isOpen ? "rotate(45deg) translate(5px, 5px)" : "none"};
     }
     &:nth-child(2) {
-      opacity: ${({ isOpen }) => (isOpen ? 0 : 1)};
+      opacity: ${({ $isOpen }) => ($isOpen ? 0 : 1)};
     }
     &:nth-child(3) {
-      transform: ${({ isOpen }) =>
-        isOpen ? "rotate(-45deg) translate(5px, -5px)" : "none"};
+      transform: ${({ $isOpen }) =>
+        $isOpen ? "rotate(-45deg) translate(5px, -5px)" : "none"};
     }
   }
 
@@ -158,7 +159,7 @@ export const Navigation = () => {
 
       {/* Hamburger Button */}
       <HamburgerButton
-        isOpen={isOpen}
+        $isOpen={isOpen} // Använder $isOpen istället för isOpen för Styled Components
         onClick={toggleMenu}
         aria-label="Toggle navigation menu"
       >

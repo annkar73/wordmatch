@@ -1,167 +1,243 @@
-// src/Components/Game/MemoryGame/MemoryGame.tsx
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { fetchCards } from "../../../services/fetchCards";
-import { MemoryCard } from "../../../types/Card"; // Importera MemoryCard-typen
+import { MemoryCard } from "../../../types/Card";
 
-// Styled Components
+// Importera CardComponent här
+import CardComponent from "../../Card/Card"; // Förutsatt att den är i samma nivå som MemoryGame
+
+import { PageWrapper, GameWrapper } from "../../styled/Wrappers";
+import { Button } from "../../styled/Button";
+import { breakpoints, fontSizes, spacing, borderRadius } from "../../../styles/variables";
+
+// Styled Components (samma som tidigare)
+const DifficultySelector = styled.div`
+  margin-bottom: ${spacing.medium};
+  padding: ${spacing.small};
+  border-radius: ${borderRadius.medium};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  select {
+    margin-top: ${spacing.small};
+    padding: ${spacing.xSmall};
+    border-radius: ${borderRadius.small};
+    border: 1px solid ${(props) => props.theme.text};
+    background-color: ${(props) => props.theme.background};
+    font-size: ${fontSizes.base};
+    cursor: pointer;
+  }
+
+  @media (min-width: ${breakpoints.tablet}) {
+    align-items: flex-start;
+    width: auto;
+  }
+`;
+
 const GameContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
+  gap: ${spacing.large};
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
 `;
 
-const DifficultySelector = styled.div`
-  margin-bottom: 20px;
+const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  order: 2;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    width: 60%;
+    order: 0;
+  }
 `;
 
-const CardGrid = styled.div<{ columns: number }>`
+const RightColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${spacing.medium};
+  align-items: center;
+  width: 100%;
+  max-width: 200px;
+  order: 1;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    width: 40%;
+    max-width: 300px;
+    order: 1;
+  }
+`;
+
+const CardGrid = styled.div<{ columns: number, rows: number }>`
   display: grid;
   grid-template-columns: ${({ columns }) => `repeat(${columns}, 1fr)`};
-  grid-template-rows: ${({ columns }) => `repeat(${columns}, 1fr)`};
-  gap: 10px;
-  margin-top: 20px;
+  grid-template-rows: ${({ rows }) => `repeat(${rows}, 1fr)`}; /* Lägg till för att definiera höjd */
+  gap: 10px; /* Kan justeras för att ge lite avstånd mellan korten */
   width: 100%;
-  max-width: 600px; /* Maximal bredd för grid, så det inte blir för brett på stora skärmar */
+  max-width: 600px; /* Kan justeras beroende på din layout */
+  height: 80vh; /* Tar upp 80% av höjden på sidan */
+  background-color: transparent;
+  margin: 0 auto;
 
-  /* Media query för att anpassa layouten för olika skärmstorlekar */
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);  // För skärmar som är mindre än 768px, använd 3 kolumner
-    grid-template-rows: repeat(3, 1fr);
-  }
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);  // För mellanstora skärmar, använd 4 kolumner
-    grid-template-rows: repeat(4, 1fr);
-  }
-
-  @media (min-width: 1024px) {
-    grid-template-columns: ${({ columns }) => `repeat(${columns}, 1fr)`}; // För större skärmar, använd dynamisk gridkolumn
-    grid-template-rows: ${({ columns }) => `repeat(${columns}, 1fr)`};
+  @media (max-width: 600px) {
+    max-width: 100%;
   }
 `;
-
-const CardWrapper = styled.div`
-  width: 100%;
-  padding-top: 100%;  // Proportionell padding för att skapa kvadratiskt format
-  position: relative;  // Viktigt för att hålla kortet i rätt form
-
-  /* För att säkerställa att korten är kvadratiska */
-  aspect-ratio: 1 / 1; 
-  overflow: hidden;
+const ControlWrapper = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-`;
-
-const CardImage = styled.div<{ isFlipped: boolean; image: string }>`
+  flex-direction: column;
+  gap: ${spacing.large};
   width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  background-image: ${({ isFlipped, image }) =>
-    isFlipped ? `url(${image})` : "url(/assets/cardbg.png)"};
-  background-size: cover;
-  background-position: center;
-  background-color: ${({ isFlipped }) => (isFlipped ? "transparent" : "#f0f0f0")}; // Lägg till bakgrundsfärg när kortet inte är vänt
-  transition: transform 0.3s;
-  transform-style: preserve-3d;
-  transform: ${({ isFlipped }) => (isFlipped ? "rotateY(180deg)" : "rotateY(0deg)")};
+  align-items: center;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+  }
 `;
 
-// MemoryGame-komponent
 const MemoryGame = () => {
   const [cards, setCards] = useState<MemoryCard[]>([]);
   const [shuffledCards, setShuffledCards] = useState<MemoryCard[]>([]);
   const [flippedCards, setFlippedCards] = useState<MemoryCard[]>([]);
   const [matchedCards, setMatchedCards] = useState<MemoryCard[]>([]);
-  const [difficulty, setDifficulty] = useState<number>(9); // Svårighetsgrad, börjar med 9 kort
-  const [columns, setColumns] = useState<number>(3); // Default till 3 kolumner för 9 kort
+  const [difficulty, setDifficulty] = useState<number>(16); // Default to 16 cards (4x4)
+  const [columns, setColumns] = useState<number>(4); // Default to 4 columns
+  const [rows, setRows] = useState<number>(4);
 
+  // Hämta kort när komponenten laddas
   useEffect(() => {
     const getCards = async () => {
       try {
-        // Hämta MemoryCard-data från Supabase
-        const fetchedCards = await fetchCards<MemoryCard>({}); // Skickar inga filter
+        const fetchedCards = await fetchCards<MemoryCard>({});
         setCards(fetchedCards);
       } catch (error) {
         console.error("Error fetching cards:", error);
       }
     };
-
     getCards();
   }, []);
 
+  // Uppdatera de blandade korten när korten eller svårighetsgraden ändras
   useEffect(() => {
-    // Shuffle korten när de är hämtade
     if (cards.length > 0) {
-      const shuffled = [...cards].sort(() => Math.random() - 0.5);
-      setShuffledCards(shuffled);
+      const pairedCards = cards
+        .flatMap((card) => [
+          card,
+          { ...card, id: `${card.id}_duplicate` },
+        ]) // Skapa duplikat av varje kort
+        .sort(() => Math.random() - 0.5); // Blanda korten
+      setShuffledCards(pairedCards.slice(0, difficulty)); // Begränsa korten till valt antal
     }
-  }, [cards]);
+  }, [cards, difficulty, shuffledCards]);
 
-  // Uppdatera kolumnantal baserat på svårighetsgrad
+  // Justera antalet kolumner baserat på svårighetsgraden
   useEffect(() => {
-    let numColumns = 0;
-    if (difficulty === 9) {
-      numColumns = 3; // 3x3
-    } else if (difficulty === 16) {
-      numColumns = 4; // 4x4
-    } else if (difficulty === 36) {
-      numColumns = 6; // 6x6
-    }
-
-    setColumns(numColumns);
+    setColumns(difficulty === 16 ? 4 : difficulty === 36 ? 6 : 4);
   }, [difficulty]);
 
+  // Hantera klick på kort
   const handleCardClick = (card: MemoryCard) => {
-    if (flippedCards.length === 2 || flippedCards.includes(card)) return;
+    // Förhindra att korten vänds tillbaka om de redan har matchats eller om det finns en pågående vändning
+    if (flippedCards.length === 2 || flippedCards.includes(card) || matchedCards.includes(card)) return;
+
 
     setFlippedCards((prev) => [...prev, card]);
 
     if (flippedCards.length === 1) {
       const [firstCard] = flippedCards;
 
-      if (firstCard.id === card.id) {
+      // Kontrollera om de två korten matchar
+      if (firstCard.id === card.id || firstCard.id === `${card.id}_duplicate`) {
         setMatchedCards((prev) => [...prev, firstCard, card]);
       }
 
+      // Vänta en sekund innan korten vänds tillbaka (om de inte matchade)
       setTimeout(() => {
         setFlippedCards([]);
       }, 1000);
     }
   };
 
+  // Starta om spelet
+  const restartGame = () => {
+    setMatchedCards([]);
+    setFlippedCards([]);
+    const shuffled = [...cards].flatMap((card) => [
+      card,
+      { ...card, id: `${card.id}_duplicate` },
+    ]).sort(() => Math.random() - 0.5);
+    setShuffledCards(shuffled.slice(0, difficulty));
+  };
+
+  // Återställ spelet till standardinställningar
+  const resetGame = () => {
+    setMatchedCards([]);
+    setFlippedCards([]);
+    setDifficulty(16); // Reset to 16 cards (4x4)
+    setColumns(4); // Reset to 4 columns
+    setRows(4);
+    const shuffled = [...cards].flatMap((card) => [
+      card,
+      { ...card, id: `${card.id}_duplicate` },
+    ]).sort(() => Math.random() - 0.5);
+    setShuffledCards(shuffled.slice(0, 16)); // Default to 16 cards
+  };
+
   return (
-    <GameContainer>
-      <h2>Memory Game</h2>
+    <PageWrapper>
+      <GameWrapper>
+        <GameContainer>
+          <RightColumn>
+            <DifficultySelector>
+              <h3>Välj svårighetsgrad:</h3>
+              <select
+                onChange={(e) => setDifficulty(Number(e.target.value))}
+                value={difficulty}
+              >
+                <option value={16}>Lätt (16 kort)</option>
+                <option value={36}>Svår (36 kort)</option>
+              </select>
+            </DifficultySelector>
 
-      {/* Difficulty selector */}
-      <DifficultySelector>
-        <h3>Välj svårighetsgrad:</h3>
-        <select onChange={(e) => setDifficulty(Number(e.target.value))} value={difficulty}>
-          <option value={9}>Enkel (9 kort)</option>
-          <option value={16}>Medel (16 kort)</option>
-          <option value={36}>Svår (36 kort)</option>
-        </select>
-      </DifficultySelector>
+            <ControlWrapper>
+              <Button onClick={restartGame}>Starta om</Button>
+              <Button onClick={resetGame}>Rensa</Button>
+            </ControlWrapper>
+          </RightColumn>
 
-      {/* Card Grid */}
-      <CardGrid columns={columns}>
-        {shuffledCards.slice(0, difficulty).map((card) => (
-          <CardWrapper key={card.id} onClick={() => handleCardClick(card)}>
-            <CardImage
-              isFlipped={flippedCards.includes(card) || matchedCards.includes(card)}
-              image={card.image}
-            />
-          </CardWrapper>
-        ))}
-      </CardGrid>
-    </GameContainer>
+          <LeftColumn>
+            <CardGrid columns={columns} rows={rows}>
+              {shuffledCards.length > 0 ? (
+                shuffledCards.map((card) => (
+                  <CardComponent
+                        key={card.id}
+                        id={card.id} // Använd id för att säkerställa att varje kort är unikt
+                        image={card.image}
+                        isFlipped={flippedCards.includes(card) || matchedCards.includes(card)}
+                        onClick={() => handleCardClick(card)} isMatched={false}                  />
+                ))
+              ) : (
+                <p>Laddar kort...</p>
+              )}
+            </CardGrid>
+          </LeftColumn>
+        </GameContainer>
+      </GameWrapper>
+    </PageWrapper>
   );
 };
 

@@ -29,7 +29,7 @@ export const GameWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 90%;
-  background-color: rgba(0, 0, 0, 0.3);
+  //background-color: rgba(0, 0, 0, 0.3);
   border-radius: 12px;
   box-sizing: border-box;
   padding: 20px;

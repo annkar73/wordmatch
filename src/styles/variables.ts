@@ -1,3 +1,4 @@
+// src/styles/variables.ts
 // variables for breakpoints
 
 export const breakpoints = {
