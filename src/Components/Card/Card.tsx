@@ -49,6 +49,7 @@ const CardFront = styled.div`
     object-fit: cover;
     object-position: center;
     border-radius: 4px;
+    image-rendering: auto;
   }
 `;
 
@@ -72,7 +73,7 @@ const CardComponent = ({ card, $isFlipped, $isMatched, onClick }: ICardProps) =>
     <CardContainer onClick={() => !$isMatched && onClick(id)}>
       <Card $isFlipped={isFlipped}>
         <CardFront>
-          {isFlipped ? <img src={image} alt="card front" /> : null}
+          {isFlipped ? <img src={image} alt="card front" loading='eager' /> : null}
         </CardFront>
         <CardBack />
       </Card>
