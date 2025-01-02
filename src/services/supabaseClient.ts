@@ -5,6 +5,8 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
     console.error("Supabase URL or Key is missing!");
+  } else {
+    console.log("Supabase URL and Key are set:", supabaseUrl, supabaseKey)
   }
 
 // Skapa klienten
