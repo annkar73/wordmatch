@@ -42,6 +42,7 @@ const CardFront = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 
   img {
     max-width: 100%;
@@ -60,7 +61,7 @@ const CardBack = styled.div`
   backface-visibility: hidden;
   background-image: url('/assets/cardbg.png');
   background-color: black;
-  background-size: cover;
+  //background-size: cover;
   background-position: center;
 `;
 
