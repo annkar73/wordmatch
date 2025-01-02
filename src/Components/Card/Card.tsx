@@ -60,8 +60,8 @@ const CardBack = styled.div`
   position: absolute;
   backface-visibility: hidden;
   background-image: url('/assets/cardbg.png');
-  background-color: black;
-  //background-size: cover;
+  //background-color: black;
+  background-size: cover;
   background-position: center;
 `;
 
