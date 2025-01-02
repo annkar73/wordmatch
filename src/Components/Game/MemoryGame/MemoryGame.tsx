@@ -119,24 +119,25 @@ const MemoryGame = () => {
   useEffect(() => {
     const getCards = async () => {
       if (isFetched) return;
-
+  
       try {
         const fetchedCards = await fetchCards<MemoryCard>({});
         setCards(fetchedCards);
         setIsFetched(true);
+        // När spelet startas om eller storleken ändras, generera de blandade korten
         setShuffledCards(generateShuffledCards(fetchedCards, gameSize));
       } catch (error) {
         console.error("Error fetching cards:", error);
       }
     };
     getCards();
-  }, [isFetched, gameSize]);
-
-  const generateShuffledCards = (cards: MemoryCard[], size: number): MemoryCard[] => {
-    const numberOfCards = size === 16 ? 8 : 18; // Antalet kort baserat på storlek
-    const selectedCards = cards.slice(0, numberOfCards); // Välj ett urval av kort
+  }, [isFetched, gameSize]);  // Lägg till gameSize för att reagera på förändringar av storlek
   
-    // Skapa par av kort
+  // Uppdatera generateShuffledCards-funktionen för att hantera större spelplaner
+  const generateShuffledCards = (cards: MemoryCard[], size: number): MemoryCard[] => {
+    const numberOfCards = size === 16 ? 8 : size === 36 ? 18 : 24; // Dynamiskt beroende på storlek (16, 36 eller annat)
+    const selectedCards = cards.slice(0, numberOfCards); // Välj rätt antal kort
+  
     const pairedCards = selectedCards
       .flatMap((card) => [
         { ...card, uniqueId: card.id * 2, originalId: card.id },
@@ -151,7 +152,8 @@ const MemoryGame = () => {
   
     return pairedCards;
   };
-  const handleCardClick = (card: MemoryCard) => {
+  
+    const handleCardClick = (card: MemoryCard) => {
     if (matchedCards.includes(card.uniqueId) || flippedCards.includes(card.uniqueId)) {
       return;
     }
