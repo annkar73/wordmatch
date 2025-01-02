@@ -40,6 +40,7 @@ const GameContainer = styled.div`
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
+  align-items: center;
 
   @media (min-width: ${breakpoints.tablet}) {
     flex-direction: row;
@@ -80,15 +81,18 @@ const CardGrid = styled.div<{ $columns: number; $rows: number }>`
   display: grid;
   grid-template-columns: ${({ $columns }) => `repeat(${$columns}, 1fr)`};
   grid-template-rows: ${({ $rows }) => `repeat(${$rows}, 1fr)`};
-  gap: 10px;
-  width: 100%;
-  max-width: 600px;
-  height: 80vh;
-  background-color: transparent;
-  margin: 0 auto;
+  gap: 5px;
+  width: 90vw;
+  //max-width: 600px;
+  height: auto;
+  background-color: ${(props) => props.theme.gameBackground};
+  padding: 10px;
+  border-radius: ${borderRadius.large};
+  margin: 0;
 
-  @media (max-width: 600px) {
+  @media (min-width: ${breakpoints.tablet}) {
     max-width: 100%;
+    gap: 10px;
   }
 `;
 
@@ -114,24 +118,19 @@ const MemoryGame = () => {
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
   const [gameSize, setGameSize] = useState<number>(16);
-  const [isFetched, setIsFetched] = useState<boolean>(false);
-
+  
   useEffect(() => {
     const getCards = async () => {
-      if (isFetched) return;
-  
       try {
         const fetchedCards = await fetchCards<MemoryCard>({});
         setCards(fetchedCards);
-        setIsFetched(true);
-        // När spelet startas om eller storleken ändras, generera de blandade korten
         setShuffledCards(generateShuffledCards(fetchedCards, gameSize));
       } catch (error) {
         console.error("Error fetching cards:", error);
       }
     };
     getCards();
-  }, [isFetched, gameSize]);  // Lägg till gameSize för att reagera på förändringar av storlek
+  }, [gameSize]);  // Uppdatera bara när gameSize ändras
   
   // Uppdatera generateShuffledCards-funktionen för att hantera större spelplaner
   const generateShuffledCards = (cards: MemoryCard[], size: number): MemoryCard[] => {
@@ -152,8 +151,8 @@ const MemoryGame = () => {
   
     return pairedCards;
   };
-  
-    const handleCardClick = (card: MemoryCard) => {
+
+  const handleCardClick = (card: MemoryCard) => {
     if (matchedCards.includes(card.uniqueId) || flippedCards.includes(card.uniqueId)) {
       return;
     }

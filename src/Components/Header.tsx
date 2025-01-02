@@ -52,7 +52,7 @@ export const Header = ({ onThemeToggle, themeName }: HeaderProps) => {
         <ThemeToggleButton onClick={onThemeToggle} themeName={themeName} />
       </LeftSection>
       <CenterSection>
-        <Title>OrdMatch</Title>
+        <Title></Title>
       </CenterSection>
       <RightSection>
         <Navigation />
