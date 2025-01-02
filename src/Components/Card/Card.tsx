@@ -44,9 +44,10 @@ const CardFront = styled.div`
   align-items: center;
 
   img {
-    width: 80%;
+    max-width: 100%;
     height: auto;
     object-fit: cover;
+    object-position: center;
     border-radius: 4px;
   }
 `;
@@ -66,12 +67,15 @@ const CardComponent = ({ card, $isFlipped, $isMatched, onClick }: ICardProps) =>
   const { id, image } = card;
   // Kortet ska bara vändas om det inte är matchat
   const isFlipped = $isFlipped || $isMatched;  // Om kortet är matchat, håll det vänt med framsidan upp.
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = '/assets/placeholder-image.png';  // Fallback-bild
+  };
 
   return (
     <CardContainer onClick={() => !$isMatched && onClick(id)}>
       <Card $isFlipped={isFlipped}>
         <CardFront>
-          {isFlipped ? <img src={image} alt="card front" /> : null}
+          {isFlipped ? <img src={image} alt="card front" onError={handleImageError} /> : null}
         </CardFront>
         <CardBack />
       </Card>
