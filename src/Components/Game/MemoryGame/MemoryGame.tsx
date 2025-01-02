@@ -86,11 +86,13 @@ const CardGrid = styled.div<{ $columns: number; $rows: number }>`
   //max-width: 600px;
   height: auto;
   background-color: ${(props) => props.theme.gameBackground};
+  //margin: 45px auto;
   padding: 10px;
-  border-radius: ${borderRadius.large};
+  border-radius: ${borderRadius.medium};
   margin: 0;
 
   @media (min-width: ${breakpoints.tablet}) {
+    margin-top: 45px;
     max-width: 100%;
     gap: 10px;
   }

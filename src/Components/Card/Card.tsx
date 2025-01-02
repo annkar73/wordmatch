@@ -43,6 +43,7 @@ const CardFront = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1;
+  transition: all 0.5s ease-in-out;
 
   img {
     max-width: 100%;
@@ -63,6 +64,8 @@ const CardBack = styled.div`
   //background-color: black;
   background-size: cover;
   background-position: center;
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
 `;
 
 const CardComponent = ({ card, $isFlipped, $isMatched, onClick }: ICardProps) => {
