@@ -8,6 +8,8 @@ export type Card = {
 
 export type MemoryCard = {
     id: number;
+    uniqueId: number;
+    originalId: number;
     image: string;
 }
 

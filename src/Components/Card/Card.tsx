@@ -1,17 +1,17 @@
+// Card.tsx
 import styled from 'styled-components';
+import { MemoryCard } from '../../types/Card';
 
-// Typen för dina props
-interface CardProps {
-  id: number;
+// Användning av I prefix för TypeScript-konventionen
+interface ICardProps {
+  card: MemoryCard;
   image: string;
-  word?: string;
-  pairId?: string;
-  $isFlipped: boolean;
-  $isMatched: boolean;
-  onClick: () => void;
+  $isFlipped: boolean; // Styled-prop
+  $isMatched: boolean; // Styled-prop
+  onClick: (id: number) => void;
 }
 
-// Typa CardContainer korrekt genom att använda CardProps
+// Styled components för kortet
 const CardContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -22,7 +22,7 @@ const CardContainer = styled.div`
   perspective: 1000px;
 `;
 
-const Card = styled.div<{ $isFlipped: boolean; $isMatched: boolean }>`
+const Card = styled.div<{ $isFlipped: boolean }>`
   width: 100%;
   height: 100%;
   border-radius: 8px;
@@ -30,8 +30,6 @@ const Card = styled.div<{ $isFlipped: boolean; $isMatched: boolean }>`
   transition: transform 0.5s;
   position: relative;
   transform: ${({ $isFlipped }) => ($isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)')};
-  opacity: ${({ $isMatched }) => ($isMatched ? 1 : 1)};
-  pointer-events: ${({ $isMatched }) => ($isMatched ? 'none' : 'auto')};
 `;
 
 const CardFront = styled.div`
@@ -63,20 +61,17 @@ const CardBack = styled.div`
   background-position: center;
 `;
 
-// Själva Card-komponenten
-const CardComponent = ({ id, image, $isFlipped, $isMatched, onClick }: CardProps) => {
-  const handleClick = () => {
-    // Korten ska inte flipppas om de är matchade
-    if (!$isFlipped && !$isMatched) {
-      onClick(); // Anrop på onClick för att vända kortet om det inte redan är vänd eller matchat
-    }
-  };
+const CardComponent = ({ card, $isFlipped, $isMatched, onClick }: ICardProps) => {
+  const { id, image } = card;
+  // Kortet ska bara vändas om det inte är matchat
+  const isFlipped = $isFlipped || $isMatched;  // Om kortet är matchat, håll det vänt med framsidan upp.
 
   return (
-    <CardContainer onClick={handleClick} data-id={id}>
-      <Card $isFlipped={$isFlipped} $isMatched={$isMatched}>
+    <CardContainer onClick={() => !$isMatched && onClick(id)}>
+      {/* Vi skickar $isFlipped och $isMatched till styled-componenten istället för DOM-elementet */}
+      <Card $isFlipped={isFlipped}>
         <CardFront>
-          {$isFlipped ? <img src={image} alt="card front" /> : null}
+          {isFlipped ? <img src={image} alt="card front" /> : null}
         </CardFront>
         <CardBack />
       </Card>
