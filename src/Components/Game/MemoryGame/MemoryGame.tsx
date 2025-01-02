@@ -133,19 +133,24 @@ const MemoryGame = () => {
   }, [isFetched, gameSize]);
 
   const generateShuffledCards = (cards: MemoryCard[], size: number): MemoryCard[] => {
-    const numberOfCards = size === 16 ? 8 : 18;
-    const selectedCards = cards.slice(0, numberOfCards);
-
+    const numberOfCards = size === 16 ? 8 : 18; // Antalet kort baserat på storlek
+    const selectedCards = cards.slice(0, numberOfCards); // Välj ett urval av kort
+  
+    // Skapa par av kort
     const pairedCards = selectedCards
       .flatMap((card) => [
         { ...card, uniqueId: card.id * 2, originalId: card.id },
         { ...card, uniqueId: card.id * 2 + 1, originalId: card.id },
-      ])
-      .sort(() => Math.random() - 0.5);
-
+      ]);
+  
+    // Fisher-Yates algoritm för att blanda korten
+    for (let i = pairedCards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pairedCards[i], pairedCards[j]] = [pairedCards[j], pairedCards[i]]; // Byt plats på korten
+    }
+  
     return pairedCards;
   };
-
   const handleCardClick = (card: MemoryCard) => {
     if (matchedCards.includes(card.uniqueId) || flippedCards.includes(card.uniqueId)) {
       return;
