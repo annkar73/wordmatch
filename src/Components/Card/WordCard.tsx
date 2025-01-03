@@ -9,6 +9,10 @@ interface IWordCardProps {
   onClick: (id: number) => void; // Funktion som hanterar klick på kortet
 }
 
+interface ICardFrontProps {
+    $isFlipped: boolean;
+}
+
 // Styled components för kortet
 const CardContainer = styled.div`
   width: 100%;
@@ -31,7 +35,7 @@ const Card = styled.div<{ $isFlipped: boolean }>`
   transform: ${({ $isFlipped }) => ($isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)')};
 `;
 
-const CardFront = styled.div`
+const CardFront = styled.div<ICardFrontProps>`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -42,6 +46,7 @@ const CardFront = styled.div`
   z-index: 1;
   transition: all 0.5s ease-in-out;
   flex-direction: column; /* Se till att ordet och bilden placeras vertikalt */
+  transform: ${({ $isFlipped }) => ($isFlipped ? 'rotateY(180deg)' : 'none')};
 `;
 
 const SpanText = styled.span`
@@ -87,7 +92,7 @@ const WordCardComponent = ({ card, $isFlipped, $isMatched, onClick }: IWordCardP
           {!isFlipped ? (
             <CardBack />
           ) : (
-            <CardFront>
+            <CardFront $isFlipped={isFlipped}>
               {/* Visa antingen bild eller ord beroende på om det är bildkort eller ordkort */}
               {card.type === 'image' ? (
                 <Img src={image} alt="card front" loading="eager" />
