@@ -17,7 +17,10 @@ export type WordCard = {
     id: number;
     image: string;
     word: string;
-    pairId: number;  
+    pairId?: number;  
     difficulty: number;  
+    uniqueId: number;
+    originalId: number;
+
   }
   

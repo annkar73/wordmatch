@@ -1,12 +1,13 @@
 // src/Pages/MemoryGamePage.tsx
 import MemoryGame from "../Components/Game/MemoryGame/MemoryGame";
+import { PageWrapper } from "../Components/styled/Wrappers";
 
 const MemoryGamePage = () => {
   return (
-    <div>
+    <PageWrapper>
      
       <MemoryGame />
-    </div>
+    </PageWrapper>
   );
 };
 
