@@ -1,3 +1,0 @@
-// anslutning till databasen
-// kodexempel
-
