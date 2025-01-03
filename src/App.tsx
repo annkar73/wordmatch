@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ThemeProvider } from "styled-components";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { GlobalStyles } from "./styles/globalStyles";
 import { lightTheme, darkTheme, getDefaultTheme } from "./styles/theme";
 import Router from "./Router"; // Din router
@@ -16,12 +16,12 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <BrowserRouter>
+      <HashRouter>
         {/* Header med temat */}
         <Header onThemeToggle={toggleTheme} themeName={theme.name} />
         {/* Dina sidor */}
         <Router />
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   );
 };
