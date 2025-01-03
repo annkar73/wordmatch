@@ -64,7 +64,7 @@ const CardGrid = styled.div`
   gap: 5px;
   width: 90vw;
   padding: 10px;
-  border-radius: ${borderRadius.medium};
+  border-radius: ${borderRadius.large};
   margin: 0;
   background-color: ${(props) => props.theme.gameBackground};
 
