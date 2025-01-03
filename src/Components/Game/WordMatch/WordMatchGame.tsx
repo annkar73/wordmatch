@@ -107,7 +107,7 @@ const WordMatchGame = () => {
   const [shuffledCards, setShuffledCards] = useState<WordCard[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
-  const [difficulty, setDifficulty] = useState<number | null>(null); // null = random
+  const [difficulty, setDifficulty] = useState<number | null>(1); // null = random
 
   const generateShuffledCards = useCallback((cards: WordCard[]): WordCard[] => {
     // Om "random" (difficulty === null), välj bland alla kort
