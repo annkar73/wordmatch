@@ -57,7 +57,6 @@ const RightColumn = styled.div`
   }
 `;
 
-// CardGrid utan props
 const CardGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -108,39 +107,21 @@ const WordMatchGame = () => {
   const [shuffledCards, setShuffledCards] = useState<WordCard[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
-  const [difficulty, setDifficulty] = useState<string>("1"); // Difficulty som en string (kan vara "1", "2", "3", eller "random")
+  const [difficulty, setDifficulty] = useState<number | null>(null); // null = random
 
-  // Hämta kort från databasen
-  useEffect(() => {
-    const getCards = async () => {
-      try {
-        // Hämta kort baserat på svårighetsgrad
-        const fetchedCards = await fetchCards<WordCard>({ difficulty });
-        setCards(fetchedCards);
-        setShuffledCards(generateShuffledCards(fetchedCards)); // Använder generateShuffledCards för att blanda korten
-      } catch (error) {
-        console.error("Error fetching cards:", error);
-      }
-    };
-    getCards();
-  }, [difficulty]); // Beroende på difficulty så kommer vi hämta nya kort
-
-  // Hämta kort baserat på svårighetsgrad och skapa shuffle
   const generateShuffledCards = useCallback((cards: WordCard[]): WordCard[] => {
-    let selectedCards = [];
-    if (difficulty === "random") {
-      selectedCards = cards; // Om difficulty är random, hämta alla kort
-    } else {
-      selectedCards = cards.filter(card => card.difficulty === parseInt(difficulty)); // Filtrera kort baserat på difficulty
-    }
+    // Om "random" (difficulty === null), välj bland alla kort
+    const selectedCards =
+      difficulty === null
+        ? cards // Använd alla kort
+        : cards.filter((card) => card.difficulty === difficulty);
 
-    // Ta de första 8 korten för att skapa 8 par
     const pairedCards = selectedCards.slice(0, 8).flatMap((card) => [
       { ...card, uniqueId: card.id * 2, type: "image" },
       { ...card, uniqueId: card.id * 2 + 1, type: "word" },
     ]);
 
-    // Fisher-Yates shuffle
+    // Blanda korten
     for (let i = pairedCards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [pairedCards[i], pairedCards[j]] = [pairedCards[j], pairedCards[i]];
@@ -149,7 +130,23 @@ const WordMatchGame = () => {
     return pairedCards;
   }, [difficulty]);
 
-  // Hantera klick på kort
+  useEffect(() => {
+    const getCards = async () => {
+      try {
+        // Om "random", hämta alla kort utan att filtrera på difficulty
+        const fetchedCards = await fetchCards<WordCard>({
+          difficulty: difficulty === null ? undefined : difficulty,
+        });
+        setCards(fetchedCards);
+        setShuffledCards(generateShuffledCards(fetchedCards));
+      } catch (error) {
+        console.error("Error fetching cards:", error);
+      }
+    };
+
+    getCards();
+  }, [difficulty, generateShuffledCards]);
+
   const handleCardClick = (card: WordCard) => {
     if (
       flippedCards.includes(card.uniqueId) ||
@@ -183,7 +180,6 @@ const WordMatchGame = () => {
     });
   };
 
-  // Starta om spelet
   const restartGame = () => {
     setMatchedCards([]);
     setFlippedCards([]);
@@ -205,8 +201,13 @@ const WordMatchGame = () => {
                     type="radio"
                     name="difficulty"
                     value={level}
-                    checked={difficulty === level}
-                    onChange={() => setDifficulty(level)}
+                    checked={
+                      (level === "random" && difficulty === null) ||
+                      difficulty === parseInt(level, 10)
+                    }
+                    onChange={() =>
+                      setDifficulty(level === "random" ? null : parseInt(level, 10))
+                    }
                   />
                   {level === "1"
                     ? "Lätt (2-3 bokstäver)"
@@ -230,8 +231,6 @@ const WordMatchGame = () => {
                 <WordCardComponent
                   key={card.uniqueId}
                   card={card}
-                  image={card.type === "image" ? card.image : ""}
-                  word={card.type === "word" ? card.word : ""}
                   $isFlipped={flippedCards.includes(card.uniqueId)}
                   $isMatched={matchedCards.includes(card.uniqueId)}
                   onClick={() => handleCardClick(card)}

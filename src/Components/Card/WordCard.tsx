@@ -4,8 +4,6 @@ import { borderRadius } from '../../styles/variables';
 
 interface IWordCardProps {
   card: WordCard;
-  image: string;
-  word: string;
   $isFlipped: boolean; // Om kortet är vänt eller inte
   $isMatched: boolean; // Om kortet är matchat
   onClick: (id: number) => void; // Funktion som hanterar klick på kortet
@@ -43,24 +41,25 @@ const CardFront = styled.div`
   align-items: center;
   z-index: 1;
   transition: all 0.5s ease-in-out;
-
-  img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 4px;
-    image-rendering: auto;
-  }
+  flex-direction: column; /* Se till att ordet och bilden placeras vertikalt */
 `;
 
 const SpanText = styled.span`
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: ${(props) => props.theme.text};
-    text-align: center;
-    padding: 0.5rem;
-    border-radius: ${borderRadius.small};
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: ${(props) => props.theme.text};
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: ${borderRadius.small};
+`;
+
+const Img = styled.img`
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 4px;
+  image-rendering: auto;
 `;
 
 const CardBack = styled.div`
@@ -76,33 +75,30 @@ const CardBack = styled.div`
 `;
 
 const WordCardComponent = ({ card, $isFlipped, $isMatched, onClick }: IWordCardProps) => {
-  const { id, image, word } = card;
-
-  // Kortet ska bara vändas om det inte är matchat
-  const isFlipped = $isFlipped || $isMatched;  // Om kortet är matchat, håll det vänt med framsidan upp.
-
-  return (
-    <CardContainer onClick={() => !$isMatched && onClick(id)}>
-      <Card $isFlipped={isFlipped}>
-        <CardFront>
-          {
-            // Rendera endast en av dem beroende på om kortet är vänt eller inte
-            isFlipped ? (
-              image ? (
-                <img src={image} alt="card front" loading="eager" />
+    const { id, image, word } = card;  // Vi använder både image och word från card
+  
+    // Kortet ska bara vändas om det inte är matchat
+    const isFlipped = $isFlipped || $isMatched;  // Om kortet är matchat, håll det vänt med framsidan upp.
+  
+    return (
+      <CardContainer onClick={() => !$isMatched && onClick(id)}>
+        <Card $isFlipped={isFlipped}>
+          {/* När kortet inte är vänt, visa CardBack */}
+          {!isFlipped ? (
+            <CardBack />
+          ) : (
+            <CardFront>
+              {/* Visa antingen bild eller ord beroende på om det är bildkort eller ordkort */}
+              {card.type === 'image' ? (
+                <Img src={image} alt="card front" loading="eager" />
               ) : (
                 <SpanText>{word}</SpanText>
-              )
-            ) : (
-              <SpanText>?</SpanText> // Visa frågetecken när kortet inte är vänt
-            )
-          }
-        </CardFront>
-
-        <CardBack />
-      </Card>
-    </CardContainer>
-  );
-};
-
-export default WordCardComponent;
+              )}
+            </CardFront>
+          )}
+        </Card>
+      </CardContainer>
+    );
+  };
+  
+  export default WordCardComponent;
