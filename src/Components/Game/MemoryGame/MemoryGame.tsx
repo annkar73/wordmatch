@@ -194,13 +194,13 @@ const MemoryGame = () => {
         <GameContainer>
           <RightColumn>
             <GameSizeSelector>
-              <h3>Välj spelstorlek:</h3>
+              <h3>Välj spelbräde:</h3>
               <select
                 onChange={(e) => setGameSize(Number(e.target.value))}
                 value={gameSize}
               >
-                <option value={16}>Liten (16 kort)</option>
-                <option value={36}>Stor (36 kort)</option>
+                <option value={16}>Liten 4x4 (16 kort)</option>
+                <option value={36}>Stor 6x6 (36 kort)</option>
               </select>
             </GameSizeSelector>
 

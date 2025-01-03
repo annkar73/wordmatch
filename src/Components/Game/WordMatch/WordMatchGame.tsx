@@ -93,7 +93,7 @@ const ControlWrapper = styled.div`
 const DifficultySelector = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   gap: ${spacing.small};
 `;
 
