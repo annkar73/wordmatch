@@ -1,21 +1,21 @@
-// Card.tsx
 import styled from 'styled-components';
-import { WordCard } from '../../types/Card';
+import { WordCard } from '../../types/Card'; // Import av WordCard-typ
 import { borderRadius } from '../../styles/variables';
 
 interface IWordCardProps {
   card: WordCard;
   image: string;
-  $isFlipped: boolean; // Styled-prop
-  $isMatched: boolean; // Styled-prop
-  onClick: (id: number) => void;
+  word: string;
+  $isFlipped: boolean; // Om kortet är vänt eller inte
+  $isMatched: boolean; // Om kortet är matchat
+  onClick: (id: number) => void; // Funktion som hanterar klick på kortet
 }
 
 // Styled components för kortet
 const CardContainer = styled.div`
   width: 100%;
-  max-width: 150px; /* Justera max-width baserat på layout */
-  aspect-ratio: 1; /* Sätt aspect-ratio till 1 för att göra det kvadratiskt */
+  max-width: 150px;
+  aspect-ratio: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,14 +52,15 @@ const CardFront = styled.div`
     border-radius: 4px;
     image-rendering: auto;
   }
-  span {
+`;
+
+const SpanText = styled.span`
     font-size: 1.5rem;
     font-weight: bold;
-    color: #333;
+    color: ${(props) => props.theme.text};
     text-align: center;
     padding: 0.5rem;
     border-radius: ${borderRadius.small};
-  }
 `;
 
 const CardBack = styled.div`
@@ -68,7 +69,6 @@ const CardBack = styled.div`
   position: absolute;
   backface-visibility: hidden;
   background-image: url('/assets/cardbg.png');
-  //background-color: black;
   background-size: cover;
   background-position: center;
   z-index: 1;
@@ -77,21 +77,29 @@ const CardBack = styled.div`
 
 const WordCardComponent = ({ card, $isFlipped, $isMatched, onClick }: IWordCardProps) => {
   const { id, image, word } = card;
+
   // Kortet ska bara vändas om det inte är matchat
   const isFlipped = $isFlipped || $isMatched;  // Om kortet är matchat, håll det vänt med framsidan upp.
-  
+
   return (
     <CardContainer onClick={() => !$isMatched && onClick(id)}>
       <Card $isFlipped={isFlipped}>
-      <CardFront>
-          {isFlipped ? (
-            image ? (
-              <img src={image} alt="card front" loading="eager" />
+        <CardFront>
+          {
+            // Rendera endast en av dem beroende på om kortet är vänt eller inte
+            isFlipped ? (
+              image ? (
+                <img src={image} alt="card front" loading="eager" />
+              ) : (
+                <SpanText>{word}</SpanText>
+              )
             ) : (
-              <span>{word}</span>
+              <SpanText>?</SpanText> // Visa frågetecken när kortet inte är vänt
             )
-          ) : null}
-        </CardFront>        <CardBack />
+          }
+        </CardFront>
+
+        <CardBack />
       </Card>
     </CardContainer>
   );

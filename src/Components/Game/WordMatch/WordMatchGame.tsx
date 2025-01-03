@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { fetchCards } from "../../../services/fetchCards";
 import { WordCard } from "../../../types/Card";
-import CardComponent from "../../Card/Card";
 import { PageWrapper, GameWrapper } from "../../styled/Wrappers";
 import { Button } from "../../styled/Button";
 import {
@@ -11,6 +10,7 @@ import {
   spacing,
   borderRadius,
 } from "../../../styles/variables";
+import WordCardComponent from "../../Card/WordCard";
 
 // Styled-components för layouten
 const GameContainer = styled.div`
@@ -108,28 +108,36 @@ const WordMatchGame = () => {
   const [shuffledCards, setShuffledCards] = useState<WordCard[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
-  const [difficulty, setDifficulty] = useState<number>(1); // Default till 1 (lätt)
+  const [difficulty, setDifficulty] = useState<string>("1"); // Difficulty som en string (kan vara "1", "2", "3", eller "random")
 
   // Hämta kort från databasen
   useEffect(() => {
     const getCards = async () => {
       try {
+        // Hämta kort baserat på svårighetsgrad
         const fetchedCards = await fetchCards<WordCard>({ difficulty });
         setCards(fetchedCards);
-        setShuffledCards(generateShuffledCards(fetchedCards));
+        setShuffledCards(generateShuffledCards(fetchedCards)); // Använder generateShuffledCards för att blanda korten
       } catch (error) {
         console.error("Error fetching cards:", error);
       }
     };
     getCards();
-  }, [difficulty]);
+  }, [difficulty]); // Beroende på difficulty så kommer vi hämta nya kort
 
-  // Blanda och förbereda kort
-  const generateShuffledCards = (cards: WordCard[]): WordCard[] => {
-    const selectedCards = cards.slice(0, 8); // För 4x4 (16 kort) behövs 8 par
-    const pairedCards = selectedCards.flatMap((card) => [
-      { ...card, uniqueId: card.id * 2 },
-      { ...card, uniqueId: card.id * 2 + 1 },
+  // Hämta kort baserat på svårighetsgrad och skapa shuffle
+  const generateShuffledCards = useCallback((cards: WordCard[]): WordCard[] => {
+    let selectedCards = [];
+    if (difficulty === "random") {
+      selectedCards = cards; // Om difficulty är random, hämta alla kort
+    } else {
+      selectedCards = cards.filter(card => card.difficulty === parseInt(difficulty)); // Filtrera kort baserat på difficulty
+    }
+
+    // Ta de första 8 korten för att skapa 8 par
+    const pairedCards = selectedCards.slice(0, 8).flatMap((card) => [
+      { ...card, uniqueId: card.id * 2, type: "image" },
+      { ...card, uniqueId: card.id * 2 + 1, type: "word" },
     ]);
 
     // Fisher-Yates shuffle
@@ -137,8 +145,9 @@ const WordMatchGame = () => {
       const j = Math.floor(Math.random() * (i + 1));
       [pairedCards[i], pairedCards[j]] = [pairedCards[j], pairedCards[i]];
     }
+
     return pairedCards;
-  };
+  }, [difficulty]);
 
   // Hantera klick på kort
   const handleCardClick = (card: WordCard) => {
@@ -156,7 +165,12 @@ const WordMatchGame = () => {
           shuffledCards.find((c) => c.uniqueId === id)
         );
 
-        if (firstCard && secondCard && firstCard.id === secondCard.id) {
+        if (
+          firstCard &&
+          secondCard &&
+          firstCard.type !== secondCard.type &&
+          firstCard.id === secondCard.id
+        ) {
           setMatchedCards((prev) => [
             ...prev,
             firstCard.uniqueId,
@@ -185,7 +199,7 @@ const WordMatchGame = () => {
           <RightColumn>
             <DifficultySelector>
               <h3>Välj svårighetsgrad:</h3>
-              {[1, 2, 3].map((level) => (
+              {["1", "2", "3", "random"].map((level) => (
                 <DifficultyLabel key={level}>
                   <input
                     type="radio"
@@ -194,11 +208,13 @@ const WordMatchGame = () => {
                     checked={difficulty === level}
                     onChange={() => setDifficulty(level)}
                   />
-                  {level === 1
+                  {level === "1"
                     ? "Lätt (2-3 bokstäver)"
-                    : level === 2
+                    : level === "2"
                     ? "Mellan (4 bokstäver)"
-                    : "Svår (5+ bokstäver)"}
+                    : level === "3"
+                    ? "Svår (5+ bokstäver)"
+                    : "Slumpmässig"}
                 </DifficultyLabel>
               ))}
             </DifficultySelector>
@@ -211,13 +227,14 @@ const WordMatchGame = () => {
           <LeftColumn>
             <CardGrid>
               {shuffledCards.map((card) => (
-                <CardComponent
+                <WordCardComponent
                   key={card.uniqueId}
                   card={card}
+                  image={card.type === "image" ? card.image : ""}
+                  word={card.type === "word" ? card.word : ""}
                   $isFlipped={flippedCards.includes(card.uniqueId)}
                   $isMatched={matchedCards.includes(card.uniqueId)}
                   onClick={() => handleCardClick(card)}
-                  image={card.image}
                 />
               ))}
             </CardGrid>

@@ -21,6 +21,7 @@ export type WordCard = {
     difficulty: number;  
     uniqueId: number;
     originalId: number;
+    type: string;
 
   }
   
