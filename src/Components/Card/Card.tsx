@@ -32,6 +32,8 @@ const Card = styled.div<{ $isFlipped: boolean }>`
   transition: transform 0.5s;
   position: relative;
   transform: ${({ $isFlipped }) => ($isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)')};
+
+  will-change: transform;
 `;
 
 const CardFront = styled.div`
@@ -39,19 +41,27 @@ const CardFront = styled.div`
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1;
   transition: all 0.5s ease-in-out;
 
+
   img {
+    display: block;
     max-width: 100%;
     height: auto;
     object-fit: cover;
     object-position: center;
     border-radius: 4px;
     image-rendering: auto;
+    position: relative;
+
+    /* WebKit-optimering för att säkerställa rendering */
+    -webkit-transform: translateZ(0); /* För att tvinga 3D-kompatibilitet */
+    transform: translateZ(0); /* För att optimera rendering i Chrome */
   }
 `;
 
@@ -61,7 +71,6 @@ const CardBack = styled.div`
   position: absolute;
   backface-visibility: hidden;
   background-image: url('/assets/cardbg.png');
-  //background-color: black;
   background-size: cover;
   background-position: center;
   z-index: 1;
@@ -77,7 +86,7 @@ const CardComponent = ({ card, $isFlipped, $isMatched, onClick }: ICardProps) =>
     <CardContainer onClick={() => !$isMatched && onClick(id)}>
       <Card $isFlipped={isFlipped}>
         <CardFront>
-          {isFlipped ? <img src={image} alt="card front" loading='eager' /> : null}
+          {isFlipped ? <img src={image} alt="card front" loading='lazy' /> : null}
         </CardFront>
         <CardBack />
       </Card>

@@ -155,6 +155,11 @@ export const Navigation = () => {
             FAQ
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/contact" onClick={closeMenu}>
+          Kontakt
+          </NavLink>
+        </li>
       </DesktopMenu>
 
       {/* Hamburger Button */}
