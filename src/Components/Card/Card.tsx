@@ -62,6 +62,7 @@ const CardFront = styled.div`
     /* WebKit-optimering för att säkerställa rendering */
     -webkit-transform: translateZ(0); /* För att tvinga 3D-kompatibilitet */
     transform: translateZ(0); /* För att optimera rendering i Chrome */
+    
   }
 `;
 
