@@ -12,7 +12,7 @@ const HeaderContainer = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  background-color: ${(props) => props.theme.headerBg};
+  background-color: transparent;
   color: ${(props) => props.theme.headerText};
   display: flex;
   justify-content: space-between;
@@ -36,7 +36,7 @@ const CenterSection = styled.div`
 const RightSection = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-right: 35px;
+  margin-right: 10px;
 `;
 
 const Title = styled.h1`
