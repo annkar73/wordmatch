@@ -12,6 +12,7 @@ const Container = styled.div`
   border: 1px solid ${(props) => props.theme.borderColor};
   //border-radius: 0;
   overflow: hidden;
+  width: 75vw;
 `;
 
 const Question = styled.div`
