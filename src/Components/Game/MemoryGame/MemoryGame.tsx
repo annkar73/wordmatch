@@ -22,7 +22,7 @@ const GameSizeSelector = styled.div`
     padding: ${spacing.xSmall};
     border-radius: ${borderRadius.small};
     border: 1px solid ${(props) => props.theme.text};
-    background-color: ${(props) => props.theme.background};
+    background-color: white;
     font-size: ${fontSizes.base};
     cursor: pointer;
   }
