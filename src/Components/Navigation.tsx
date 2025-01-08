@@ -152,7 +152,7 @@ export const Navigation = () => {
         </li>
         <li>
           <NavLink to="/faq" onClick={closeMenu}>
-            FAQ
+            Mer info
           </NavLink>
         </li>
         <li>
@@ -198,7 +198,7 @@ export const Navigation = () => {
           </li>
           <li>
             <NavLink to="/faq" onClick={closeMenu}>
-              FAQ
+              Mer info
             </NavLink>
           </li>
           <li>
