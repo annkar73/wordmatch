@@ -16,8 +16,8 @@ const Title = styled.h1`
 `;
 
 const Image = styled.img`
-  width: 85%;
-  max-width: 500px;
+  width: 50%;
+  max-width: 300px;
   margin: 0 auto;
   display: block;
   background-color: ${(props) => props.theme.backgroundColor};
