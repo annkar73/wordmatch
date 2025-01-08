@@ -2,10 +2,12 @@ import { useState } from "react";
 import styled from "styled-components";
 import emailjs from "@emailjs/browser";
 
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
   max-width: 500px;
   margin: 0 auto;
 `;
@@ -83,8 +85,8 @@ export function ContactForm() {
   };
 
   return (
-    <div>
-      <h2>Kontakta mig</h2>
+    <>
+    
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"
@@ -113,6 +115,7 @@ export function ContactForm() {
         <Button type="submit">Skicka</Button>
       </Form>
       {statusMessage && <p>{statusMessage}</p>}
-    </div>
+    
+    </>
   );
 }

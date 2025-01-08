@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FaqList } from "../Components/FaqList";
 import { PageWrapper } from "../Components/styled/Wrappers";
-import { breakpoints } from "../styles/variables";
+import { breakpoints, spacing } from "../styles/variables";
 
 const Container = styled.div`
   max-width: 80vw;
@@ -23,20 +23,28 @@ const Title = styled.h1`
 `;
 
 const Image = styled.img`
-  width: 50%;
-  max-width: 300px;
-  margin: 0 auto;
+  width: 90vw;
+  max-width: 400px;
+  margin: 0 15px;
   display: block;
   background-color: ${(props) => props.theme.backgroundColor};
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2)) blur(0.5px);
-  padding: 0.5rem;
+  //padding: 0.5rem;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    width: 70vw;
+    max-width: 800px;
+    margin-top: ${spacing.xLarge};
+    margin-bottom: 0;
+  }
+
 `;
 
 export function Faq() {
   return (
     <>
     <PageWrapper>
-      <Image src="/assets/faq_logo.png" alt="FAQ Logo" />
+      <Image src="/assets/info_logo.png" alt="Info Logo" />
       <Title>Vanliga Frågor</Title>
 
     <Container>
