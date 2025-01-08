@@ -4,6 +4,7 @@ import {Faq} from "./Pages/Faq";
 import Home from "./Pages/Home";
 import MatchingGamePage from "./Pages/MatchingGamePage";
 import Contact from "./Pages/Contact";
+import Game from "./Pages/Game";
 
 
 const Router = () => {
@@ -14,6 +15,7 @@ const Router = () => {
         <Route path="/classic-memory" element={<ClassicMemoryPage />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/games" element={<Game />} />
       </Routes>
   );
 };
