@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 
 const Question = styled.div`
-  background-color: ${(props) => props.theme.background};
+  background-color: ${(props) => props.theme.gameBackground};
   color: ${(props) => props.theme.text};
   padding: 1rem;
   cursor: pointer;
@@ -30,7 +30,7 @@ const Question = styled.div`
 `;
 
 const Answer = styled(motion.div)`
-  background-color: ${(props) => props.theme.background};
+  background-color: white;
   color: ${(props) => props.theme.text};
   padding: 1rem;
 `;
