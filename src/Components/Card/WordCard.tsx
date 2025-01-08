@@ -40,13 +40,12 @@ const CardFront = styled.div<ICardFrontProps>`
   width: 100%;
   height: 100%;
   position: absolute;
-  backface-visibility: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1;
   transition: all 0.5s ease-in-out;
-  flex-direction: column; /* Se till att ordet och bilden placeras vertikalt */
+  flex-direction: column; 
   transform: ${({ $isFlipped }) => ($isFlipped ? "rotateY(180deg)" : "none")};
 `;
 

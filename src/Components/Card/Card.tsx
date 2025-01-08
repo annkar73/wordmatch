@@ -40,8 +40,6 @@ const CardFront = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
