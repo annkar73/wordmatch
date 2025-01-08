@@ -23,15 +23,6 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled.h1`
-  font-size: ${fontSizes.h2};
-  color: ${(props) => props.theme.text};
-  margin-bottom: ${spacing.medium};
-
-  @media (min-width: ${breakpoints.tablet}) {
-    font-size: ${fontSizes.heading};
-  }
-`;
 
 const Description = styled.p`
   font-size: ${fontSizes.base};
@@ -70,9 +61,9 @@ const Home = () => {
       <Image src="/assets/ordmatch2.png" />
 
       <Container>
-        <Title>Välkommen till OrdMatch!</Title>
         <Description>
-          Här kan du träna på att koppla bild till ord, eller spela ett klassiskt memory. Utmana dig själv och ha roligt samtidigt!
+          <p>Här kan du träna på att koppla bild till ord, eller spela ett klassiskt memory där du matchar bilder.</p> 
+          <p>Utmana dig själv och ha roligt samtidigt!</p>
         </Description>
         <Button as={Link} to="/games">Börja spela</Button>
       </Container>
