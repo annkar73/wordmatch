@@ -11,8 +11,8 @@ import {
 export const Button = styled.button`
   display: flex;
   flex-direction: row;
-  width: 100%;
-  //height: auto;
+  width: 80%;
+  min-height: 45px;
   background-color: ${(props) => props.theme.buttonBackground};
   color: ${(props) => props.theme.buttonText};
   padding: ${spacing.small} ${spacing.medium};
