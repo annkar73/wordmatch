@@ -11,9 +11,27 @@ import {
   borderRadius,
 } from "../../../styles/variables";
 import WordCardComponent from "../../Card/WordCard";
-import { StyledH1 } from "../../styled/Titles";
 
 // Styled-components för layouten
+
+const Image = styled.img`
+  width: 90vw;
+  max-width: 400px;
+  margin: 15px 0 0 0;
+  display: block;
+  background-color: ${(props) => props.theme.backgroundColor};
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2)) blur(0.5px);
+  //padding: 0.5rem;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    width: 70vw;
+    max-width: 500px;
+    margin-top: ${spacing.xLarge};
+    margin-bottom: 0;
+  }
+
+`;
+
 const GameContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -217,7 +235,7 @@ const WordMatchGame = () => {
 
   return (
     <PageWrapper>
-              <StyledH1>Matcha ord</StyledH1>
+        <Image src="/assets/matcha_ord.png" />
 
       <GameWrapper>
         <GameContainer>

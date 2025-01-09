@@ -6,9 +6,29 @@ import CardComponent from "../../Card/Card";
 import { PageWrapper, GameWrapper } from "../../styled/Wrappers";
 import { Button } from "../../styled/Button";
 import { breakpoints, fontSizes, spacing, borderRadius } from "../../../styles/variables";
-import { StyledH1 } from "../../styled/Titles";
 
 // Styled-components för layouten
+
+const Image = styled.img`
+  width: 90vw;
+  max-width: 400px;
+  margin: 0 15px;
+  padding: 0;
+  display: block;
+  background-color: ${(props) => props.theme.backgroundColor};
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2)) blur(0.5px);
+  //padding: 0.5rem;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    width: 70vw;
+    max-width: 600px;
+    margin-top: ${spacing.xLarge};
+    margin-bottom: 0;
+  }
+
+`;
+
+
 const GameSizeSelector = styled.div`
   //margin-bottom: ${spacing.medium};
   padding: ${spacing.small};
@@ -207,7 +227,7 @@ const MemoryGame = () => {
 
   return (
     <PageWrapper>
-              <StyledH1>Memory</StyledH1>
+    <Image src="/assets/memory2.png" />
 
       <GameWrapper>
         <GameContainer>
