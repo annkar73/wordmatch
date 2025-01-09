@@ -26,6 +26,7 @@ const GameContainer = styled.div`
     flex-direction: row;
     justify-content: flex-start;
   }
+
 `;
 
 const LeftColumn = styled.div`
@@ -75,12 +76,13 @@ const CardGrid = styled.div`
   }
 `;
 
-const ControlWrapper = styled.div`
+const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${spacing.large};
   width: 100%;
   align-items: center;
+  margin-top: auto; /* För att knappen ska hamna längst ner på mobilen */
 
   @media (min-width: ${breakpoints.tablet}) {
     flex-direction: column;
@@ -91,15 +93,28 @@ const ControlWrapper = styled.div`
 `;
 
 const DifficultySelector = styled.div`
+  margin-bottom: ${spacing.medium};
+  padding: ${spacing.small};
+  border-radius: ${borderRadius.medium};
   display: flex;
   flex-direction: column;
-  align-items: left;
-  gap: ${spacing.small};
-`;
+  align-items: center;
+  width: 100%;
 
-const DifficultyLabel = styled.label`
-  cursor: pointer;
-  font-size: ${fontSizes.base};
+  select {
+    margin-top: ${spacing.small};
+    padding: ${spacing.xSmall};
+    border-radius: ${borderRadius.small};
+    border: 1px solid ${(props) => props.theme.text};
+    background-color: white;
+    font-size: ${fontSizes.base};
+    cursor: pointer;
+  }
+
+  @media (min-width: ${breakpoints.tablet}) {
+    align-items: flex-start;
+    width: auto;
+  }
 `;
 
 const WordMatchGame = () => {
@@ -110,10 +125,9 @@ const WordMatchGame = () => {
   const [difficulty, setDifficulty] = useState<number | null>(1); // null = random
 
   const generateShuffledCards = useCallback((cards: WordCard[]): WordCard[] => {
-    // Om "random" (difficulty === null), välj bland alla kort
     const selectedCards =
       difficulty === null
-        ? cards // Använd alla kort
+        ? cards
         : cards.filter((card) => card.difficulty === difficulty);
 
     const pairedCards = selectedCards.slice(0, 8).flatMap((card) => [
@@ -121,7 +135,6 @@ const WordMatchGame = () => {
       { ...card, uniqueId: card.id * 2 + 1, type: "word" },
     ]);
 
-    // Blanda korten
     for (let i = pairedCards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [pairedCards[i], pairedCards[j]] = [pairedCards[j], pairedCards[i]];
@@ -133,7 +146,6 @@ const WordMatchGame = () => {
   useEffect(() => {
     const getCards = async () => {
       try {
-        // Om "random", hämta alla kort utan att filtrera på difficulty
         const fetchedCards = await fetchCards<WordCard>({
           difficulty: difficulty === null ? undefined : difficulty,
         });
@@ -195,35 +207,24 @@ const WordMatchGame = () => {
           <RightColumn>
             <DifficultySelector>
               <h3>Välj svårighetsgrad:</h3>
-              {["1", "2", "3", "random"].map((level) => (
-                <DifficultyLabel key={level}>
-                  <input
-                    type="radio"
-                    name="difficulty"
-                    value={level}
-                    checked={
-                      (level === "random" && difficulty === null) ||
-                      difficulty === parseInt(level, 10)
-                    }
-                    onChange={() =>
-                      setDifficulty(level === "random" ? null : parseInt(level, 10))
-                    }
-                  />
-                  {level === "1"
-                    ? "Lätt (2-3 bokstäver)"
-                    : level === "2"
-                    ? "Mellan (4 bokstäver)"
-                    : level === "3"
-                    ? "Svår (5+ bokstäver)"
-                    : "Slumpmässig"}
-                </DifficultyLabel>
-              ))}
+              <select
+                value={difficulty === null ? "random" : difficulty.toString()}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setDifficulty(value === "random" ? null : parseInt(value, 10));
+                }}
+              >
+                <option value="1">Lätt (2-3 bokstäver)</option>
+                <option value="2">Mellan (4 bokstäver)</option>
+                <option value="3">Svår (5+ bokstäver)</option>
+                <option value="random">Slumpmässig</option>
+              </select>
             </DifficultySelector>
-            <ControlWrapper>
+            <ButtonWrapper>
               <Button onClick={restartGame}>
                 {isGameComplete ? "Spela igen" : "Börja om"}
               </Button>
-            </ControlWrapper>
+            </ButtonWrapper>
           </RightColumn>
           <LeftColumn>
             <CardGrid>
