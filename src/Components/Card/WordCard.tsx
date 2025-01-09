@@ -73,7 +73,7 @@ const CardBack = styled.div`
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
-  background-image: url("/assets/cardbg.png");
+  background-image: url("/assets/bg_fairytale2.jpg");
   border-radius: ${borderRadius.large};
   background-size: cover;
   background-position: center;
