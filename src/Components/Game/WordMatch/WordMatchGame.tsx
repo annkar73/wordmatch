@@ -26,7 +26,6 @@ const GameContainer = styled.div`
     flex-direction: row;
     justify-content: flex-start;
   }
-
 `;
 
 const LeftColumn = styled.div`
@@ -82,13 +81,28 @@ const ButtonWrapper = styled.div`
   gap: ${spacing.large};
   width: 100%;
   align-items: center;
-  margin-top: auto; /* För att knappen ska hamna längst ner på mobilen */
-
+  margin-top: 40px; /* For mobile layout */
+  
   @media (min-width: ${breakpoints.tablet}) {
+    margin-top: 20px; /* Reduced margin for tablet/desktop */
+  }
+  
+  /* Hide on mobile */
+  @media (max-width: ${breakpoints.tablet}) {
+    display: none;
+  }
+`;
+
+const MobileButtonWrapper = styled.div`
+  display: none;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    gap: ${spacing.large};
     width: 100%;
+    align-items: center;
+    margin-top: 40px;
   }
 `;
 
@@ -220,12 +234,15 @@ const WordMatchGame = () => {
                 <option value="random">Slumpmässig</option>
               </select>
             </DifficultySelector>
+
+            {/* Only in desktop/tablet view: place the button below DifficultySelector */}
             <ButtonWrapper>
               <Button onClick={restartGame}>
                 {isGameComplete ? "Spela igen" : "Börja om"}
               </Button>
             </ButtonWrapper>
           </RightColumn>
+
           <LeftColumn>
             <CardGrid>
               {shuffledCards.map((card) => (
@@ -240,6 +257,13 @@ const WordMatchGame = () => {
             </CardGrid>
           </LeftColumn>
         </GameContainer>
+
+        {/* For mobile layout: keep the button under the whole game container */}
+        <MobileButtonWrapper>
+          <Button onClick={restartGame}>
+            {isGameComplete ? "Spela igen" : "Börja om"}
+          </Button>
+        </MobileButtonWrapper>
       </GameWrapper>
     </PageWrapper>
   );
