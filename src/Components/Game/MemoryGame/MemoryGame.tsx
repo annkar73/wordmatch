@@ -98,18 +98,34 @@ const CardGrid = styled.div<{ $columns: number; $rows: number }>`
   }
 `;
 
-const ControlWrapper = styled.div`
+const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${spacing.large};
   width: 100%;
   align-items: center;
-
+  margin-top: 40px; /* For mobile layout */
+  
   @media (min-width: ${breakpoints.tablet}) {
+    margin-top: 20px; /* Reduced margin for tablet/desktop */
+  }
+  
+  /* Hide on mobile */
+  @media (max-width: ${breakpoints.tablet}) {
+    display: none;
+  }
+`;
+
+const MobileButtonWrapper = styled.div`
+  display: none;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    gap: ${spacing.large};
     width: 100%;
+    align-items: center;
+    margin-top: 40px;
   }
 `;
 
@@ -204,11 +220,11 @@ const MemoryGame = () => {
               </select>
             </GameSizeSelector>
 
-            <ControlWrapper>
+            <ButtonWrapper>
               <Button onClick={restartGame}>
                 {isGameComplete ? "Spela igen" : "Börja om"}
               </Button>
-            </ControlWrapper>
+            </ButtonWrapper>
           </RightColumn>
 
           <LeftColumn>
@@ -226,6 +242,13 @@ const MemoryGame = () => {
             </CardGrid>
           </LeftColumn>
         </GameContainer>
+                {/* For mobile layout: keep the button under the whole game container */}
+                <MobileButtonWrapper>
+                  <Button onClick={restartGame}>
+                    {isGameComplete ? "Spela igen" : "Börja om"}
+                  </Button>
+                </MobileButtonWrapper>
+        
       </GameWrapper>
     </PageWrapper>
   );
