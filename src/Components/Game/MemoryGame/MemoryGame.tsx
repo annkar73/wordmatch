@@ -6,10 +6,11 @@ import CardComponent from "../../Card/Card";
 import { PageWrapper, GameWrapper } from "../../styled/Wrappers";
 import { Button } from "../../styled/Button";
 import { breakpoints, fontSizes, spacing, borderRadius } from "../../../styles/variables";
+import { StyledH1 } from "../../styled/Titles";
 
 // Styled-components för layouten
 const GameSizeSelector = styled.div`
-  margin-bottom: ${spacing.medium};
+  //margin-bottom: ${spacing.medium};
   padding: ${spacing.small};
   border-radius: ${borderRadius.medium};
   display: flex;
@@ -18,7 +19,7 @@ const GameSizeSelector = styled.div`
   width: 100%;
 
   select {
-    margin-top: ${spacing.small};
+    //margin-top: ${spacing.small};
     padding: ${spacing.xSmall};
     border-radius: ${borderRadius.small};
     border: 1px solid ${(props) => props.theme.text};
@@ -206,8 +207,11 @@ const MemoryGame = () => {
 
   return (
     <PageWrapper>
+              <StyledH1>Memory</StyledH1>
+
       <GameWrapper>
         <GameContainer>
+
           <RightColumn>
             <GameSizeSelector>
               <h3>Välj spelbräde:</h3>

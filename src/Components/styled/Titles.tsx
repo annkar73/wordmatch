@@ -10,6 +10,7 @@ export const HeaderTitle = styled.h1`
 `;
 export const StyledH1 = styled.h1`
     font-size: ${fontSizes.h1};
+    margin-top: 25px;
 `;
 
 export const StyledH2 = styled.h2`

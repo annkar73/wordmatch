@@ -11,6 +11,7 @@ import {
   borderRadius,
 } from "../../../styles/variables";
 import WordCardComponent from "../../Card/WordCard";
+import { StyledH1 } from "../../styled/Titles";
 
 // Styled-components för layouten
 const GameContainer = styled.div`
@@ -107,7 +108,7 @@ const MobileButtonWrapper = styled.div`
 `;
 
 const DifficultySelector = styled.div`
-  margin-bottom: ${spacing.medium};
+  //margin-bottom: ${spacing.medium};
   padding: ${spacing.small};
   border-radius: ${borderRadius.medium};
   display: flex;
@@ -116,7 +117,7 @@ const DifficultySelector = styled.div`
   width: 100%;
 
   select {
-    margin-top: ${spacing.small};
+    //margin-top: ${spacing.small};
     padding: ${spacing.xSmall};
     border-radius: ${borderRadius.small};
     border: 1px solid ${(props) => props.theme.text};
@@ -216,8 +217,11 @@ const WordMatchGame = () => {
 
   return (
     <PageWrapper>
+              <StyledH1>Matcha ord</StyledH1>
+
       <GameWrapper>
         <GameContainer>
+
           <RightColumn>
             <DifficultySelector>
               <h3>Välj svårighetsgrad:</h3>
