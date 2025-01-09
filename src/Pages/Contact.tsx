@@ -3,6 +3,11 @@ import { PageWrapper } from "../Components/styled/Wrappers";
 import { ContactForm } from "../Components/ContactForm";
 import { breakpoints, spacing } from "../styles/variables";
 
+
+const StyledPageWrapper = styled(PageWrapper)`
+  justify-content: center;
+`;
+
 const Container = styled.div`
   width: 90vw;
   max-width: 400px;
@@ -40,14 +45,14 @@ const Image = styled.img`
 const Contact = () => {
   return (
     <>
-    <PageWrapper>
+    <StyledPageWrapper>
     <Image src="/assets/kontakt.png" />
 
     <Container>
       <ContactForm />
     </Container>
 
-    </PageWrapper>
+    </StyledPageWrapper>
     </>
   );
 }

@@ -3,6 +3,10 @@ import { FaqList } from "../Components/FaqList";
 import { PageWrapper } from "../Components/styled/Wrappers";
 import { breakpoints, spacing } from "../styles/variables";
 
+const StyledPageWrapper = styled(PageWrapper)`
+  justify-content: center;
+`;
+
 const Container = styled.div`
   max-width: 80vw;
   margin: 0 auto;
@@ -43,14 +47,14 @@ const Image = styled.img`
 export function Faq() {
   return (
     <>
-    <PageWrapper>
+    <StyledPageWrapper>
       <Image src="/assets/info_logo.png" alt="Info Logo" />
       <Title>Vanliga Frågor</Title>
 
     <Container>
       <FaqList />
     </Container>
-    </PageWrapper>
+    </StyledPageWrapper>
     </>
   );
 }
