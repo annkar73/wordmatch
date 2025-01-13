@@ -176,6 +176,7 @@ const MemoryGame = () => {
   const generateShuffledCards = (cards: MemoryCard[], size: number): MemoryCard[] => {
     const numberOfCards = size === 16 ? 8 : size === 36 ? 18 : 24; // Dynamiskt beroende på storlek (16, 36 eller annat)
     const selectedCards = cards.slice(0, numberOfCards); // Välj rätt antal kort
+    
   
     const pairedCards = selectedCards
       .flatMap((card) => [
@@ -221,16 +222,25 @@ const MemoryGame = () => {
     });
   };
 
+
   const restartGame = () => {
-    if (isGameComplete) {
-      soundManager.playSound("win");
-    }
     setMatchedCards([]);
     setFlippedCards([]);
     setShuffledCards(generateShuffledCards(cards, gameSize));
   };
 
-  const isGameComplete = matchedCards.length === shuffledCards.length;
+  const totalPairs = shuffledCards.length / 2;
+  const matchedPairs = matchedCards.length / 2;
+  const isGameComplete = matchedPairs === shuffledCards.length && matchedCards.length;
+
+  console.log("matchedPairs:", matchedPairs, "totalPairs:", totalPairs);
+
+
+  useEffect(() => {
+    if (isGameComplete) {
+      soundManager.playSound("win");
+    }
+  }, [isGameComplete]);
 
   return (
     <PageWrapper>
