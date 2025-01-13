@@ -6,6 +6,7 @@ import CardComponent from "../../Card/Card";
 import { PageWrapper, GameWrapper } from "../../styled/Wrappers";
 import { Button } from "../../styled/Button";
 import { breakpoints, fontSizes, spacing, borderRadius } from "../../../styles/variables";
+import { soundManager } from "../../../utils/SoundManager";
 
 // Styled-components för layouten
 
@@ -196,6 +197,8 @@ const MemoryGame = () => {
       return;
     }
 
+    soundManager.playSound("flip");
+
     setFlippedCards((prev) => {
       const newFlippedCards = [...prev, card.uniqueId];
 
@@ -206,6 +209,7 @@ const MemoryGame = () => {
         const secondCard = shuffledCards.find((card) => card.uniqueId === secondCardId);
 
         if (firstCard && secondCard && firstCard.originalId === secondCard.originalId) {
+          soundManager.playSound("match");
           setMatchedCards((prev) => [...prev, firstCardId, secondCardId]);
           setFlippedCards([]);
         } else {
@@ -218,6 +222,9 @@ const MemoryGame = () => {
   };
 
   const restartGame = () => {
+    if (isGameComplete) {
+      soundManager.playSound("win");
+    }
     setMatchedCards([]);
     setFlippedCards([]);
     setShuffledCards(generateShuffledCards(cards, gameSize));
