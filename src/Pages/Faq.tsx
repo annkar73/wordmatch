@@ -37,7 +37,7 @@ const Image = styled.img`
 
   @media (min-width: ${breakpoints.tablet}) {
     width: 70vw;
-    max-width: 800px;
+    max-width: 500px;
     margin-top: ${spacing.xLarge};
     margin-bottom: 0;
   }

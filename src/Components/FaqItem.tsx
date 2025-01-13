@@ -34,6 +34,7 @@ const Answer = styled(motion.div)`
   background-color: white;
   color: ${(props) => props.theme.text};
   padding: 1rem;
+  white-space: pre-line;
 `;
 
 export function FaqItem({ question, answer }: FaqItemProps) {
