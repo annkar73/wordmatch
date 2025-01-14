@@ -30,6 +30,9 @@ class SoundManager {
     toggleMute() {
         return this.isMuted;
     }
+    getMuteStatus() {
+        return this.isMuted;
+    }
 }
 
 export const soundManager = new SoundManager();
