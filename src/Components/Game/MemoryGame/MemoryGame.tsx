@@ -229,11 +229,11 @@ const MemoryGame = () => {
     setShuffledCards(generateShuffledCards(cards, gameSize));
   };
 
-  const totalPairs = shuffledCards.length / 2;
+ // const totalPairs = shuffledCards.length / 2;
   const matchedPairs = matchedCards.length / 2;
   const isGameComplete = matchedPairs === shuffledCards.length && matchedCards.length;
 
-  console.log("matchedPairs:", matchedPairs, "totalPairs:", totalPairs);
+ // console.log( "totalPairs:", totalPairs);
 
 
   useEffect(() => {
