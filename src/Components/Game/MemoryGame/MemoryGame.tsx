@@ -184,10 +184,10 @@ const MemoryGame = () => {
         { ...card, uniqueId: card.id * 2 + 1, originalId: card.id },
       ]);
   
-    // Fisher-Yates algoritm för att blanda korten
+    // Fisher-Yates algorithm to shuffle cards
     for (let i = pairedCards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [pairedCards[i], pairedCards[j]] = [pairedCards[j], pairedCards[i]]; // Byt plats på korten
+      [pairedCards[i], pairedCards[j]] = [pairedCards[j], pairedCards[i]]; 
     }
   
     return pairedCards;

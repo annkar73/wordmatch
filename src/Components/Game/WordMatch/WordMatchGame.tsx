@@ -11,6 +11,7 @@ import {
   borderRadius,
 } from "../../../styles/variables";
 import WordCardComponent from "../../Card/WordCard";
+import { soundManager } from "../../../utils/SoundManager";
 
 // Styled-components för layouten
 
@@ -156,18 +157,19 @@ const WordMatchGame = () => {
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
   const [difficulty, setDifficulty] = useState<number | null>(1); // null = random
+  const [gameCompleted, setGameCompleted] = useState(false);
 
   const generateShuffledCards = useCallback((cards: WordCard[]): WordCard[] => {
-    const selectedCards =
-      difficulty === null
-        ? cards
-        : cards.filter((card) => card.difficulty === difficulty);
+    const selectedCards = difficulty === null
+      ? cards
+      : cards.filter((card) => card.difficulty === difficulty);
 
     const pairedCards = selectedCards.slice(0, 8).flatMap((card) => [
       { ...card, uniqueId: card.id * 2, type: "image" },
       { ...card, uniqueId: card.id * 2 + 1, type: "word" },
     ]);
 
+    // Fisher-Yates shuffle algorithm
     for (let i = pairedCards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [pairedCards[i], pairedCards[j]] = [pairedCards[j], pairedCards[i]];
@@ -199,25 +201,29 @@ const WordMatchGame = () => {
     ) {
       return;
     }
-
+    soundManager.playSound("flip");
+  
     setFlippedCards((prev) => {
       const newFlippedCards = [...prev, card.uniqueId];
       if (newFlippedCards.length === 2) {
         const [firstCard, secondCard] = newFlippedCards.map((id) =>
           shuffledCards.find((c) => c.uniqueId === id)
         );
-
+  
         if (
           firstCard &&
           secondCard &&
           firstCard.type !== secondCard.type &&
           firstCard.id === secondCard.id
         ) {
-          setMatchedCards((prev) => [
-            ...prev,
-            firstCard.uniqueId,
-            secondCard.uniqueId,
-          ]);
+          setTimeout(() => {
+            soundManager.playSound("match");
+            setMatchedCards((prev) => [
+              ...prev,
+              firstCard.uniqueId,
+              secondCard.uniqueId,
+            ]);
+          }, 300); // Delay to sync with animation
         }
         setTimeout(() => setFlippedCards([]), 1000);
       }
@@ -225,21 +231,29 @@ const WordMatchGame = () => {
     });
   };
 
+  const matchedPairs = matchedCards.length / 2;
+  const isGameComplete = matchedPairs === shuffledCards.length;
+
+  useEffect(() => {
+    // When all pairs are matched, play the winning sound
+    if (isGameComplete && !gameCompleted) {
+      soundManager.playSound("win");
+      setGameCompleted(true);
+    }
+  }, [isGameComplete, gameCompleted]);
+
   const restartGame = () => {
     setMatchedCards([]);
     setFlippedCards([]);
     setShuffledCards(generateShuffledCards(cards));
+    setGameCompleted(false);
   };
-
-  const isGameComplete = matchedCards.length === shuffledCards.length;
 
   return (
     <PageWrapper>
         <Image src="/assets/matcha_ord.png" />
-
       <GameWrapper>
         <GameContainer>
-
           <RightColumn>
             <DifficultySelector>
               <h3>Välj svårighetsgrad:</h3>
@@ -256,8 +270,6 @@ const WordMatchGame = () => {
                 <option value="random">Slumpmässig</option>
               </select>
             </DifficultySelector>
-
-            {/* Only in desktop/tablet view: place the button below DifficultySelector */}
             <ButtonWrapper>
               <Button onClick={restartGame}>
                 {isGameComplete ? "Spela igen" : "Börja om"}
@@ -280,7 +292,6 @@ const WordMatchGame = () => {
           </LeftColumn>
         </GameContainer>
 
-        {/* For mobile layout: keep the button under the whole game container */}
         <MobileButtonWrapper>
           <Button onClick={restartGame}>
             {isGameComplete ? "Spela igen" : "Börja om"}
