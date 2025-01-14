@@ -4,6 +4,7 @@ import winSound from '/assets/audio/mission-success.mp3';
 
 class SoundManager {
     private sounds: Record<string, HTMLAudioElement>;
+    private isMuted: boolean;
 
     constructor() {
         this.sounds = {
@@ -11,9 +12,12 @@ class SoundManager {
             match: new Audio(matchSound),
             win: new Audio(winSound),
         };
+        this.isMuted = false;
     }
 
     playSound(name: string) {
+        if (this.isMuted) return;
+
         const sound = this.sounds[name];
         if(sound) {
             sound.currentTime = 0;
@@ -21,6 +25,10 @@ class SoundManager {
         } else {
             console.warn(`Sound "${name}" not found.`);
         }
+    }
+
+    toggleMute() {
+        return this.isMuted;
     }
 }
 
