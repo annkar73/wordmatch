@@ -11,7 +11,7 @@ import {
   borderRadius,
 } from "../../../styles/variables";
 import WordCardComponent from "../../Card/WordCard";
-import { soundManager } from "../../../utils/SoundManager";
+import { soundManager } from "../../../utils/soundManager";
 import { MuteButton } from "../../styled/MuteButton";
 
 // Styled-components för layouten

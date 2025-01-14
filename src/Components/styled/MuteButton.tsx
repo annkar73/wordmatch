@@ -1,7 +1,7 @@
 import { Button as StyledButton } from "./Button"; 
-import { soundManager } from "../../utils/SoundManager";
 import styled from "styled-components";
 import { useState } from "react";
+import { soundManager } from "../../utils/soundManager";
 
 
 const MuteButtonStyled = styled(StyledButton)`
@@ -20,7 +20,7 @@ export const MuteButton = () => {
 
   return (
     <MuteButtonStyled onClick={toggleMute}>
-      {isMuted ? "Ljud Av" : "Ljud På"}
+      {isMuted ? "Spela med ljud" : "Spela utan ljud"}
     </MuteButtonStyled>
   );
 };

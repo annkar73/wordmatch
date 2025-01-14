@@ -28,7 +28,8 @@ class SoundManager {
     }
 
     toggleMute() {
-        return this.isMuted;
+        this.isMuted = !this.isMuted;
+        return !this.isMuted;
     }
     getMuteStatus() {
         return this.isMuted;

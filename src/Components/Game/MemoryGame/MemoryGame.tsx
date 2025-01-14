@@ -11,8 +11,8 @@ import {
   spacing,
   borderRadius,
 } from "../../../styles/variables";
-import { soundManager } from "../../../utils/SoundManager";
 import { MuteButton } from "../../styled/MuteButton";
+import { soundManager } from "../../../utils/soundManager";
 
 // Styled-components för layouten
 
