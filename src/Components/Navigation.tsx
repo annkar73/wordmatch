@@ -141,6 +141,11 @@ export const Navigation = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/games" onClick={closeMenu}>
+          Spel
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/matching-game" onClick={closeMenu}>
             Matcha ord
           </NavLink>
@@ -184,6 +189,11 @@ export const Navigation = () => {
           <li>
             <NavLink to="/" onClick={closeMenu}>
               Hem
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/games" onClick={closeMenu}>
+            Spel
             </NavLink>
           </li>
           <li>
