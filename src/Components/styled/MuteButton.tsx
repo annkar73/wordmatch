@@ -1,13 +1,13 @@
-import { Button as StyledButton } from "./Button"; // Importera Button från Button.tsx"../../../utils/SoundManager"
+import { Button as StyledButton } from "./Button"; 
 import { soundManager } from "../../utils/SoundManager";
 import styled from "styled-components";
 import { useState } from "react";
 
-// Skapa en stil för MuteButton med mindre storlek
+
 const MuteButtonStyled = styled(StyledButton)`
-  font-size: 1rem; // Minska fontstorleken
-  padding: 5px 10px; // Justera padding för att göra knappen mindre
-  min-height: 35px; // Minska höjden på knappen
+  font-size: 1rem; 
+  padding: 5px 10px; 
+  min-height: 35px; 
 `;
 
 export const MuteButton = () => {

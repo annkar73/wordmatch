@@ -12,6 +12,7 @@ import {
 } from "../../../styles/variables";
 import WordCardComponent from "../../Card/WordCard";
 import { soundManager } from "../../../utils/SoundManager";
+import { MuteButton } from "../../styled/MuteButton";
 
 // Styled-components för layouten
 
@@ -270,6 +271,7 @@ const WordMatchGame = () => {
                 <option value="random">Slumpmässig</option>
               </select>
             </DifficultySelector>
+            <MuteButton />
             <ButtonWrapper>
               <Button onClick={restartGame}>
                 {isGameComplete ? "Spela igen" : "Börja om"}

@@ -5,8 +5,14 @@ import { MemoryCard } from "../../../types/Card";
 import CardComponent from "../../Card/Card";
 import { PageWrapper, GameWrapper } from "../../styled/Wrappers";
 import { Button } from "../../styled/Button";
-import { breakpoints, fontSizes, spacing, borderRadius } from "../../../styles/variables";
+import {
+  breakpoints,
+  fontSizes,
+  spacing,
+  borderRadius,
+} from "../../../styles/variables";
 import { soundManager } from "../../../utils/SoundManager";
+import { MuteButton } from "../../styled/MuteButton";
 
 // Styled-components för layouten
 
@@ -26,9 +32,7 @@ const Image = styled.img`
     margin-top: ${spacing.xLarge};
     margin-bottom: 0;
   }
-
 `;
-
 
 const GameSizeSelector = styled.div`
   //margin-bottom: ${spacing.medium};
@@ -127,11 +131,11 @@ const ButtonWrapper = styled.div`
   width: 100%;
   align-items: center;
   margin-top: 40px; /* For mobile layout */
-  
+
   @media (min-width: ${breakpoints.tablet}) {
     margin-top: 20px; /* Reduced margin for tablet/desktop */
   }
-  
+
   /* Hide on mobile */
   @media (max-width: ${breakpoints.tablet}) {
     display: none;
@@ -158,7 +162,7 @@ const MemoryGame = () => {
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
   const [gameSize, setGameSize] = useState<number>(16);
-  
+
   useEffect(() => {
     const getCards = async () => {
       try {
@@ -170,31 +174,35 @@ const MemoryGame = () => {
       }
     };
     getCards();
-  }, [gameSize]);  // Uppdatera bara när gameSize ändras
-  
+  }, [gameSize]); // Uppdatera bara när gameSize ändras
+
   // Uppdatera generateShuffledCards-funktionen för att hantera större spelplaner
-  const generateShuffledCards = (cards: MemoryCard[], size: number): MemoryCard[] => {
+  const generateShuffledCards = (
+    cards: MemoryCard[],
+    size: number
+  ): MemoryCard[] => {
     const numberOfCards = size === 16 ? 8 : size === 36 ? 18 : 24; // Dynamiskt beroende på storlek (16, 36 eller annat)
     const selectedCards = cards.slice(0, numberOfCards); // Välj rätt antal kort
-    
-  
-    const pairedCards = selectedCards
-      .flatMap((card) => [
-        { ...card, uniqueId: card.id * 2, originalId: card.id },
-        { ...card, uniqueId: card.id * 2 + 1, originalId: card.id },
-      ]);
-  
+
+    const pairedCards = selectedCards.flatMap((card) => [
+      { ...card, uniqueId: card.id * 2, originalId: card.id },
+      { ...card, uniqueId: card.id * 2 + 1, originalId: card.id },
+    ]);
+
     // Fisher-Yates algorithm to shuffle cards
     for (let i = pairedCards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [pairedCards[i], pairedCards[j]] = [pairedCards[j], pairedCards[i]]; 
+      [pairedCards[i], pairedCards[j]] = [pairedCards[j], pairedCards[i]];
     }
-  
+
     return pairedCards;
   };
 
   const handleCardClick = (card: MemoryCard) => {
-    if (matchedCards.includes(card.uniqueId) || flippedCards.includes(card.uniqueId)) {
+    if (
+      matchedCards.includes(card.uniqueId) ||
+      flippedCards.includes(card.uniqueId)
+    ) {
       return;
     }
 
@@ -206,10 +214,18 @@ const MemoryGame = () => {
       if (newFlippedCards.length === 2) {
         const [firstCardId, secondCardId] = newFlippedCards;
 
-        const firstCard = shuffledCards.find((card) => card.uniqueId === firstCardId);
-        const secondCard = shuffledCards.find((card) => card.uniqueId === secondCardId);
+        const firstCard = shuffledCards.find(
+          (card) => card.uniqueId === firstCardId
+        );
+        const secondCard = shuffledCards.find(
+          (card) => card.uniqueId === secondCardId
+        );
 
-        if (firstCard && secondCard && firstCard.originalId === secondCard.originalId) {
+        if (
+          firstCard &&
+          secondCard &&
+          firstCard.originalId === secondCard.originalId
+        ) {
           soundManager.playSound("match");
           setMatchedCards((prev) => [...prev, firstCardId, secondCardId]);
           setFlippedCards([]);
@@ -222,19 +238,18 @@ const MemoryGame = () => {
     });
   };
 
-
   const restartGame = () => {
     setMatchedCards([]);
     setFlippedCards([]);
     setShuffledCards(generateShuffledCards(cards, gameSize));
   };
 
- // const totalPairs = shuffledCards.length / 2;
+  // const totalPairs = shuffledCards.length / 2;
   const matchedPairs = matchedCards.length / 2;
-  const isGameComplete = matchedPairs === shuffledCards.length && matchedCards.length;
+  const isGameComplete =
+    matchedPairs === shuffledCards.length && matchedCards.length;
 
- // console.log( "totalPairs:", totalPairs);
-
+  // console.log( "totalPairs:", totalPairs);
 
   useEffect(() => {
     if (isGameComplete) {
@@ -244,11 +259,10 @@ const MemoryGame = () => {
 
   return (
     <PageWrapper>
-    <Image src="/assets/memory2.png" />
+      <Image src="/assets/memory2.png" />
 
       <GameWrapper>
         <GameContainer>
-
           <RightColumn>
             <GameSizeSelector>
               <h3>Välj spelbräde:</h3>
@@ -260,7 +274,7 @@ const MemoryGame = () => {
                 <option value={36}>Stor 6x6 (36 kort)</option>
               </select>
             </GameSizeSelector>
-
+            <MuteButton />
             <ButtonWrapper>
               <Button onClick={restartGame}>
                 {isGameComplete ? "Spela igen" : "Börja om"}
@@ -269,7 +283,10 @@ const MemoryGame = () => {
           </RightColumn>
 
           <LeftColumn>
-            <CardGrid $columns={gameSize === 16 ? 4 : 6} $rows={gameSize === 16 ? 4 : 6}>
+            <CardGrid
+              $columns={gameSize === 16 ? 4 : 6}
+              $rows={gameSize === 16 ? 4 : 6}
+            >
               {shuffledCards.map((card) => (
                 <CardComponent
                   key={card.uniqueId}
@@ -283,13 +300,12 @@ const MemoryGame = () => {
             </CardGrid>
           </LeftColumn>
         </GameContainer>
-                {/* For mobile layout: keep the button under the whole game container */}
-                <MobileButtonWrapper>
-                  <Button onClick={restartGame}>
-                    {isGameComplete ? "Spela igen" : "Börja om"}
-                  </Button>
-                </MobileButtonWrapper>
-        
+        {/* For mobile layout: keep the button under the whole game container */}
+        <MobileButtonWrapper>
+          <Button onClick={restartGame}>
+            {isGameComplete ? "Spela igen" : "Börja om"}
+          </Button>
+        </MobileButtonWrapper>
       </GameWrapper>
     </PageWrapper>
   );
