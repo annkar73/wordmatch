@@ -22,7 +22,7 @@
     "noUncheckedSideEffectImports": true,
 
      /* Adding path resolution for utils */
-     "baseUrl": "src", 
+     "baseUrl": "./src", 
      "paths": {
        "utils/*": ["utils/*"]
      }
