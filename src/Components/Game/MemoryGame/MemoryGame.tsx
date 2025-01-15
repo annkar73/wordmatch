@@ -12,7 +12,7 @@ import {
   borderRadius,
 } from "../../../styles/variables";
 import { MuteButton } from "../../styled/MuteButton";
-import { soundManager } from "utils/soundManager";
+import { soundManager } from "../../../utils/soundManager";
 
 // Styled-components för layouten
 
