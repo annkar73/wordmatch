@@ -46,7 +46,7 @@ const HamburgerButton = styled.button<HamburgerButtonProps>`
     }
   }
 
-  /* Döljer hamburgermenyn på större skärmar */
+  /* Hides hamburger menu on larger screens */
   @media (min-width: 768px) {
     display: none;
   }
@@ -91,7 +91,7 @@ const Menu = styled(motion.ul)`
 
 const DesktopMenu = styled.ul`
   list-style: none;
-  display: none; /* Döljer desktop-menyn som standard */
+  display: none; /* Hides desktop menu as a standard */
   gap: 20px;
 
   li {
@@ -114,7 +114,7 @@ const DesktopMenu = styled.ul`
     }
   }
 
-  /* Visar desktop-menyn på större skärmar */
+  /* Shows desktop menu on larger screens */
   @media (min-width: 768px) {
     display: flex;
   }
@@ -169,7 +169,7 @@ export const Navigation = () => {
 
       {/* Hamburger Button */}
       <HamburgerButton
-        $isOpen={isOpen} // Använder $isOpen istället för isOpen för Styled Components
+        $isOpen={isOpen} // uses $isOpen instead of isOpen for Styled Components
         onClick={toggleMenu}
         aria-label="Toggle navigation menu"
       >

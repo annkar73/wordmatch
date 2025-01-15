@@ -258,6 +258,7 @@ const MemoryGame = () => {
   }, [isGameComplete]);
 
   return (
+    <>
     <PageWrapper>
       <Image src="/assets/memory2.png" />
 
@@ -308,6 +309,7 @@ const MemoryGame = () => {
         </MobileButtonWrapper>
       </GameWrapper>
     </PageWrapper>
+    </>
   );
 };
 

@@ -233,7 +233,7 @@ const WordMatchGame = () => {
   };
 
   const matchedPairs = matchedCards.length / 2;
-  const isGameComplete = matchedPairs === shuffledCards.length;
+  const isGameComplete = shuffledCards.length > 0 && matchedPairs === shuffledCards.length;
 
   useEffect(() => {
     // When all pairs are matched, play the winning sound
@@ -251,6 +251,7 @@ const WordMatchGame = () => {
   };
 
   return (
+    <>
     <PageWrapper>
         <Image src="/assets/matcha_ord.png" />
       <GameWrapper>
@@ -301,6 +302,7 @@ const WordMatchGame = () => {
         </MobileButtonWrapper>
       </GameWrapper>
     </PageWrapper>
+    </>
   );
 };
 

@@ -8,7 +8,7 @@ export const PageWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center; // Horizontal center
-  justify-content: flex-start; // Vertical center
+  justify-content: center; // Vertical center
   box-sizing: border-box;
   padding: 20px;
 `;

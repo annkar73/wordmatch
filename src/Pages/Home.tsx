@@ -24,10 +24,11 @@ const Container = styled.div`
 `;
 
 
-const Description = styled.p`
+const Description = styled.div`
   font-size: ${fontSizes.base};
   color: ${(props) => props.theme.text};
-  margin: ${spacing.small} 0 ${spacing.large};
+  margin: ${spacing.small} 0 ${spacing.large} 0;
+  
 
   @media (min-width: ${breakpoints.tablet}) {
     font-size: ${fontSizes.h4};
@@ -62,9 +63,9 @@ const Home = () => {
 
       <Container>
         <Description>
-          <p>Här kan du träna på att koppla bild till ord, eller spela ett klassiskt memory där du matchar bilder.</p> 
-          <p>Utmana dig själv och ha roligt samtidigt!</p>
-        </Description>
+          Här kan du träna på att koppla bild till ord, eller spela ett klassiskt memory där du matchar bilder. 
+          
+        <p>Utmana dig själv och ha roligt samtidigt!</p></Description>
         <Button as={Link} to="/games">Börja spela</Button>
       </Container>
     </PageWrapper>
