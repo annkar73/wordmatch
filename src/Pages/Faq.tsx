@@ -48,7 +48,7 @@ export function Faq() {
   return (
     <>
     <StyledPageWrapper>
-      <Image src="/assets/info_logo.png" alt="Info Logo" />
+      <Image src="/assets/info_logo.png" alt="Info Logo" loading="lazy" />
       <Title>Vanliga Frågor</Title>
 
     <Container>

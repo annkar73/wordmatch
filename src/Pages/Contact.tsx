@@ -46,7 +46,7 @@ const Contact = () => {
   return (
     <>
     <StyledPageWrapper>
-    <Image src="/assets/kontakt.png" />
+    <Image src="/assets/kontakt.png" loading="lazy" />
 
     <Container>
       <ContactForm />

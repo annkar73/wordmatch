@@ -59,7 +59,7 @@ const Image = styled.img`
 const Home = () => {
   return (
     <PageWrapper>
-      <Image src="/assets/ordmatch2.png" />
+      <Image src="/assets/ordmatch2.png" loading="lazy" />
 
       <Container>
         <Description>

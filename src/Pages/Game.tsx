@@ -73,12 +73,12 @@ const Games = () => {
   return (
     <>
       <PageWrapper>
-        <Image src="/assets/play.png" />
+        <Image src="/assets/play.png" loading="lazy" />
         <NavContainer>
           <NavButton to="/matching-game">Matcha Ord</NavButton>
           <NavButton to="/classic-memory">Klassiskt Memory</NavButton>
         </NavContainer>
-        <Image src="/assets/kawaii_play3.png" />
+        <Image src="/assets/kawaii_play3.png" loading="lazy" />
 
       </PageWrapper>
     </>

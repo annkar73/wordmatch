@@ -260,7 +260,7 @@ const MemoryGame = () => {
   return (
     <>
     <PageWrapper>
-      <Image src="/assets/memory2.png" />
+      <Image src="/assets/memory2.png" loading="lazy" />
 
       <GameWrapper>
         <GameContainer>

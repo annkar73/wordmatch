@@ -253,7 +253,7 @@ const WordMatchGame = () => {
   return (
     <>
     <PageWrapper>
-        <Image src="/assets/matcha_ord.png" />
+        <Image src="/assets/matcha_ord.png" loading="lazy"/>
       <GameWrapper>
         <GameContainer>
           <RightColumn>
