@@ -24,7 +24,7 @@ export const MuteButton = () => {
   };
 
   return (
-    <MuteButtonStyled onClick={toggleMute}>
+    <MuteButtonStyled onClick={toggleMute} onTouchStart={toggleMute}>
       <FontAwesomeIcon icon={isMuted ? faVolumeMute : faVolumeUp} />
       {isMuted ? 'Ljud av' : 'Ljud på'}
     </MuteButtonStyled>
