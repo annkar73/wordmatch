@@ -2,12 +2,17 @@ import { Button as StyledButton } from "./Button";
 import styled from "styled-components";
 import { useState } from "react";
 import { soundManager } from "../../utils/soundManager";
-
+import { faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Lägg till denna import
 
 const MuteButtonStyled = styled(StyledButton)`
   font-size: 1rem; 
   padding: 5px 10px; 
   min-height: 35px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 `;
 
 export const MuteButton = () => {
@@ -20,7 +25,8 @@ export const MuteButton = () => {
 
   return (
     <MuteButtonStyled onClick={toggleMute}>
-      {isMuted ? "Spela med ljud" : "Spela utan ljud"}
+      <FontAwesomeIcon icon={isMuted ? faVolumeMute : faVolumeUp} />
+      {isMuted ? 'Ljud av' : 'Ljud på'}
     </MuteButtonStyled>
   );
 };
