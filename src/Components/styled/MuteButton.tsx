@@ -1,9 +1,9 @@
 import { Button as StyledButton } from "./Button"; 
 import styled from "styled-components";
 import { useState } from "react";
-import { soundManager } from "../../utils/soundManager";
 import { faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
+import { soundManager } from "../../utils/soundManager";
 
 const MuteButtonStyled = styled(StyledButton)`
   font-size: 1rem; 
