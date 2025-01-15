@@ -21,11 +21,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-     /* Adding path resolution for utils */
-     "baseUrl": "./src", 
-     "paths": {
-       "utils/*": ["utils/*"]
-     }
   },
   "include": ["src"]
 }
