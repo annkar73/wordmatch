@@ -9,7 +9,8 @@ import {
   fontSizes,
   shadows,
 } from "../styles/variables";
-import { HeaderTitle } from "../Components/styled/Titles";
+import React, { Suspense } from "react";
+const HeaderTitle = React.lazy(() => import("../Components/styled/Titles"));
 
 
 const NavContainer = styled.div`
@@ -74,7 +75,9 @@ const Games = () => {
   return (
     <>
       <PageWrapper>
+        <Suspense fallback={<div>Laddar titel...</div>}>
         <HeaderTitle>Spela ett spel</HeaderTitle>
+        </Suspense>
         <NavContainer>
           <NavButton to="/matching-game">Matcha Ord</NavButton>
           <NavButton to="/classic-memory">Klassiskt Memory</NavButton>
