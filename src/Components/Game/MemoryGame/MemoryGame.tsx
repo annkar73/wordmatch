@@ -12,6 +12,7 @@ import {
 } from "../../../styles/variables";
 import { MuteButton } from "../../styled/MuteButton";
 import { soundManager } from "../../../utils/soundManager";
+import Modal from "../../Modal";
 import React from "react";
 
 
@@ -148,11 +149,20 @@ const MemoryGame = () => {
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
   const [gameSize, setGameSize] = useState<number>(16);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const getCards = async () => {
       try {
         const fetchedCards = await fetchCards<MemoryCard>({});
+        
+        // Fisher-Yates-algoritm för att blanda bilderna
+        for (let i = fetchedCards.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [fetchedCards[i], fetchedCards[j]] = [fetchedCards[j], fetchedCards[i]];
+        }
+        
+        // Spara de blandade korten och generera shuffle för spelet
         setCards(fetchedCards);
         setShuffledCards(generateShuffledCards(fetchedCards, gameSize));
       } catch (error) {
@@ -228,6 +238,7 @@ const MemoryGame = () => {
     setMatchedCards([]);
     setFlippedCards([]);
     setShuffledCards(generateShuffledCards(cards, gameSize));
+    setIsModalOpen(false);
   };
 
   // const totalPairs = shuffledCards.length / 2;
@@ -240,6 +251,7 @@ const MemoryGame = () => {
   useEffect(() => {
     if (isGameComplete) {
       soundManager.playSound("win");
+      setIsModalOpen(true);
     }
   }, [isGameComplete]);
 
@@ -298,6 +310,9 @@ const MemoryGame = () => {
         </MobileButtonWrapper>
       </GameWrapper>
     </PageWrapper>
+
+    {/* Modal opens when game is completed */}
+    <Modal isOpen={isModalOpen} onClose={restartGame} />
     </>
   );
 };
