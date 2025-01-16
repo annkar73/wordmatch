@@ -1,8 +1,12 @@
 import styled from "styled-components";
-import { FaqList } from "../Components/FaqList";
 import { PageWrapper } from "../Components/styled/Wrappers";
 import { breakpoints } from "../styles/variables";
-import { HeaderTitle } from "../Components/styled/Titles";
+import React, { Suspense } from "react";
+
+// Lazy load components
+const FaqList = React.lazy(() => import("../Components/FaqList"));
+const HeaderTitle = React.lazy(() => import("../Components/styled/Titles"));
+
 
 const StyledPageWrapper = styled(PageWrapper)`
   justify-content: center;
@@ -28,17 +32,22 @@ const Title = styled.h1`
 `;
 
 
-export function Faq() {
+const Faq =() => {
   return (
     <>
     <StyledPageWrapper>
+      <Suspense fallback={<div>Laddar sida...</div>}>
       <HeaderTitle>Mer info</HeaderTitle>
+      </Suspense>
       <Title>Vanliga Frågor</Title>
 
     <Container>
+      <Suspense fallback={<div>Laddar Faq...</div>}>
       <FaqList />
+      </Suspense>
     </Container>
     </StyledPageWrapper>
     </>
   );
 }
+export default Faq;

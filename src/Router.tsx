@@ -1,14 +1,17 @@
-import { Routes, Route } from "react-router-dom";
-import ClassicMemoryPage from "./Pages/ClassicMemoryGame";
-import {Faq} from "./Pages/Faq";
-import Home from "./Pages/Home";
-import MatchingGamePage from "./Pages/MatchingGamePage";
-import Contact from "./Pages/Contact";
-import Game from "./Pages/Game";
+import React, { Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
+// Lazy-load sidorna
+const Home = React.lazy(() => import('./Pages/Home'));
+const ClassicMemoryPage = React.lazy(() => import('./Pages/ClassicMemoryGame'));
+const MatchingGamePage = React.lazy(() => import('./Pages/MatchingGamePage'));
+const Faq = React.lazy(() => import('./Pages/Faq'));
+const Contact = React.lazy(() => import('./Pages/Contact'));
+const Game = React.lazy(() => import('./Pages/Game'));
 
 const Router = () => {
   return (
+    <Suspense fallback={<div>Laddar...</div>}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/matching-game" element={<MatchingGamePage />} />
@@ -17,6 +20,7 @@ const Router = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/games" element={<Game />} />
       </Routes>
+    </Suspense>
   );
 };
 

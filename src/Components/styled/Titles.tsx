@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { fontSizes } from "../../styles/variables";
 
-export const HeaderTitle = styled.h1`
+const HeaderTitle = styled.h1`
 background: ${(props) => `linear-gradient(45deg, ${props.theme.gradientOne}, ${props.theme.gradientTwo}, ${props.theme.gradientThree}, ${props.theme.gradientFour})`};
 background-clip: text;
   -webkit-background-clip: text;
@@ -31,3 +31,4 @@ export const StyledH4 = styled.h4`
 font-size: ${fontSizes.h4};
 
 `;
+export default HeaderTitle;

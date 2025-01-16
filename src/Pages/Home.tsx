@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { PageWrapper } from "../Components/styled/Wrappers";
 import { fontSizes, spacing, breakpoints } from "../styles/variables";
-import { Button } from "../Components/styled/Button";
 import { Link } from "react-router-dom";
-import { HeaderTitle } from "../Components/styled/Titles";
+import React, { Suspense } from "react";
 
+// Lazy load components
+const Button = React.lazy(() => import("../Components/styled/Button"));
+const HeaderTitle = React.lazy(() => import("../Components/styled/Titles"));
 // Styled Components
 const Container = styled.div`
   text-align: center;
@@ -40,17 +42,23 @@ const Description = styled.div`
 // Component
 const Home = () => {
   return (
+    <>
     <PageWrapper>
+      <Suspense fallback={<div>Laddar titel...</div>}>
       <HeaderTitle>matcha ord och bild</HeaderTitle>
+      </Suspense>
 
       <Container>
         <Description>
           Här kan du träna på att koppla bild till ord, eller spela ett klassiskt memory där du matchar bilder. 
           
         <p>Utmana dig själv och ha roligt samtidigt!</p></Description>
+        <Suspense fallback={<div>Laddar knapp...</div>}>
         <Button as={Link} to="/games">Börja spela</Button>
+        </Suspense>
       </Container>
     </PageWrapper>
+    </>
   );
 };
 

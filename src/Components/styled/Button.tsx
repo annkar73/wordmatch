@@ -7,8 +7,11 @@ import {
   spacing,
 } from "../../styles/variables";
 
-// button for choices
-export const Button = styled.button`
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  as?: React.ElementType;
+  to?: string;
+}
+const Button = styled.button<ButtonProps>`
   display: flex;
   flex-direction: row;
   width: 80%;
@@ -39,3 +42,4 @@ export const Button = styled.button`
     padding: ${spacing.medium} ${spacing.large};
   }
 `;
+export default Button;

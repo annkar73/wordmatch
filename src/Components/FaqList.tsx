@@ -19,7 +19,7 @@ const faqData = [
   },
 ];
 
-export function FaqList() {
+const FaqList = () => {
   return (
     <div>
       {faqData.map((faq, index) => (
@@ -28,3 +28,4 @@ export function FaqList() {
     </div>
   );
 }
+export default FaqList

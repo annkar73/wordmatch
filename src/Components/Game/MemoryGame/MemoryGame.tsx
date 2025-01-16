@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import styled from "styled-components";
 import { fetchCards } from "../../../services/fetchCards";
 import { MemoryCard } from "../../../types/Card";
 import CardComponent from "../../Card/Card";
 import { PageWrapper, GameWrapper } from "../../styled/Wrappers";
-import { Button } from "../../styled/Button";
 import {
   breakpoints,
   fontSizes,
@@ -13,8 +12,11 @@ import {
 } from "../../../styles/variables";
 import { MuteButton } from "../../styled/MuteButton";
 import { soundManager } from "../../../utils/soundManager";
-import { HeaderTitle } from "../../styled/Titles";
+import React from "react";
 
+
+const Button = React.lazy(() => import("../../styled/Button"));
+const HeaderTitle = React.lazy(() => import("../../styled/Titles"));
 // Styled-components för layouten
 
 
@@ -244,8 +246,9 @@ const MemoryGame = () => {
   return (
     <>
     <PageWrapper>
+      <Suspense fallback={<div>Laddar titel...</div>}>
       <HeaderTitle>memory</HeaderTitle>
-
+      </Suspense>
       <GameWrapper>
         <GameContainer>
           <RightColumn>
@@ -287,9 +290,11 @@ const MemoryGame = () => {
         </GameContainer>
         {/* For mobile layout: keep the button under the whole game container */}
         <MobileButtonWrapper>
+          <Suspense fallback={<div>Laddar...</div>}>
           <Button onClick={restartGame}>
             {isGameComplete ? "Spela igen" : "Börja om"}
           </Button>
+          </Suspense>
         </MobileButtonWrapper>
       </GameWrapper>
     </PageWrapper>

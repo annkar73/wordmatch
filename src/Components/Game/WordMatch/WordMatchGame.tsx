@@ -1,9 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import styled from "styled-components";
 import { fetchCards } from "../../../services/fetchCards";
 import { WordCard } from "../../../types/Card";
 import { PageWrapper, GameWrapper } from "../../styled/Wrappers";
-import { Button } from "../../styled/Button";
 import {
   breakpoints,
   fontSizes,
@@ -13,8 +12,10 @@ import {
 import WordCardComponent from "../../Card/WordCard";
 import { MuteButton } from "../../styled/MuteButton";
 import { soundManager } from "../../../utils/soundManager";
-import { HeaderTitle } from "../../styled/Titles";
+import React from "react";
 
+const Button = React.lazy(() => import("../../styled/Button"));
+const HeaderTitle = React.lazy(() => import("../../styled/Titles"));
 // Styled-components för layouten
 
 
@@ -237,7 +238,9 @@ const WordMatchGame = () => {
   return (
     <>
     <PageWrapper>
+      <Suspense fallback={<div>Laddar titel...</div>}>
       <HeaderTitle>Matcha med ord</HeaderTitle>
+      </Suspense>
       <GameWrapper>
         <GameContainer>
           <RightColumn>
@@ -258,9 +261,11 @@ const WordMatchGame = () => {
             </DifficultySelector>
             <MuteButton />
             <ButtonWrapper>
+              <Suspense fallback={<div>Laddar...</div>}>
               <Button onClick={restartGame}>
                 {isGameComplete ? "Spela igen" : "Börja om"}
               </Button>
+              </Suspense>
             </ButtonWrapper>
           </RightColumn>
 
