@@ -9,7 +9,7 @@ const StyledButton = React.lazy(() => import("./Button"));
 
 const MuteButtonStyled = styled(StyledButton)`
   font-size: 1rem; 
-  padding: 3px 5px; 
+  padding: auto 5px; 
   min-height: 35px; 
   display: flex;
   align-items: center;
