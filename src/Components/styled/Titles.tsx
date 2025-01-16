@@ -2,12 +2,17 @@ import { styled } from "styled-components";
 import { fontSizes } from "../../styles/variables";
 
 export const HeaderTitle = styled.h1`
-  text-transform: capitalize;
+background: ${(props) => `linear-gradient(45deg, ${props.theme.gradientOne}, ${props.theme.gradientTwo}, ${props.theme.gradientThree}, ${props.theme.gradientFour})`};
+background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;  text-transform: capitalize;
   font-style: italic;
   font-size: ${fontSizes.heading};
   font-weight: bold;
   text-align: center;
+  text-transform: uppercase;
 `;
+
 export const StyledH1 = styled.h1`
     font-size: ${fontSizes.h1};
     margin-top: 25px;

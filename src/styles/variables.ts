@@ -15,7 +15,7 @@ export const fontSizes = {
     h3: '24px', // extra large text h3
     h2: '28px', // xxl text for h2
     h1: '32px', // xxxl text for h1
-    heading: '38px',
+    heading: '42px',
 };
 
 // Border radius variables

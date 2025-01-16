@@ -25,6 +25,8 @@ export const Button = styled.button`
   box-shadow: ${shadows.medium};
   display: inline-block;
   text-align: center;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: ${(props) => props.theme.buttonHoverBackground};

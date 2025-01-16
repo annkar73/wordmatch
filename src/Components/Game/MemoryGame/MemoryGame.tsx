@@ -13,26 +13,10 @@ import {
 } from "../../../styles/variables";
 import { MuteButton } from "../../styled/MuteButton";
 import { soundManager } from "../../../utils/soundManager";
+import { HeaderTitle } from "../../styled/Titles";
 
 // Styled-components för layouten
 
-const Image = styled.img`
-  width: 90vw;
-  max-width: 400px;
-  margin: 0 15px;
-  padding: 0;
-  display: block;
-  background-color: ${(props) => props.theme.backgroundColor};
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2)) blur(0.5px);
-  //padding: 0.5rem;
-
-  @media (min-width: ${breakpoints.tablet}) {
-    width: 70vw;
-    max-width: 600px;
-    margin-top: ${spacing.xLarge};
-    margin-bottom: 0;
-  }
-`;
 
 const GameSizeSelector = styled.div`
   //margin-bottom: ${spacing.medium};
@@ -260,7 +244,7 @@ const MemoryGame = () => {
   return (
     <>
     <PageWrapper>
-      <Image src="/assets/memory2.png" loading="lazy" />
+      <HeaderTitle>memory</HeaderTitle>
 
       <GameWrapper>
         <GameContainer>

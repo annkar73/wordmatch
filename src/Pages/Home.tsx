@@ -3,6 +3,7 @@ import { PageWrapper } from "../Components/styled/Wrappers";
 import { fontSizes, spacing, breakpoints } from "../styles/variables";
 import { Button } from "../Components/styled/Button";
 import { Link } from "react-router-dom";
+import { HeaderTitle } from "../Components/styled/Titles";
 
 // Styled Components
 const Container = styled.div`
@@ -36,30 +37,11 @@ const Description = styled.div`
 `;
 
 
-const Image = styled.img`
-  width: 90vw;
-  max-width: 400px;
-  margin: 0 auto;
-  display: block;
-  background-color: ${(props) => props.theme.backgroundColor};
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2)) blur(0.5px);
-  //padding: 0.5rem;
-
-  @media (min-width: ${breakpoints.tablet}) {
-    width: 70vw;
-    max-width: 800px;
-    margin-top: ${spacing.xLarge};
-    margin-bottom: 0;
-  }
-
-`;
-
-
 // Component
 const Home = () => {
   return (
     <PageWrapper>
-      <Image src="/assets/ordmatch2.png" loading="lazy" />
+      <HeaderTitle>matcha ord och bild</HeaderTitle>
 
       <Container>
         <Description>
