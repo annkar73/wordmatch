@@ -12,6 +12,7 @@ import {
 import WordCardComponent from "../../Card/WordCard";
 import { MuteButton } from "../../styled/MuteButton";
 import { soundManager } from "../../../utils/soundManager";
+import Modal from "../../Modal";
 import React from "react";
 
 const Button = React.lazy(() => import("../../styled/Button"));
@@ -144,6 +145,7 @@ const WordMatchGame = () => {
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
   const [difficulty, setDifficulty] = useState<number | null>(1); // null = random
   const [gameCompleted, setGameCompleted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const generateShuffledCards = useCallback((cards: WordCard[]): WordCard[] => {
     const selectedCards = difficulty === null
@@ -225,6 +227,7 @@ const WordMatchGame = () => {
     if (isGameComplete && !gameCompleted) {
       soundManager.playSound("win");
       setGameCompleted(true);
+      setIsModalOpen(true);
     }
   }, [isGameComplete, gameCompleted]);
 
@@ -233,6 +236,7 @@ const WordMatchGame = () => {
     setFlippedCards([]);
     setShuffledCards(generateShuffledCards(cards));
     setGameCompleted(false);
+    setIsModalOpen(false);
   };
 
   return (
@@ -291,6 +295,7 @@ const WordMatchGame = () => {
         </MobileButtonWrapper>
       </GameWrapper>
     </PageWrapper>
+    <Modal isOpen={isModalOpen} onClose={restartGame} />
     </>
   );
 };
