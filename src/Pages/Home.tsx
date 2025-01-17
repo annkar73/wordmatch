@@ -7,10 +7,10 @@ import React, { Suspense } from "react";
 // Lazy load components
 const Button = React.lazy(() => import("../Components/styled/Button"));
 const HeaderTitle = React.lazy(() => import("../Components/styled/Titles"));
+
 // Styled Components
 const Container = styled.div`
   text-align: center;
-  //margin: ${spacing.small} auto;
   padding: ${spacing.small};
   background-color: ${(props) => props.theme.background};
   color: ${(props) => props.theme.text};
@@ -39,13 +39,12 @@ const Description = styled.div`
 `;
 
 
-// Component
 const Home = () => {
   return (
     <>
     <PageWrapper>
       <Suspense fallback={<div>Laddar titel...</div>}>
-      <HeaderTitle>matcha ord och bild</HeaderTitle>
+      <HeaderTitle>Matcha ord och bild</HeaderTitle>
       </Suspense>
 
       <Container>
