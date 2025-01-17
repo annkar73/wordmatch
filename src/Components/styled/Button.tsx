@@ -28,6 +28,7 @@ const Button = styled.button<ButtonProps>`
   box-shadow: ${shadows.medium};
   display: inline-block;
   text-align: center;
+  vertical-align: center;
   justify-content: center;
   align-items: center;
 
