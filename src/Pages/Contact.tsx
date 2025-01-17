@@ -13,7 +13,6 @@ const Container = styled.div`
   display: block;
   padding: 25px;
   box-sizing: border-box;
-  //box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   @media (min-width: ${breakpoints.tablet}) {
     width: 60vw;
     max-width: 800px;

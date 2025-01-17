@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 import emailjs from "@emailjs/browser";
-
 
 const Form = styled.form`
   display: flex;
@@ -50,35 +49,25 @@ const Button = styled.button`
   }
 `;
 
-export function ContactForm() {
-  const [formData, setFormData] = useState({
-    user_name: "",
-    user_email: "",
-    message: "",
-  });
-
+export const ContactForm = () => {
+  const formRef = useRef<HTMLFormElement | null>(null);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!formRef.current) return;
+
     try {
-      await emailjs.send(
-        "service_32pi2fm", // Service ID from EmailJS dashboard
-        "template_mqjv9gs", // Template ID from EmailJS dashboard
-        formData,
-        "yVR7KkAVpx9lwh3DK" // Public Key from EmailJS
+      await emailjs.sendForm(
+        "service_32pi2fm", // Replace with your EmailJS Service ID
+        "template_mqjv9gs", // Replace with your EmailJS Template ID
+        formRef.current,
+        "yVR7KkAVpx9lwh3DK" // Replace with your EmailJS Public Key
       );
+
       setStatusMessage("Meddelandet skickades!");
-      setFormData({ user_name: "", user_email: "", message: "" }); // Clear form
+      formRef.current.reset(); // Clear form fields
     } catch (error) {
       console.error("Ett fel inträffade:", error);
       setStatusMessage("Ett fel inträffade, försök igen.");
@@ -87,36 +76,14 @@ export function ContactForm() {
 
   return (
     <>
-    
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          name="user_name"
-          placeholder="Ditt namn"
-          value={formData.user_name}
-          onChange={handleChange}
-          required
-        />
-        <Input
-          type="email"
-          name="user_email"
-          placeholder="Din e-postadress"
-          value={formData.user_email}
-          onChange={handleChange}
-          required
-        />
-        <TextArea
-          name="message"
-          placeholder="Ditt meddelande"
-          rows={5}
-          value={formData.message}
-          onChange={handleChange}
-          required
-        />
+      <Form ref={formRef} onSubmit={handleSubmit}>
+        <Input type="text" name="user_name" placeholder="Ditt namn" required />
+        <Input type="email" name="user_email" placeholder="Din e-postadress" required />
+        <Input type="text" name="subject" placeholder="Ämne" required />
+        <TextArea name="message" placeholder="Ditt meddelande" rows={5} required />
         <Button type="submit">Skicka</Button>
       </Form>
       {statusMessage && <p>{statusMessage}</p>}
-    
     </>
   );
-}
+};
