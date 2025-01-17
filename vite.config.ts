@@ -17,7 +17,7 @@ export default defineConfig({
     target: 'esnext', // För moderna webbläsare
     minify: 'esbuild', // Snabb och effektiv minifiering
     sourcemap: false, // Inaktivera sourcemaps för produktion
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 2000,
     rollupOptions: {
       output: {
         manualChunks(id) {
