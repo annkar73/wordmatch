@@ -35,6 +35,7 @@ const Description = styled.div`
 
 const Home = () => {
   return (
+    <>
     <PageWrapper>
     
       <HeaderTitle>Matcha ord och bild</HeaderTitle>
@@ -47,6 +48,7 @@ const Home = () => {
         <Button as={Link} to="/games">Börja spela</Button>
       </Container>
     </PageWrapper>
+    </>
   );
 };
 
