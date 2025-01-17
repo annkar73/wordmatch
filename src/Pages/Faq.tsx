@@ -8,9 +8,6 @@ const FaqList = React.lazy(() => import("../Components/FaqList"));
 const HeaderTitle = React.lazy(() => import("../Components/styled/Titles"));
 
 
-const StyledPageWrapper = styled(PageWrapper)`
-  justify-content: center;
-`;
 
 const Container = styled.div`
   max-width: 80vw;
@@ -35,7 +32,7 @@ const Title = styled.h1`
 const Faq =() => {
   return (
     <>
-    <StyledPageWrapper>
+    <PageWrapper>
       <Suspense fallback={<div>Laddar sida...</div>}>
       <HeaderTitle>Mer info</HeaderTitle>
       </Suspense>
@@ -46,7 +43,7 @@ const Faq =() => {
       <FaqList />
       </Suspense>
     </Container>
-    </StyledPageWrapper>
+    </PageWrapper>
     </>
   );
 }

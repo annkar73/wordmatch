@@ -39,6 +39,7 @@ const Button = styled.button`
   font-size: 1rem;
   background-color: ${(props) => props.theme.buttonBackground};
   color: ${(props) => props.theme.buttonText};
+  font-weight: bold;
   border: none;
   border-radius: 5px;
   cursor: pointer;

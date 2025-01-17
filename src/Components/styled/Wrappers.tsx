@@ -10,6 +10,7 @@ export const PageWrapper = styled.section`
   align-items: center; // Horizontal center
   justify-content: center; // Vertical center
   box-sizing: border-box;
+  margin-top: 20px;
   padding: 20px;
 `;
 // text wrapper for blocks of text

@@ -9,8 +9,6 @@ interface FaqItemProps {
 
 const Container = styled.div`
   margin: 0;
-  //border: 1px solid ${(props) => props.theme.borderColor};
-  //border-radius: 0;
   overflow: hidden;
   width: 75vw;
 `;

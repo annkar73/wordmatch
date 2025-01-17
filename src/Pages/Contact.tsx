@@ -6,30 +6,26 @@ import React, { Suspense } from "react";
 
 const HeaderTitle = React.lazy(() => import("../Components/styled/Titles"));
 
-
-const StyledPageWrapper = styled(PageWrapper)`
-  justify-content: center;
-`;
-
 const Container = styled.div`
   width: 90vw;
   max-width: 400px;
-  margin: 0 15px;
+  margin: 15px;
   display: block;
-  padding: 15px;
+  padding: 25px;
+  box-sizing: border-box;
+  //box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   @media (min-width: ${breakpoints.tablet}) {
-    width: 70vw;
+    width: 60vw;
     max-width: 800px;
-    margin-top: ${spacing.xLarge};
-    margin-bottom: 0;
+    margin: ${spacing.xLarge};
+    
   }
-
 `;
 
 const Contact = () => {
   return (
     <>
-    <StyledPageWrapper>
+    <PageWrapper>
       <Suspense fallback={<div>Laddar titel...</div>}>
       <HeaderTitle>Kontakt</HeaderTitle>
       </Suspense>
@@ -38,7 +34,7 @@ const Contact = () => {
       <ContactForm />
     </Container>
 
-    </StyledPageWrapper>
+    </PageWrapper>
     </>
   );
 }

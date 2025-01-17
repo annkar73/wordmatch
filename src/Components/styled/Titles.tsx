@@ -11,6 +11,8 @@ background-clip: text;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
+  margin: 15px;
+  position: sticky;
 `;
 
 export const StyledH1 = styled.h1`
