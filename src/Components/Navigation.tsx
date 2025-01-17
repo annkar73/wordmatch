@@ -2,8 +2,8 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { breakpoints } from "../styles/variables";
 
-// Uppdaterad typ för HamburgerButton med $isOpen
 interface HamburgerButtonProps {
   $isOpen: boolean;
 }
@@ -47,7 +47,7 @@ const HamburgerButton = styled.button<HamburgerButtonProps>`
   }
 
   /* Hides hamburger menu on larger screens */
-  @media (min-width: 768px) {
+  @media (min-width: ${breakpoints.tablet}) {
     display: none;
   }
 `;
@@ -73,6 +73,7 @@ const Menu = styled(motion.ul)`
       text-decoration: none;
       color: ${(props) => props.theme.navText};
       font-size: 1rem;
+      white-space: nowrap;
       transition: color 0.3s ease;
 
       &.active {
@@ -91,10 +92,12 @@ const Menu = styled(motion.ul)`
 
 const DesktopMenu = styled.ul`
   list-style: none;
-  display: none; /* Hides desktop menu as a standard */
+  display: none;
   gap: 20px;
 
   li {
+    position: relative;
+
     a {
       text-decoration: none;
       color: ${(props) => props.theme.navBg};
@@ -112,11 +115,47 @@ const DesktopMenu = styled.ul`
         color: ${(props) => props.theme.navBg};
       }
     }
+
+    /* Submenu styling */
+    &:hover ul {
+      display: block;
+    }
   }
 
   /* Shows desktop menu on larger screens */
-  @media (min-width: 768px) {
+  @media (min-width: ${breakpoints.tablet}) {
     display: flex;
+  }
+`;
+
+const SubMenu = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 100%;
+  left: -15px;
+  //color: ${(props) => props.theme.navText};
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: none; /* Hidden by default */
+  z-index: 1000;
+
+  li {
+    padding: 10px 20px;
+
+    a {
+      text-decoration: none;
+      color: ${(props) => props.theme.navBg};
+      //font-size: 0.9rem;
+      white-space: nowrap;
+      transition: color 0.3s ease;
+
+      &:hover {
+        font-weight: bold;
+        color: ${(props) => props.theme.navBg};
+      }
+    }
   }
 `;
 
@@ -142,18 +181,20 @@ export const Navigation = () => {
         </li>
         <li>
           <NavLink to="/games" onClick={closeMenu}>
-          Spel
+            Spel
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/matching-game" onClick={closeMenu}>
-            Matcha ord
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/classic-memory" onClick={closeMenu}>
-            Klassiskt Memory
-          </NavLink>
+          <SubMenu>
+            <li>
+              <NavLink to="/matching-game" onClick={closeMenu}>
+                Matcha ord
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/classic-memory" onClick={closeMenu}>
+                Klassiskt Memory
+              </NavLink>
+            </li>
+          </SubMenu>
         </li>
         <li>
           <NavLink to="/faq" onClick={closeMenu}>
@@ -162,14 +203,14 @@ export const Navigation = () => {
         </li>
         <li>
           <NavLink to="/contact" onClick={closeMenu}>
-          Kontakt
+            Kontakt
           </NavLink>
         </li>
       </DesktopMenu>
 
       {/* Hamburger Button */}
       <HamburgerButton
-        $isOpen={isOpen} // uses $isOpen instead of isOpen for Styled Components
+        $isOpen={isOpen}
         onClick={toggleMenu}
         aria-label="Toggle navigation menu"
       >
@@ -193,7 +234,7 @@ export const Navigation = () => {
           </li>
           <li>
             <NavLink to="/games" onClick={closeMenu}>
-            Spel
+              Spel
             </NavLink>
           </li>
           <li>
@@ -213,7 +254,7 @@ export const Navigation = () => {
           </li>
           <li>
             <NavLink to="/contact" onClick={closeMenu}>
-            Kontakt
+              Kontakt
             </NavLink>
           </li>
         </Menu>
