@@ -6,9 +6,9 @@ export default defineConfig({
   plugins: [
     react(),
     visualizer({
-      filename: "stats.html",
-      open: true,
-    })
+      filename: "stats.html", // Visar statistik över byggandet
+      open: true, // Öppnar statistikfiler automatiskt när bygget är klart
+    }),
   ],
   optimizeDeps: {
     include: ['@supabase/supabase-js'], // Pre-bundla nödvändiga beroenden
@@ -17,10 +17,18 @@ export default defineConfig({
     target: 'esnext', // För moderna webbläsare
     minify: 'esbuild', // Snabb och effektiv minifiering
     sourcemap: false, // Inaktivera sourcemaps för produktion
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'], // Separera React och andra tredjepartsbibliotek
+        manualChunks(id) {
+          // Dela upp externa bibliotek i en egen chunk
+          if (id.includes('node_modules')) {
+            return 'vendor'; // Alla externa bibliotek samlas här
+          }
+          // Lägg till fler specifika chunks för stora filer om du vill
+          if (id.includes('react-router-dom')) {
+            return 'react-router'; // T.ex. react-router
+          }
         },
       },
     },
