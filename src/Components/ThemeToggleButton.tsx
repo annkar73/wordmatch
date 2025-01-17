@@ -28,8 +28,8 @@ const SwitchHandle = styled(motion.div)<{ themeName: string }>`
   /* Dynamisk URL för bakgrundsbild */
   background-image: ${(props) =>
     props.themeName === "dark"
-      ? "url('/assets/icons/moon.png')"
-      : "url('/assets/icons/sun.png')"};
+      ? "url('/assets/icons/moon.webp')"
+      : "url('/assets/icons/sun.webp')"};
   background-size: cover; /* Anpassa storlek */
   background-position: center; /* Centrerar ikonen */
 `;
