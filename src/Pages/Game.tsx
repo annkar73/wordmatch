@@ -82,7 +82,7 @@ const Games = () => {
           <NavButton to="/matching-game">Matcha Ord</NavButton>
           <NavButton to="/classic-memory">Klassiskt Memory</NavButton>
         </NavContainer>
-        <Image src="/assets/kawaii_play3.png" loading="lazy" />
+        <Image src="/assets/kawaii_play3.png" alt="children playing game" loading="lazy" />
 
       </PageWrapper>
     </>
