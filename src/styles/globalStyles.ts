@@ -2,8 +2,12 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   body {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
+    width: 100%;
+    max-width: 1280px;
+    height: 100%;
+    justify-content: center;
     background-color: ${(props) => props.theme.background};
     color: ${(props) => props.theme.text};
     font-family: 'Arial', sans-serif;

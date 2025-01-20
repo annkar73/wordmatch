@@ -3,15 +3,18 @@ import { shadows } from "../../styles/variables";
 
 // page wrapper for each page
 export const PageWrapper = styled.section`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  max-width: 1280px;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   align-items: center; // Horizontal center
   justify-content: center; // Vertical center
   box-sizing: border-box;
+  background-color: lightgray;
   margin-top: 20px;
-  padding: 20px;
+  margin: 0 auto;
+  padding: 0 20px;
 `;
 // text wrapper for blocks of text
 export const TextWrapper = styled.div`

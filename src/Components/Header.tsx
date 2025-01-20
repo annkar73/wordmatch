@@ -10,14 +10,17 @@ interface HeaderProps {
 const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 1280px;
   background-color: transparent;
   color: ${(props) => props.theme.headerText};
   display: flex;
-  justify-content: space-between;
+  justify-content:space-between;
   align-items: center;
   padding: 10px 20px;
+  //margin: 0 auto;
   z-index: 1000;
 `;
 
