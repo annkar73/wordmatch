@@ -251,6 +251,7 @@ const WordMatchGame = () => {
             <DifficultySelector>
               <h3>Välj svårighetsgrad:</h3>
               <select
+              id="game-difficulty-selector"
                 value={difficulty === null ? "random" : difficulty.toString()}
                 onChange={(e) => {
                   const value = e.target.value;

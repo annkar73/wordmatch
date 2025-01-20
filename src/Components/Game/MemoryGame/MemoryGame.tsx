@@ -267,11 +267,12 @@ const MemoryGame = () => {
             <GameSizeSelector>
               <h3>Välj spelbräde:</h3>
               <select
+              id="game-size-selector"
                 onChange={(e) => setGameSize(Number(e.target.value))}
                 value={gameSize}
               >
-                <option value={16}>Liten 4x4 (16 kort)</option>
-                <option value={36}>Stor 6x6 (36 kort)</option>
+                <option id="small" value={16}>Liten 4x4 (16 kort)</option>
+                <option id="large" value={36}>Stor 6x6 (36 kort)</option>
               </select>
             </GameSizeSelector>
             <MuteButton />
