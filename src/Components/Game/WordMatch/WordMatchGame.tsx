@@ -211,7 +211,7 @@ const WordMatchGame = () => {
               firstCard.uniqueId,
               secondCard.uniqueId,
             ]);
-          }, 300); // Delay to sync with animation
+          }, 500); // Delay to sync with animation
         }
         setTimeout(() => setFlippedCards([]), 1000);
       }
