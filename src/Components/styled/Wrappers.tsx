@@ -11,7 +11,6 @@ export const PageWrapper = styled.section`
   align-items: center; // Horizontal center
   justify-content: center; // Vertical center
   box-sizing: border-box;
-  background-color: lightgray;
   margin-top: 20px;
   margin: 0 auto;
   padding: 0 20px;
