@@ -16,7 +16,6 @@ import Modal from "../../Modal";
 import React from "react";
 
 const Button = React.lazy(() => import("../../styled/Button"));
-const HeaderTitle = React.lazy(() => import("../../styled/Titles"));
 // Styled-components för layouten
 
 
@@ -243,7 +242,6 @@ const WordMatchGame = () => {
     <>
     <PageWrapper>
       <Suspense fallback={<div>Laddar titel...</div>}>
-      <HeaderTitle>Matcha med ord</HeaderTitle>
       </Suspense>
       <GameWrapper>
         <GameContainer>

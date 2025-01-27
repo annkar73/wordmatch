@@ -17,7 +17,6 @@ import React from "react";
 
 
 const Button = React.lazy(() => import("../../styled/Button"));
-const HeaderTitle = React.lazy(() => import("../../styled/Titles"));
 // Styled-components för layouten
 
 
@@ -259,7 +258,6 @@ const MemoryGame = () => {
     <>
     <PageWrapper>
       <Suspense fallback={<div>Laddar titel...</div>}>
-      <HeaderTitle>memory</HeaderTitle>
       </Suspense>
       <GameWrapper>
         <GameContainer>

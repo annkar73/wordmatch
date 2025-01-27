@@ -2,9 +2,8 @@ import styled from "styled-components";
 import { PageWrapper } from "../Components/styled/Wrappers";
 import { ContactForm } from "../Components/ContactForm";
 import { breakpoints, spacing } from "../styles/variables";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 
-const HeaderTitle = React.lazy(() => import("../Components/styled/Titles"));
 
 const Container = styled.div`
   width: 90vw;
@@ -26,7 +25,6 @@ const Contact = () => {
     <>
     <PageWrapper>
       <Suspense fallback={<div>Laddar titel...</div>}>
-      <HeaderTitle>Kontakt</HeaderTitle>
       </Suspense>
 
     <Container>

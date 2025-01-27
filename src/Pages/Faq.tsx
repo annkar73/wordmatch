@@ -5,7 +5,6 @@ import React, { Suspense } from "react";
 
 // Lazy load components
 const FaqList = React.lazy(() => import("../Components/FaqList"));
-const HeaderTitle = React.lazy(() => import("../Components/styled/Titles"));
 
 
 
@@ -31,7 +30,6 @@ const Faq =() => {
     <>
     <PageWrapper>
       <Suspense fallback={<div>Laddar sida...</div>}>
-      <HeaderTitle>Mer info</HeaderTitle>
       </Suspense>
 
     <Container className="faq-container">
