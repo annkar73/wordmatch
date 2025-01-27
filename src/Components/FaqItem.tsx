@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { breakpoints } from "../styles/variables";
 
 interface FaqItemProps {
   question: string;
@@ -8,15 +9,21 @@ interface FaqItemProps {
 }
 
 const Container = styled.div`
-  margin: 0;
+  margin: 0 auto;
   overflow: hidden;
   width: 75vw;
+  justify-content: center;
+  align-items: center;
+
+   @media (min-width: ${breakpoints.tablet}) {
+      max-width: 80%;
+    }
 `;
 
 const Question = styled.div`
   background-color: ${(props) => props.theme.gameBackground};
   color: ${(props) => props.theme.text};
-  padding: 1rem;
+  padding: 0.5rem;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -39,7 +46,7 @@ export function FaqItem({ question, answer }: FaqItemProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Container>
+    <Container className="faq-item">
       <Question onClick={() => setIsOpen((prev) => !prev)}>
         {question}
         <span>{isOpen ? "▲" : "▼"}</span>

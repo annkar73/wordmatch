@@ -15,17 +15,14 @@ const Container = styled.div`
   padding: 0;
   color: ${(props) => props.theme.text};
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
 
   @media (min-width: ${breakpoints.tablet}) {
-    max-width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    align-items: center;
   }
-`;
-
-const Title = styled.h1`
-  text-align: center;
-  margin-bottom: 2rem;
-  color: ${(props) => props.theme.text};
 `;
 
 
@@ -36,9 +33,8 @@ const Faq =() => {
       <Suspense fallback={<div>Laddar sida...</div>}>
       <HeaderTitle>Mer info</HeaderTitle>
       </Suspense>
-      <Title>Vanliga Frågor</Title>
 
-    <Container>
+    <Container className="faq-container">
       <Suspense fallback={<div>Laddar Faq...</div>}>
       <FaqList />
       </Suspense>

@@ -20,7 +20,6 @@ const HeaderContainer = styled.header`
   justify-content:space-between;
   align-items: center;
   padding: 10px 20px;
-  //margin: 0 auto;
   z-index: 1000;
 `;
 
