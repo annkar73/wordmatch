@@ -57,7 +57,7 @@ const StyledHeaderTitle = styled.h1`
   text-transform: uppercase;
    @media (min-width: ${breakpoints.tablet}) {
       font-size: 2.5rem;
-      margin-left: 2rem;
+      margin-left: 25%;
     }
 `;
 export const Header = ({ onThemeToggle, themeName }: HeaderProps) => {
