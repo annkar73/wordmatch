@@ -181,7 +181,7 @@ export const Navigation = () => {
         </li>
         <li>
           <NavLink to="/games" onClick={closeMenu}>
-            Spel
+            Spela ett spel
           </NavLink>
           <SubMenu>
             <li>
@@ -234,7 +234,7 @@ export const Navigation = () => {
           </li>
           <li>
             <NavLink to="/games" onClick={closeMenu}>
-              Spel
+              Spela ett spel
             </NavLink>
           </li>
           <li>
