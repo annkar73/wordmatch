@@ -63,7 +63,7 @@ The game aims to help children develop reading skills in an enjoyable and suppor
 ## Summary
 The app is modular and scalable, with clear separation between game modes and logic. It uses Supabase for efficient data storage and Vite/React for a responsive and engaging frontend. This architecture ensures a smooth and intuitive experience for users of all ages.
 
-## Screenshots
+## Screenshots  
 
 See bottom of page for [Screenshots of project](#screenshots)
 ---
