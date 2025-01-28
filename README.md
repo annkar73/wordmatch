@@ -124,14 +124,14 @@ Spelet syftar till att hjälpa barn att utveckla läsfärdigheter i en rolig och
 - **Supabase Storage Bucket**: Värdar bilder för båda spelmoderna.
 
 #### Deployment
-- Hostat på **Netlify** med kontinuerlig deployment och responsiv prestanda. Supabase-konfigurationsförlängning är också integrerad.
+- Hostat på **Netlify** med kontinuerlig deployment och responsiv prestanda. Tillägg för Supabase-konfiguration är också integrerad.
 
 ## Databasstruktur
 
 ![Databasstruktur](public/readme-assets/flowchart_db.png)
 
 ### Sammanfattning
-Appen är modulär och skalbar med tydlig separation mellan spelmoderna och logik. Den använder Supabase för effektiv datalagring och Vite/React för ett responsivt och engagerande frontend. Denna arkitektur säkerställer en smidig och intuitiv upplevelse för användare i alla åldrar.
+Appen är modulär och responsiv med tydlig separation mellan spelmoderna och logik. Den använder Supabase för effektiv datalagring och Vite/React för ett responsivt och engagerande frontend. Denna arkitektur säkerställer en smidig och intuitiv upplevelse för användare i alla åldrar.
 
 <a name="screenshots"></a>  
 
