@@ -10,7 +10,7 @@ The addition of a classic version of the memory game offers a plain game experie
 
 ### Application flow
 
-
+![Application Flow](public/readme-assets/flowchart_site.png)
 
 
 ### Purpose
@@ -60,6 +60,7 @@ Overall, the project is expected to provide an enjoyable learning experience tha
 
 ### Database Structure
 
+![Application Flow](public/readme-assets/flowchart_db.png)
 
 ### Summary  
 The app’s structure is modular and designed for scalability, with clear routing and logic separation between game modes. A PostgreSQL database hosted by Supabase handles data storage efficiently, while the frontend is lightweight and responsive due to Vite and React. This setup ensures an engaging and intuitive experience for all users.
