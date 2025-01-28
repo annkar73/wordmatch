@@ -1,8 +1,6 @@
 # WordMatch
 
-[🇸🇪 Svensk version](#ordmatch)
-
-## WordMatch
+Gå till [🇸🇪 svensk version](#ordmatch)
 
 ### Background
 This project was created as a degree project for my Front-End Developer education at Medieinstitutet.
@@ -15,7 +13,7 @@ The Word Match Game is a memory game where players match images with correspondi
 ![Application Flow](public/readme-assets/flowchart_site.png)
 
 ## Purpose
-The Word Match Game was inspired by playing similar word games with my son to help him connect letters to words and objects. These games made learning fun, leading to the creation of a digital version for others to enjoy. This project offers an engaging educational tool that enhances literacy skills, bridging the gap between visual and linguistic learning.
+The Word Match Game was inspired by playing similar word games with my son to help him connect letters to words and objects. These games made learning fun, leading to the idea of creating a digital version for others to enjoy. This project offers an engaging educational tool that enhances literacy skills, bridging the gap between visual and linguistic learning.
 
 ## Target Audience
 - **Children (3-6 years old)**: The game is designed to support early literacy development, offering an engaging learning experience.
@@ -65,27 +63,29 @@ The app is modular and scalable, with clear separation between game modes and lo
 
 ## Screenshots  
 
-See bottom of page for [Screenshots of project](#screenshots)
+See bottom of page for [screenshots of project](#screenshots)
+
 ---
 
 <a name="ordmatch"></a>
 
 # OrdMatch
 
-[🇬🇧 English Version](#wordmatch)
+Go to [🇬🇧 English Version](#wordmatch)
 
 ### Bakgrund
 Detta projekt skapades som ett examensprojekt för min utbildning som Front-End Developer på Medieinstitutet.
 
 ### Projektöversikt
-OrdMatch är ett memoryspel där spelarna matchar bilder med motsvarande ord. Spelet har olika svårighetsgrader baserat på ordlängd eller en slumpmässig urval från alla nivåer. Dessutom finns en klassisk version av memory, som erbjuder en enkel och avkopplande spelupplevelse. Den klassiska versionen har två olika brädesstorlekar: 4x4 (8 par) och 6x6 (18 par).
+OrdMatch är ett memoryspel där spelarna matchar bilder med motsvarande ord. Spelet har olika svårighetsgrader baserat på ordlängd eller en slumpmässig urval från alla nivåer. Dessutom finns en klassisk version av Memory, som erbjuder en enkel och avkopplande spelupplevelse. Den klassiska versionen har två olika brädesstorlekar: 4x4 (8 par) och 6x6 (18 par).
 
 ## Applikationsflöde
 
 ![Applikationsflöde](public/readme-assets/flowchart_site.png)
 
 ### Syfte
-Idén till OrdMatch kom från att spela liknande ordspel med min son för att hjälpa honom att koppla ihop bokstäver med ord och objekt. Dessa spel gjorde lärandet roligt, vilket ledde till skapandet av en digital version för andra att njuta av. Projektet erbjuder ett engagerande utbildningsverktyg som förbättrar läsfärdigheter och skapar en bro mellan visuell och språklig inlärning.
+Idén till OrdMatch kom från att spela liknande ordspel med min son för att hjälpa honom att koppla ihop bokstäver med ord och objekt. Dessa spel gjorde lärandet roligt, vilket ledde till idén att skapa en digital version för andra att njuta av.  
+Projektet erbjuder ett engagerande utbildningsverktyg som förbättrar läsfärdigheter och skapar en bro mellan visuell och språklig inlärning.
 
 ### Målgrupp
 - **Barn (3-6 år gamla)**: Spelet är utformat för att stödja tidig läs- och skrivutveckling och erbjuder en engagerande lärandeupplevelse.
@@ -117,7 +117,7 @@ Spelet syftar till att hjälpa barn att utveckla läsfärdigheter i en rolig och
 #### Routing och navigering
 - **React Router**: Hanterar övergångar mellan vyer för smidig navigering.
 
-#### Spel-logik
+#### Spellogik
 - Spelet delar en återanvändbar fetch-funktion för att hantera båda spelmoderna och svårighetsinställningarna.
 
 #### Tillgångar och lagring
