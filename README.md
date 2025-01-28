@@ -1,6 +1,6 @@
 # WordMatch
 
-[🇸🇪 Svenska Version](#ordmatch) | [🇬🇧 English Version](#wordmatch)
+[🇸🇪 Svensk version](#ordmatch)
 
 ## WordMatch
 
@@ -65,6 +65,7 @@ The app is modular and scalable, with clear separation between game modes and lo
 
 ## Screenshots
 
+See bottom of page for [Screenshots of project](#screenshots)
 ---
 
 <a name="ordmatch"></a>
