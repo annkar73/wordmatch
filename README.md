@@ -1,4 +1,4 @@
-## WordMatch
+# WordMatch
 
 ### Background
 This project was created as a degree project for my education as Front End Developer at Medieinstitutet.
