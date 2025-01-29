@@ -150,13 +150,13 @@ Appen är modulär och responsiv med tydlig separation mellan spelmoderna och lo
     <img src="public/readme-assets/game_overview_light.png" alt="Game overview Light theme / Spelöversikt med ljust tema" width="300">
     <img src="public/readme-assets/game_overview_dark.png" alt="Game overview Dark theme / Spelöversikt med mörkt tema" width="300">
 </div>  
-<strong>The game overview displaying available game modes / Sperlversikt där användaren kan välja mellan de olika spelversionerna</strong>
+<strong>The game overview displaying available game modes / Spelöversikt där användaren kan välja mellan de olika spelversionerna</strong>
 
 #### Word Match  
 <div style="display: flex; justify-content: center; gap: 10px;">
     <img src="public/readme-assets/wordmatch_light.png" alt="Word Match Light theme / Word Match med ljust tema" width="300">
 </div>  
-<strong>Gameplay for WordMatch / Spelläget för OrdMatch</strong>  
+<strong>Gameplay for WordMatch / Spelläget för Matcha Ord</strong>  
 
 #### Classic Memory  
 <div style="display: flex; justify-content: center; gap: 10px;">
