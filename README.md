@@ -158,7 +158,7 @@ Appen är modulär och responsiv med tydlig separation mellan spelmoderna och lo
 
 #### Word Match  / Matcha Ord
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="public/readme-assets/wordmatch_light.png" alt="Word Match Light theme / Word Match med ljust tema" width="300">
+    <img src="public/readme-assets/wordmatch_light.png" alt="Word Match Light theme / Matcha Ord med ljust tema" width="300">
 </div>  
 🇬🇧 Gameplay for WordMatch  
 
@@ -166,7 +166,7 @@ Appen är modulär och responsiv med tydlig separation mellan spelmoderna och lo
 
 #### Classic Memory  / Klassiskt Memory
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="public/readme-assets/memory_dark.png" alt="Classic Memory Dark theme / Klassisk memory med mörkt tema" width="300">
+    <img src="public/readme-assets/memory_dark.png" alt="Classic Memory Dark theme / Klassisk Memory med mörkt tema" width="300">
 </div>  
 Gameplay for Classic Memory  
 
