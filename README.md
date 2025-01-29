@@ -20,6 +20,42 @@ The Word Match Game was inspired by playing similar word games with my son to he
 - **Parents**: Seeking educational and fun resources for their children's literacy development.
 - **Educators**: Looking for innovative, interactive methods to teach students.
 
+## Features
+
+### 1. Home Page
+- Users are presented with a button to navigate to a games overview page.
+- Navigation bar with links to the game modes and additional resources like FAQ and Contact.
+
+### 2. Games Overview Page
+- Users are presented with two buttons navigating to the separate versions of the game:
+  - **WordMatching Game View**:
+    - Displays a grid of cards with images and words.
+    - Displays a drop-down difficulty selector.
+    - Displays a mute button to turn off game sounds.
+    - Displays a button for option to start over or play again.
+    - Tracks user interactions to check if the selected image matches the word.
+    - Provides audio feedback for correct matches.
+    - Displays a game over modal when all pairs are matched.
+  - **Classic Memory Game View**:
+    - Displays a grid of image cards.
+    - Displays a drop-down game size selector.
+    - Displays a mute button to turn off game sounds.
+    - Displays a button for option to start over or play again.
+    - Tracks user interactions to find matching pairs.
+    - Provides audio feedback for correct matches.
+    - Displays a game over modal when all pairs are matched.
+
+### 3. Game Over Modal
+- Displays a message of “well done” when the game is over.
+- Displays a button to close the modal to play again.
+
+### 4. FAQ / More Info
+- Displays a fold-out list of questions and answers about the games, background of the project, and information about contact.
+
+### 5. Contact
+- Displays a contact form for users to fill in for feedback or questions.
+- The contact form uses EmailJS for client-side technologies only. No server is required – one just connects EmailJS to one of the supported email services.
+
 ## Project Goals
 The goal was to create a fully functional educational game with:
 - User-friendly interface and intuitive gameplay
@@ -91,6 +127,43 @@ Projektet erbjuder ett engagerande utbildningsverktyg som förbättrar läsfärd
 - **Barn (3-6 år gamla)**: Spelet är utformat för att stödja tidig läs- och skrivutveckling och erbjuder en engagerande lärandeupplevelse via lek.
 - **Föräldrar**: Söker pedagogiska och roliga resurser för sina barns läsutveckling.
 - **Pedagoger**: Letar efter innovativa, interaktiva metoder för att undervisa elever.
+
+## Funktioner
+
+### 1. Startsida
+- Användare presenteras med en knapp för att navigera till en översiktssida för spelen.
+- Navigeringsmeny med länkar till spelmoderna och ytterligare resurser som FAQ och Kontakt.
+
+### 2. Spelöversikt
+- Användare presenteras med två knappar för att navigera till de separata versionerna av spelet:
+  - **Ordmatchnings-spelvy**:
+    - Visar ett rutnät med kort som har bilder och ord.
+    - Visar en rullgardinsmeny för att välja svårighetsgrad.
+    - Visar en knapp för att stänga av ljudet.
+    - Visar en knapp för att börja om eller spela igen.
+    - Spårar användarinteraktioner för att kontrollera om den valda bilden matchar ordet.
+    - Ger ljudfeedback för rätt matchningar.
+    - Visar en modal för "spel slut" när alla par har matchats.
+  - **Klassisk Memory-spelvy**:
+    - Visar ett rutnät med bildkort.
+    - Visar en rullgardinsmeny för att välja spelstorlek.
+    - Visar en knapp för att stänga av ljudet.
+    - Visar en knapp för att börja om eller spela igen.
+    - Spårar användarinteraktioner för att hitta matchande par.
+    - Ger ljudfeedback för rätt matchningar.
+    - Visar en modal för "spel slut" när alla par har matchats.
+
+### 3. Spel Slut Modal
+- Visar ett meddelande med "bra jobbat" när spelet är slut.
+- Visar en knapp för att stänga modalen och börja om.
+
+### 4. FAQ / Mer Information
+- Visar en vikbar lista med frågor och svar om spelen, projektets bakgrund och information om kontakt.
+
+### 5. Kontakt
+- Visar ett kontaktformulär som användarna kan fylla i för feedback eller frågor.
+- Kontaktformuläret använder EmailJS för endast klientteknologier. Ingen server krävs – man kopplar bara EmailJS till en av de stödda e-posttjänsterna.
+
 
 ### Projektmål
 Målet var att skapa ett fullt fungerande utbildningsspel med:
