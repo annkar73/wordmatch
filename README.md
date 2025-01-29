@@ -167,6 +167,7 @@ Appen är modulär och responsiv med tydlig separation mellan spelmoderna och lo
 <div style="display: flex; justify-content: center; gap: 10px;">
     <img src="public/readme-assets/game_over.png" alt="Screen showing Game Over / Skärm som visar avslutat spel" width="300">
 </div>  
+<strong>Screen showing Game Over / Skärm som visar avslutat spel</strong>
 
 
 #### More Info  / Mer Info
@@ -181,7 +182,7 @@ Appen är modulär och responsiv med tydlig separation mellan spelmoderna och lo
     <img src="public/readme-assets/contact_light.png" alt="Contact Page Light theme / Kontaktsida med ljust tema" width="300">
     <img src="public/readme-assets/contact_dark.png" alt="Contact Page Dark theme / Kontaktsida med mörkt tema" width="300">
 </div>  
-<strong>The contact page where users can get in touch / Kontaktsidan där användaren kan ta kontakt</strong>  
+<strong>The contact page where users can get in touch via a contact form / Kontaktsidan där användaren kan ta kontakt via ett kontaktformulär</strong>  
 
 #### Mobile Navigation  / Mobil navigation
 <div style="display: flex; justify-content: center; gap: 10px;">
