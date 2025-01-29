@@ -146,4 +146,4 @@ Appen är modulär och responsiv med tydlig separation mellan spelmoderna och lo
     <img src="public/readme-assets/homescreen_dark.png" alt="Landing Page Dark theme / Startsida med mörkt tema" width="300">
   </a>
 </div>  
-_The start page where users can navigate to different game modes / Startsida där användaren kan navigera till de olika spelversionerna_
+<strong>The start page where users can navigate to different game modes / Startsida där användaren kan navigera till de olika spelversionerna</strong>
