@@ -9,8 +9,8 @@ if (!supabaseUrl || !supabaseKey) {
     //console.log("Supabase URL and Key are set:", supabaseUrl, supabaseKey)
   }
 
-// Skapa klienten
+// create client
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Exponera supabase som default export
+// Exponose supabase as default export
 export default supabase;

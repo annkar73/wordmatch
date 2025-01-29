@@ -16,7 +16,7 @@ import Modal from "../../Modal";
 import React from "react";
 
 const Button = React.lazy(() => import("../../styled/Button"));
-// Styled-components för layouten
+// Styled-components for layout
 
 
 const GameContainer = styled.div`
@@ -113,7 +113,6 @@ const MobileButtonWrapper = styled.div`
 `;
 
 const DifficultySelector = styled.div`
-  //margin-bottom: ${spacing.medium};
   padding: ${spacing.small};
   border-radius: ${borderRadius.medium};
   display: flex;
@@ -122,7 +121,6 @@ const DifficultySelector = styled.div`
   width: 100%;
 
   select {
-    //margin-top: ${spacing.small};
     padding: ${spacing.xSmall};
     border-radius: ${borderRadius.small};
     border: 1px solid ${(props) => props.theme.text};

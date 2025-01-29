@@ -1,7 +1,7 @@
 import supabase from "./supabaseClient";
 import { Card, MemoryCard, WordCard } from "../types/Card";
 
-// Funktion för att förladda bilder i minnet
+// Preload images for fast rendering
 const preloadImages = (imageUrls: string[]) => {
   imageUrls.forEach((url) => {
     const img = new Image();
@@ -9,31 +9,31 @@ const preloadImages = (imageUrls: string[]) => {
   });
 };
 
-// Generisk typ för fetch, så den kan användas för både MemoryCard och WordCard
+// Generic type for fetch, so it can be used for both MemoryCard och WordCard
 export const fetchCards = async <T extends Card | MemoryCard | WordCard>(
   filters?: { difficulty?: number; numberOfCards?: number; pairId?: number }
 ): Promise<T[]> => {
-  // Kolla om korten redan finns lagrade i localStorage
+  // Check if cards are already stored in localStorage
   const savedCards = localStorage.getItem("memoryCards");
   if (savedCards) {
     const parsedCards = JSON.parse(savedCards) as T[];
 
-    // Förladda bilder från de lagrade korten
+    // Preload images from the stored cards
     const imageUrls = parsedCards.map((card) => card.image);
     preloadImages(imageUrls);
 
-    // Om numberOfCards är definierat, returnera rätt antal kort från de lagrade korten
+    // If numberOfCards is defined, return correct number of cards from storage
     if (filters?.numberOfCards) {
       return parsedCards.slice(0, filters.numberOfCards);
     }
 
-    return parsedCards; // Returnera alla lagrade kort om numberOfCards inte är definierat
+    return parsedCards; // Return all stored cards if numberOfCards is not defined
   }
 
   try {
     let query = supabase.from("cards").select("*");
 
-    // Använd filter om de är definierade
+    // Use filter if they are defined
     if (filters?.difficulty !== undefined) {
       query = query.eq("difficulty", filters.difficulty);
     }
@@ -42,7 +42,7 @@ export const fetchCards = async <T extends Card | MemoryCard | WordCard>(
       query = query.eq("pairId", filters.pairId);
     }
 
-    // Lägg till logg för felsökning
+    // Add log to search for errors
     console.log("Fetching cards with filters:", filters);
 
     const { data, error } = await query;
@@ -55,14 +55,14 @@ export const fetchCards = async <T extends Card | MemoryCard | WordCard>(
       throw new Error("No cards found.");
     }
 
-    // Förladda bilder från de hämtade korten
+    // Preload images from the fetched cards
     const imageUrls = data.map((card) => card.image);
     preloadImages(imageUrls);
 
-    // Spara korten i localStorage för framtida användning
+    // Save cards in localStorage for future use
     localStorage.setItem("memoryCards", JSON.stringify(data));
 
-    // Returnera rätt antal kort om numberOfCards är definierat, annars alla kort
+    // Return currect number of cards if numberOfCards är definierat, else all cards
     return filters?.numberOfCards ? data.slice(0, filters.numberOfCards) : data;
   } catch (err) {
     if (err instanceof Error) {

@@ -6,3 +6,4 @@ export const pageTitles: {[key: string]: string } = {
     "/matching-game": "Matcha ord",
     "/classic-memory": "Memory",
 };
+// routes for page titles to header

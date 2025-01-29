@@ -1,19 +1,19 @@
 import styled from "styled-components";
-import { WordCard } from "../../types/Card"; // Import av WordCard-typ
+import { WordCard } from "../../types/Card"; 
 import { borderRadius } from "../../styles/variables";
 
 interface IWordCardProps {
   card: WordCard;
-  $isFlipped: boolean; // Om kortet är vänt eller inte
-  $isMatched: boolean; // Om kortet är matchat
-  onClick: (id: number) => void; // Funktion som hanterar klick på kortet
+  $isFlipped: boolean; 
+  $isMatched: boolean; 
+  onClick: (id: number) => void; 
 }
 
 interface ICardFrontProps {
   $isFlipped: boolean;
 }
 
-// Styled components för kortet
+// Styled components for card
 const CardContainer = styled.div`
   width: 100%;
   max-width: 150px;
@@ -87,20 +87,20 @@ const WordCardComponent = ({
   $isMatched,
   onClick,
 }: IWordCardProps) => {
-  const { id, image, word } = card; // Vi använder både image och word från card
+  const { id, image, word } = card; // we use both image and word
 
-  // Kortet ska bara vändas om det inte är matchat
-  const isFlipped = $isFlipped || $isMatched; // Om kortet är matchat, håll det vänt med framsidan upp.
+  
+  const isFlipped = $isFlipped || $isMatched; 
 
   return (
     <CardContainer onClick={() => !$isMatched && onClick(id)}>
       <Card $isFlipped={isFlipped}>
-        {/* När kortet inte är vänt, visa CardBack */}
+        {/* when card is not flipped, show CardBack */}
         {!isFlipped ? (
           <CardBack />
         ) : (
           <CardFront $isFlipped={isFlipped}>
-            {/* Visa antingen bild eller ord beroende på om det är bildkort eller ordkort */}
+            {/* Show image or word */}
             {card.type === "image" ? (
               <Img src={image} alt="card front" loading="eager" />
             ) : (

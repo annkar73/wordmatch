@@ -25,13 +25,13 @@ const SwitchHandle = styled(motion.div)<{ themeName: string }>`
   background-color: ${(props) => props.theme.toggleHandle};
   position: absolute;
 
-  /* Dynamisk URL för bakgrundsbild */
+  /* Dynamirl URL för image */
   background-image: ${(props) =>
     props.themeName === "dark"
       ? "url('/assets/icons/moon.webp')"
       : "url('/assets/icons/sun.webp')"};
-  background-size: cover; /* Anpassa storlek */
-  background-position: center; /* Centrerar ikonen */
+  background-size: cover; /* adjust size */
+  background-position: center; /* Center icon */
 `;
 
 export const ThemeToggleButton = ({ onClick, themeName }: ThemeToggleButtonProps) => {
@@ -40,8 +40,8 @@ export const ThemeToggleButton = ({ onClick, themeName }: ThemeToggleButtonProps
       <SwitchHandle
         layout
         initial={false}
-        themeName={themeName} // Skicka ner temat här
-        animate={{ x: themeName === "dark" ? 30 : 0 }} // Flytta kulan
+        themeName={themeName} // get theme
+        animate={{ x: themeName === "dark" ? 30 : 0 }} // move ball
         transition={{ type: "spring", stiffness: 500, damping: 30 }}
       />
     </SwitchContainer>

@@ -17,11 +17,10 @@ import React from "react";
 
 
 const Button = React.lazy(() => import("../../styled/Button"));
-// Styled-components för layouten
+// Styled-components for layout
 
 
 const GameSizeSelector = styled.div`
-  //margin-bottom: ${spacing.medium};
   padding: ${spacing.small};
   border-radius: ${borderRadius.medium};
   display: flex;
@@ -30,7 +29,6 @@ const GameSizeSelector = styled.div`
   width: 100%;
 
   select {
-    //margin-top: ${spacing.small};
     padding: ${spacing.xSmall};
     border-radius: ${borderRadius.small};
     border: 1px solid ${(props) => props.theme.text};
@@ -95,10 +93,8 @@ const CardGrid = styled.div<{ $columns: number; $rows: number }>`
   grid-template-rows: ${({ $rows }) => `repeat(${$rows}, 1fr)`};
   gap: 5px;
   width: 90vw;
-  //max-width: 600px;
   height: auto;
   background-color: ${(props) => props.theme.gameBackground};
-  //margin: 45px auto;
   padding: 10px;
   border-radius: ${borderRadius.medium};
   margin: 0;
@@ -141,7 +137,6 @@ const MobileButtonWrapper = styled.div`
   }
 `;
 
-// MemoryGame-komponent
 const MemoryGame = () => {
   const [cards, setCards] = useState<MemoryCard[]>([]);
   const [shuffledCards, setShuffledCards] = useState<MemoryCard[]>([]);
@@ -155,13 +150,13 @@ const MemoryGame = () => {
       try {
         const fetchedCards = await fetchCards<MemoryCard>({});
         
-        // Fisher-Yates-algoritm för att blanda bilderna
+        // Fisher-Yates-algoritm to shuffle images
         for (let i = fetchedCards.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
           [fetchedCards[i], fetchedCards[j]] = [fetchedCards[j], fetchedCards[i]];
         }
         
-        // Spara de blandade korten och generera shuffle för spelet
+        // Save shuffled cards and generate shuffle for game
         setCards(fetchedCards);
         setShuffledCards(generateShuffledCards(fetchedCards, gameSize));
       } catch (error) {
@@ -169,15 +164,15 @@ const MemoryGame = () => {
       }
     };
     getCards();
-  }, [gameSize]); // Uppdatera bara när gameSize ändras
+  }, [gameSize]); // Uppdate only when gameSize is changed
 
-  // Uppdatera generateShuffledCards-funktionen för att hantera större spelplaner
+  // Uppdate generateShuffledCards-funktionen to handle larger game board
   const generateShuffledCards = (
     cards: MemoryCard[],
     size: number
   ): MemoryCard[] => {
-    const numberOfCards = size === 16 ? 8 : size === 36 ? 18 : 24; // Dynamiskt beroende på storlek (16, 36 eller annat)
-    const selectedCards = cards.slice(0, numberOfCards); // Välj rätt antal kort
+    const numberOfCards = size === 16 ? 8 : size === 36 ? 18 : 24; // Dynamic depending on size
+    const selectedCards = cards.slice(0, numberOfCards); // Pick correct number of cards
 
     const pairedCards = selectedCards.flatMap((card) => [
       { ...card, uniqueId: card.id * 2, originalId: card.id },
@@ -240,12 +235,10 @@ const MemoryGame = () => {
     setIsModalOpen(false);
   };
 
-  // const totalPairs = shuffledCards.length / 2;
   const matchedPairs = matchedCards.length / 2;
   const isGameComplete =
     matchedPairs === shuffledCards.length && matchedCards.length;
 
-  // console.log( "totalPairs:", totalPairs);
 
   useEffect(() => {
     if (isGameComplete) {

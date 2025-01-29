@@ -147,7 +147,6 @@ const SubMenu = styled.ul`
     a {
       text-decoration: none;
       color: ${(props) => props.theme.navBg};
-      //font-size: 0.9rem;
       white-space: nowrap;
       transition: color 0.3s ease;
 

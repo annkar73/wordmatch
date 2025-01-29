@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { MemoryCard } from '../../types/Card';
 import { borderRadius } from '../../styles/variables';
 
-// Användning av I prefix för TypeScript-konventionen
 interface ICardProps {
   card: MemoryCard;
   image: string;
@@ -12,11 +11,11 @@ interface ICardProps {
   onClick: (id: number) => void;
 }
 
-// Styled components för kortet
+// Styled components for card
 const CardContainer = styled.div`
   width: 100%;
-  max-width: 150px; /* Justera max-width baserat på layout */
-  aspect-ratio: 1; /* Sätt aspect-ratio till 1 för att göra det kvadratiskt */
+  max-width: 150px; /* adjust max-width based on layout */
+  aspect-ratio: 1; /* aspect-ratio 1 to make a square */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,9 +56,8 @@ const CardFront = styled.div`
     image-rendering: auto;
     position: relative;
 
-    /* WebKit-optimering för att säkerställa rendering */
-    -webkit-transform: translateZ(0); /* För att tvinga 3D-kompatibilitet */
-    transform: translateZ(0); /* För att optimera rendering i Chrome */
+    -webkit-transform: translateZ(0); 
+    transform: translateZ(0); 
     
   }
 `;
@@ -79,8 +77,8 @@ const CardBack = styled.div`
 
 const CardComponent = ({ card, $isFlipped, $isMatched, onClick }: ICardProps) => {
   const { id, image } = card;
-  // Kortet ska bara vändas om det inte är matchat
-  const isFlipped = $isFlipped || $isMatched;  // Om kortet är matchat, håll det vänt med framsidan upp.
+  // Card should only flip back if it is not matched
+  const isFlipped = $isFlipped || $isMatched;  // If card is matched, keep card front visible
   
   return (
     <CardContainer onClick={() => !$isMatched && onClick(id)}>

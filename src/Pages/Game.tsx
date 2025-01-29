@@ -1,4 +1,4 @@
-// main page for game - collect all for gameboard etc
+
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { PageWrapper } from "../Components/styled/Wrappers";
