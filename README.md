@@ -40,7 +40,7 @@ The game aims to help children develop reading skills in an enjoyable and suppor
 - **Styled Components**: Dynamic styling based on game state.
 
 ### Backend
-- **Supabase PostgreSQL Database**: Stores images, words, and matching identifiers.
+- **Supabase PostgreSQL Database**: Stores image-urls, words, and matching identifiers.
 
 ### Routing and Navigation
 - **React Router**: Manages transitions between views for smooth navigation.
@@ -84,11 +84,11 @@ OrdMatch är ett memoryspel där spelarna matchar bilder med motsvarande ord. Sp
 ![Applikationsflöde](public/readme-assets/flowchart_site.png)
 
 ### Syfte
-Idén till OrdMatch kom från att spela liknande ordspel med min son för att hjälpa honom att koppla ihop bokstäver med ord och objekt. Dessa spel gjorde lärandet roligt, vilket ledde till idén att skapa en digital version för andra att njuta av.  
+Idén till OrdMatch kom från att leka liknande ordlekar med min son för att hjälpa honom att koppla ihop bokstäver med ord och objekt. Dessa spel gjorde lärandet roligt, vilket ledde till idén att skapa en digital version för andra att njuta av.  
 Projektet erbjuder ett engagerande utbildningsverktyg som förbättrar läsfärdigheter och skapar en bro mellan visuell och språklig inlärning.
 
 ### Målgrupp
-- **Barn (3-6 år gamla)**: Spelet är utformat för att stödja tidig läs- och skrivutveckling och erbjuder en engagerande lärandeupplevelse.
+- **Barn (3-6 år gamla)**: Spelet är utformat för att stödja tidig läs- och skrivutveckling och erbjuder en engagerande lärandeupplevelse via lek.
 - **Föräldrar**: Söker pedagogiska och roliga resurser för sina barns läsutveckling.
 - **Pedagoger**: Letar efter innovativa, interaktiva metoder för att undervisa elever.
 
@@ -112,7 +112,7 @@ Spelet syftar till att hjälpa barn att utveckla läsfärdigheter i en rolig och
 - **Styled Components**: Dynamisk styling baserat på spelets tillstånd.
 
 #### Backend
-- **Supabase PostgreSQL-databas**: Lagrar bilder, ord och matchande identifierare.
+- **Supabase PostgreSQL-databas**: Lagrar bildlänkar, ord och matchande identifierare.
 
 #### Routing och navigering
 - **React Router**: Hanterar övergångar mellan vyer för smidig navigering.
@@ -121,7 +121,7 @@ Spelet syftar till att hjälpa barn att utveckla läsfärdigheter i en rolig och
 - Spelet delar en återanvändbar fetch-funktion för att hantera båda spelmoderna och svårighetsinställningarna.
 
 #### Tillgångar och lagring
-- **Supabase Storage Bucket**: Värdar bilder för båda spelmoderna.
+- **Supabase Storage Bucket**: Lagrar bilder för båda spelmoderna.
 
 #### Deployment
 - Hostat på **Netlify** med kontinuerlig deployment och responsiv prestanda. Tillägg för Supabase-konfiguration är också integrerad.
