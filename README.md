@@ -136,3 +136,14 @@ Appen är modulär och responsiv med tydlig separation mellan spelmoderna och lo
 <a name="screenshots"></a>  
 
 ### Screenshots
+
+#### Start Page  
+<div style="display: flex; justify-content: center; gap: 10px;">
+  <a href="public/readme-assets/homescreen_light.png">
+    <img src="public/readme-assets/homescreen_light.png" alt="Landing page Light theme / Startsida med ljust tema" width="300">
+  </a>
+  <a href="public/readme-assets/homescreen_dark.png">
+    <img src="public/readme-assets/homescreen_dark.png" alt="Landing Page Dark theme / Startsida med mörkt tema" width="300">
+  </a>
+</div>  
+_The start page where users can navigate to different game modes / Startsida där användaren kan navigera till de olika spelversionerna_
