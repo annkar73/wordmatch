@@ -137,7 +137,7 @@ Appen är modulär och responsiv med tydlig separation mellan spelmoderna och lo
 
 ### Screenshots
 
-#### Start Page  
+#### Start Page / Startsida
 <div style="display: flex; justify-content: center; gap: 10px;">
 
     <img src="public/readme-assets/homescreen_light.png" alt="Landing page Light theme / Startsida med ljust tema" width="300">
@@ -147,3 +147,48 @@ Appen är modulär och responsiv med tydlig separation mellan spelmoderna och lo
 
 </div>  
 <strong>The start page where users can navigate to different game modes / Startsida där användaren kan navigera till de olika spelversionerna</strong>
+
+#### Game Overview / Spelöversikt
+#### Start Page  
+<div style="display: flex; justify-content: center; gap: 10px;">
+
+    <img src="public/readme-assets/game_overview_light.png" alt="Game overview Light theme / Spelöversikt med ljust tema" width="300">
+
+
+    <img src="public/readme-assets/game_overview_dark.png" alt="Game overview Dark theme / Spelöversikt med mörkt tema" width="300">
+
+</div>  
+<strong>The game overview displaying available game modes / Sperlversikt där användaren kan välja mellan de olika spelversionerna</strong>
+
+#### Word Match  
+<div style="display: flex; justify-content: center; gap: 10px;">
+    <img src="public/readme-assets/wordmatch_light.png" alt="Word Match Light theme / Word Match med ljust tema" width="300">
+</div>  
+<strong>Gameplay for WordMatch / Spelläget för OrdMatch</strong>  
+
+#### Classic Memory  
+<div style="display: flex; justify-content: center; gap: 10px;">
+    <img src="public/readme-assets/memory_dark.png" alt="Classic Memory Dark theme / Klassisk memory med mörkt tema" width="300">
+</div>  
+<strong>Gameplay for Classic Memory / Spelläget Klassisk Memory</strong>  
+
+#### FAQ Page  
+<div style="display: flex; justify-content: center; gap: 10px;">
+    <img src="public/readme-assets/faq_light.png" alt="FAQ Light theme / FAQ med ljust tema" width="300">
+    <img src="public/readme-assets/faq_dark.png" alt="FAQ Dark theme / FAQ med mörkt tema" width="300">
+</div>  
+<strong>FAQ page providing additional information about the game / FAQ-sidan med mer information om spelet</strong>  
+
+#### Contact Page  
+<div style="display: flex; justify-content: center; gap: 10px;">
+    <img src="public/readme-assets/contact_light.png" alt="Contact Page Light theme / Kontaktsida med ljust tema" width="300">
+    <img src="public/readme-assets/contact_dark.png" alt="Contact Page Dark theme / Kontaktsida med mörkt tema" width="300">
+</div>  
+<strong>The contact page where users can get in touch / Kontaktsidan där användaren kan ta kontakt</strong>  
+
+#### Mobile Navigation  
+<div style="display: flex; justify-content: center; gap: 10px;">
+    <img src="public/readme-assets/navigation_mobile_light.png" alt="Mobile Navigation Light theme / Navigationsmeny mobilversion ljust tema" width="300">
+    <img src="public/readme-assets/navigation_mobile_dark.png" alt="Mobile Navigation Dark theme / Navigationsmeny mobilversion mörkt tema" width="300">
+</div>  
+<strong>Navigation menu as displayed on mobile devices / Navigationsmenyn i mobilvy</strong>  
