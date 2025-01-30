@@ -33,10 +33,11 @@ interface ModalProps {
 }
 
 const Modal = ({ isOpen, onClose }: ModalProps) => {
+    // Log it
+    console.log("Modal is open:", isOpen);
+
   if (!isOpen) return null;
 
-  // Log it
-  console.log("Modal is open:", isOpen);
 
   return (
     <ModalOverlay>
