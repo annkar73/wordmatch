@@ -236,9 +236,8 @@ const MemoryGame = () => {
   };
 
   const matchedPairs = matchedCards.length / 2;
-  const isGameComplete =
-    matchedPairs === shuffledCards.length && matchedCards.length;
-
+  const isGameComplete = matchedPairs === shuffledCards.length / 2;
+  
 
   useEffect(() => {
     if (isGameComplete) {
