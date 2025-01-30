@@ -12,8 +12,8 @@ import {
 } from "../../../styles/variables";
 import { MuteButton } from "../../styled/MuteButton";
 import { soundManager } from "../../../utils/soundManager";
-import Modal from "../../Modal";
 import React from "react";
+import Modal from "../../Modal";
 
 // lazy load button for performance
 const Button = React.lazy(() => import("../../styled/Button"));
