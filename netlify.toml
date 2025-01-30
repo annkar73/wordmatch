@@ -2,3 +2,9 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+  [[redirects]]
+  from = "/readme-assets/*"
+  to = "/404.html"
+  status = 404
+  force = true

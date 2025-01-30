@@ -19,6 +19,7 @@ export default defineConfig({
     sourcemap: false, 
     chunkSizeWarningLimit: 2000,
     rollupOptions: {
+      external: ['**/readme-assets**'],
       output: {
         manualChunks(id) {
           
