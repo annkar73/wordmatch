@@ -50,7 +50,8 @@ const CardFront = styled.div`
     display: block;
     max-width: 100%;
     height: auto;
-    object-fit: cover;
+    aspect-ratio: 1;
+    object-fit: contain;
     object-position: center;
     border-radius: 4px;
     image-rendering: auto;
