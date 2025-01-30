@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import styled from "styled-components";
 import { spacing, borderRadius } from "../styles/variables";
 import { StyledH4 } from "./styled/Titles";
@@ -16,7 +16,7 @@ const ModalOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 9999; /* Sätter en högre z-index för att säkerställa att modalen visas över andra element */
 `;
 
 const ModalContent = styled.div`
@@ -27,7 +27,6 @@ const ModalContent = styled.div`
   text-align: center;
   width: 80%;
   max-width: 400px;
-
 `;
 
 interface ModalProps {
@@ -38,18 +37,18 @@ interface ModalProps {
 const Modal = ({ isOpen, onClose }: ModalProps) => {
   if (!isOpen) return null;
 
+  // Logga för att säkerställa att isOpen fungerar korrekt
+  console.log("Modal is open:", isOpen);
+
   return (
-    <>
     <ModalOverlay>
       <ModalContent>
-        <Suspense fallback={<div>Laddar...</div>}>
+        {/* Temporärt ta bort Suspense för att se om det är relaterat till problemet */}
         <HeaderTitle>Bra jobbat!</HeaderTitle>
         <StyledH4>Du har klarat spelet!</StyledH4>
         <Button onClick={onClose}>Stäng</Button>
-        </Suspense>
       </ModalContent>
     </ModalOverlay>
-    </>
   );
 };
 

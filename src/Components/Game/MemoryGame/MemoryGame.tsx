@@ -302,7 +302,7 @@ const MemoryGame = () => {
         </MobileButtonWrapper>
       </GameWrapper>
     </PageWrapper>
-
+   
     {/* Modal opens when game is completed */}
     <Modal isOpen={isModalOpen} onClose={restartGame} />
     </>
