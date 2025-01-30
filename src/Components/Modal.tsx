@@ -1,10 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 import { spacing, borderRadius } from "../styles/variables";
-import { StyledH4 } from "./styled/Titles";
+import HeaderTitle, { StyledH4 } from "./styled/Titles";
+import Button from "../Components/styled/Button";
 
-const Button = React.lazy(() => import("../Components/styled/Button"));
-const HeaderTitle = React.lazy(() => import("../Components/styled/Titles"));
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -16,7 +14,7 @@ const ModalOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999; /* Sätter en högre z-index för att säkerställa att modalen visas över andra element */
+  z-index: 9999; 
 `;
 
 const ModalContent = styled.div`
@@ -37,13 +35,13 @@ interface ModalProps {
 const Modal = ({ isOpen, onClose }: ModalProps) => {
   if (!isOpen) return null;
 
-  // Logga för att säkerställa att isOpen fungerar korrekt
+  // Log it
   console.log("Modal is open:", isOpen);
 
   return (
     <ModalOverlay>
       <ModalContent>
-        {/* Temporärt ta bort Suspense för att se om det är relaterat till problemet */}
+        
         <HeaderTitle>Bra jobbat!</HeaderTitle>
         <StyledH4>Du har klarat spelet!</StyledH4>
         <Button onClick={onClose}>Stäng</Button>
