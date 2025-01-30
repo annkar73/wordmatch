@@ -304,7 +304,7 @@ const MemoryGame = () => {
     </PageWrapper>
    
 {/* Modal opens when game is completed */}
-<Modal key={isGameComplete ? "open" : "closed"} isOpen={isModalOpen} onClose={restartGame} />
+<Modal isOpen={isModalOpen} onClose={restartGame} />
 
     </>
   );
