@@ -12,8 +12,8 @@ import {
 import WordCardComponent from "../../Card/WordCard";
 import { MuteButton } from "../../styled/MuteButton";
 import { soundManager } from "../../../utils/soundManager";
-import Modal from "../../Modal";
 import React from "react";
+import Modal from "../../Modal";
 
 const Button = React.lazy(() => import("../../styled/Button"));
 // Styled-components for layout
