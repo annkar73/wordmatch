@@ -240,11 +240,11 @@ const MemoryGame = () => {
   
 
   useEffect(() => {
-    if (isGameComplete) {
+    if (isGameComplete && matchedCards.length > 0) {
       soundManager.playSound("win");
       setIsModalOpen(true);
     }
-  }, [isGameComplete]);
+  }, [isGameComplete, matchedCards.length]);
 
   return (
     <>
