@@ -219,19 +219,14 @@ const WordMatchGame = () => {
 
   useEffect(() => {
     if (shuffledCards.length > 0 && !gameStarted) {
-      setGameStarted(true);  // Spel startar när korten har blandats
+      setGameStarted(true);  // game starts after shuffle
     }
   }, [gameStarted, shuffledCards]);
 
   const matchedPairs = matchedCards.length / 2;
-  //const isGameComplete = shuffledCards.length > 0 && matchedPairs === shuffledCards.length;
   const isGameComplete = gameStarted && matchedPairs === shuffledCards.length / 2;
-console.log(matchedPairs, shuffledCards.length / 2);
 
 useEffect(() => {
-  console.log("matchedPairs:", matchedPairs);
-  console.log("shuffledCards.length / 2:", shuffledCards.length / 2);
-  console.log("isGameComplete:", isGameComplete);
 
   if (isGameComplete && !gameCompleted) {
     setGameCompleted(true);
