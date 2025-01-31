@@ -10,7 +10,7 @@ The Word Match Game is a memory game where players match images with correspondi
 
 ## Application Flow
 
-![Application Flow](public/readme-assets/flowchart_site.png)
+![Application Flow](./readme-assets/flowchart_site.png)
 
 ## Purpose
 The Word Match Game was inspired by playing similar word games with my son to help him connect letters to words and objects. These games made learning fun, leading to the idea of creating a digital version for others to enjoy. This project offers an engaging educational tool that enhances literacy skills, bridging the gap between visual and linguistic learning.
@@ -92,7 +92,7 @@ The game aims to help children develop reading skills in an enjoyable and suppor
 
 ## Database Structure
 
-![Database Structure](public/readme-assets/flowchart_db.png)
+![Database Structure](./readme-assets/flowchart_db.png)
 
 ## Summary
 The app is modular and scalable, with clear separation between game modes and logic. It uses Supabase for efficient data storage and Vite/React for a responsive and engaging frontend. This architecture ensures a smooth and intuitive experience for users of all ages.
@@ -117,7 +117,7 @@ OrdMatch är ett memoryspel där spelarna matchar bilder med motsvarande ord. Sp
 
 ## Applikationsflöde
 
-![Applikationsflöde](public/readme-assets/flowchart_site.png)
+![Applikationsflöde](./readme-assets/flowchart_site.png)
 
 ### Syfte
 Idén till OrdMatch kom från att leka liknande ordlekar med min son för att hjälpa honom att koppla ihop bokstäver med ord och objekt. Dessa spel gjorde lärandet roligt, vilket ledde till idén att skapa en digital version för andra att njuta av.  
@@ -201,7 +201,7 @@ Spelet syftar till att hjälpa barn att utveckla läsfärdigheter i en rolig och
 
 ## Databasstruktur
 
-![Databasstruktur](public/readme-assets/flowchart_db.png)
+![Databasstruktur](./readme-assets/flowchart_db.png)
 
 ### Sammanfattning
 Appen är modulär och responsiv med tydlig separation mellan spelmoderna och logik. Den använder Supabase för effektiv datalagring och Vite/React för ett responsivt och engagerande frontend. Denna arkitektur säkerställer en smidig och intuitiv upplevelse för användare i alla åldrar.
