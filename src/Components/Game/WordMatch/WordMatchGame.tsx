@@ -221,6 +221,8 @@ const WordMatchGame = () => {
 
 
   useEffect(() => {
+    console.log("isGameComplete:", isGameComplete);
+    console.log("gameCompleted:", gameCompleted);
     // When all pairs are matched, play the winning sound
     if (isGameComplete && !gameCompleted) {
       setGameCompleted(true);
