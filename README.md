@@ -212,8 +212,8 @@ Appen är modulär och responsiv med tydlig separation mellan spelmoderna och lo
 
 #### Start Page / Startsida
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="public/readme-assets/homescreen_light.png" alt="Landing page Light theme / Startsida med ljust tema" width="300">
-    <img src="public/readme-assets/homescreen_dark.png" alt="Landing Page Dark theme / Startsida med mörkt tema" width="300">
+    <img src="./readme-assets/homescreen_light.png" alt="Landing page Light theme / Startsida med ljust tema" width="300">
+    <img src="./readme-assets/homescreen_dark.png" alt="Landing Page Dark theme / Startsida med mörkt tema" width="300">
 </div>  
 🇬🇧 The start page where users can navigate to different game modes
 
@@ -222,8 +222,8 @@ Appen är modulär och responsiv med tydlig separation mellan spelmoderna och lo
 
 #### Game Overview / Spelöversikt
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="public/readme-assets/game_overview_light.png" alt="Game overview Light theme / Spelöversikt med ljust tema" width="300">
-    <img src="public/readme-assets/game_overview_dark.png" alt="Game overview Dark theme / Spelöversikt med mörkt tema" width="300">
+    <img src="./readme-assets/game_overview_light.png" alt="Game overview Light theme / Spelöversikt med ljust tema" width="300">
+    <img src="./readme-assets/game_overview_dark.png" alt="Game overview Dark theme / Spelöversikt med mörkt tema" width="300">
 </div>  
 🇬🇧 The game overview displaying available game modes  
 
@@ -231,7 +231,7 @@ Appen är modulär och responsiv med tydlig separation mellan spelmoderna och lo
 
 #### Word Match  / Matcha Ord
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="public/readme-assets/wordmatch_light.png" alt="Word Match Light theme / Matcha Ord med ljust tema" width="300">
+    <img src="./readme-assets/wordmatch_light.png" alt="Word Match Light theme / Matcha Ord med ljust tema" width="300">
 </div>  
 🇬🇧 Gameplay for WordMatch  
 
@@ -239,7 +239,7 @@ Appen är modulär och responsiv med tydlig separation mellan spelmoderna och lo
 
 #### Classic Memory  / Klassiskt Memory
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="public/readme-assets/memory_dark.png" alt="Classic Memory Dark theme / Klassisk Memory med mörkt tema" width="300">
+    <img src="./readme-assets/memory_dark.png" alt="Classic Memory Dark theme / Klassisk Memory med mörkt tema" width="300">
 </div>  
 Gameplay for Classic Memory  
 
@@ -248,7 +248,7 @@ Gameplay for Classic Memory
 
 #### Game Over / Spel avslutat
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="public/readme-assets/game_over.png" alt="Screen showing Game Over / Skärm som visar avslutat spel" width="300">
+    <img src="./readme-assets/game_over.png" alt="Screen showing Game Over / Skärm som visar avslutat spel" width="300">
 </div>  
 🇬🇧 Screen showing Game Over  
 
@@ -257,8 +257,8 @@ Gameplay for Classic Memory
 
 #### More Info  / Mer Info
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="public/readme-assets/faq_light.png" alt="FAQ Light theme / FAQ med ljust tema" width="300">
-    <img src="public/readme-assets/faq_dark.png" alt="FAQ Dark theme / FAQ med mörkt tema" width="300">
+    <img src="./readme-assets/faq_light.png" alt="FAQ Light theme / FAQ med ljust tema" width="300">
+    <img src="./readme-assets/faq_dark.png" alt="FAQ Dark theme / FAQ med mörkt tema" width="300">
 </div>  
 🇬🇧 FAQ page providing additional information about the game  
 
@@ -266,8 +266,8 @@ Gameplay for Classic Memory
 
 #### Contact Page  / Kontaktsida
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="public/readme-assets/contact_light.png" alt="Contact Page Light theme / Kontaktsida med ljust tema" width="300">
-    <img src="public/readme-assets/contact_dark.png" alt="Contact Page Dark theme / Kontaktsida med mörkt tema" width="300">
+    <img src="./readme-assets/contact_light.png" alt="Contact Page Light theme / Kontaktsida med ljust tema" width="300">
+    <img src="./readme-assets/contact_dark.png" alt="Contact Page Dark theme / Kontaktsida med mörkt tema" width="300">
 </div>  
 🇬🇧 The contact page where users can get in touch via a contact form  
 
@@ -275,8 +275,8 @@ Gameplay for Classic Memory
 
 #### Mobile Navigation  / Mobil navigation
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="public/readme-assets/navigation_mobile_light.png" alt="Mobile Navigation Light theme / Navigationsmeny mobilversion ljust tema" width="300">
-    <img src="public/readme-assets/navigation_mobile_dark.png" alt="Mobile Navigation Dark theme / Navigationsmeny mobilversion mörkt tema" width="300">
+    <img src="./readme-assets/navigation_mobile_light.png" alt="Mobile Navigation Light theme / Navigationsmeny mobilversion ljust tema" width="300">
+    <img src="./readme-assets/navigation_mobile_dark.png" alt="Mobile Navigation Dark theme / Navigationsmeny mobilversion mörkt tema" width="300">
 </div>  
 🇬🇧 Navigation menu as displayed on mobile devices  
 
