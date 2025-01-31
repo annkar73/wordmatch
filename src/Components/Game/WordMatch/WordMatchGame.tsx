@@ -218,19 +218,17 @@ const WordMatchGame = () => {
 
   const matchedPairs = matchedCards.length / 2;
   const isGameComplete = shuffledCards.length > 0 && matchedPairs === shuffledCards.length;
-
+console.log(matchedPairs, shuffledCards.length / 2);
 
   useEffect(() => {
-    console.log("isGameComplete:", isGameComplete);
     console.log("gameCompleted:", gameCompleted);
-    console.log("matchedPairs:", matchedPairs);
     // When all pairs are matched, play the winning sound
     if (isGameComplete && !gameCompleted) {
       setGameCompleted(true);
       setIsModalOpen(true);
       soundManager.playSound("win");
     }
-  }, [isGameComplete, gameCompleted, shuffledCards.length, matchedCards.length, matchedPairs]);
+  }, [isGameComplete, gameCompleted]);
 
   const restartGame = () => {
     setMatchedCards([]);
