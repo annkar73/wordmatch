@@ -221,17 +221,18 @@ const WordMatchGame = () => {
 console.log(matchedPairs, shuffledCards.length / 2);
 
 useEffect(() => {
-  console.log("isGameComplete:", isGameComplete);
+  console.log("shuffledCards:", shuffledCards);
+  console.log("shuffledCards.length:", shuffledCards.length);
   console.log("matchedPairs:", matchedPairs);
   console.log("shuffledCards.length / 2:", shuffledCards.length / 2);
+  console.log("isGameComplete:", isGameComplete);
 
-  if (gameCompleted && !gameCompleted) {
+  if (isGameComplete && !gameCompleted) {
     setGameCompleted(true);
     setIsModalOpen(true);
     soundManager.playSound("win");
   }
-  console.log("modal open:", isModalOpen);
-}, [matchedPairs, shuffledCards.length, gameCompleted, isGameComplete, isModalOpen]);
+}, [isGameComplete, gameCompleted, matchedPairs, shuffledCards.length, shuffledCards]);
 
   const restartGame = () => {
     setMatchedCards([]);
