@@ -224,12 +224,12 @@ useEffect(() => {
   console.log("matchedPairs:", matchedPairs);
   console.log("shuffledCards.length / 2:", shuffledCards.length / 2);
 
-  if (matchedPairs === shuffledCards.length / 2 && !gameCompleted) {
+  if (gameCompleted && !gameCompleted) {
     setGameCompleted(true);
     setIsModalOpen(true);
     soundManager.playSound("win");
   }
-}, [matchedPairs, shuffledCards.length, gameCompleted]);
+}, [matchedPairs, shuffledCards.length, gameCompleted, isGameComplete]);
 
   const restartGame = () => {
     setMatchedCards([]);
