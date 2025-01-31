@@ -221,6 +221,7 @@ const WordMatchGame = () => {
 console.log(matchedPairs, shuffledCards.length / 2);
 
 useEffect(() => {
+  console.log("isGameComplete:", isGameComplete);
   console.log("matchedPairs:", matchedPairs);
   console.log("shuffledCards.length / 2:", shuffledCards.length / 2);
 
@@ -229,7 +230,8 @@ useEffect(() => {
     setIsModalOpen(true);
     soundManager.playSound("win");
   }
-}, [matchedPairs, shuffledCards.length, gameCompleted, isGameComplete]);
+  console.log("modal open:", isModalOpen);
+}, [matchedPairs, shuffledCards.length, gameCompleted, isGameComplete, isModalOpen]);
 
   const restartGame = () => {
     setMatchedCards([]);
