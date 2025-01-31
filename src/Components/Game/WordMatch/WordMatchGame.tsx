@@ -220,15 +220,16 @@ const WordMatchGame = () => {
   const isGameComplete = shuffledCards.length > 0 && matchedPairs === shuffledCards.length;
 console.log(matchedPairs, shuffledCards.length / 2);
 
-  useEffect(() => {
-    console.log("gameCompleted:", gameCompleted);
-    // When all pairs are matched, play the winning sound
-    if (matchedCards.length === shuffledCards.length && !gameCompleted) {
-      setGameCompleted(true);
-      setIsModalOpen(true);
-      soundManager.playSound("win");
-    }
-  }, [isGameComplete, gameCompleted, matchedCards.length, shuffledCards.length]);
+useEffect(() => {
+  console.log("matchedPairs:", matchedPairs);
+  console.log("shuffledCards.length / 2:", shuffledCards.length / 2);
+
+  if (matchedPairs === shuffledCards.length / 2 && !gameCompleted) {
+    setGameCompleted(true);
+    setIsModalOpen(true);
+    soundManager.playSound("win");
+  }
+}, [matchedPairs, shuffledCards.length, gameCompleted]);
 
   const restartGame = () => {
     setMatchedCards([]);
