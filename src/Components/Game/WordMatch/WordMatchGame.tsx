@@ -223,12 +223,12 @@ console.log(matchedPairs, shuffledCards.length / 2);
   useEffect(() => {
     console.log("gameCompleted:", gameCompleted);
     // When all pairs are matched, play the winning sound
-    if (isGameComplete && !gameCompleted) {
+    if (matchedCards.length === shuffledCards.length && !gameCompleted) {
       setGameCompleted(true);
       setIsModalOpen(true);
       soundManager.playSound("win");
     }
-  }, [isGameComplete, gameCompleted]);
+  }, [isGameComplete, gameCompleted, matchedCards.length, shuffledCards.length]);
 
   const restartGame = () => {
     setMatchedCards([]);
