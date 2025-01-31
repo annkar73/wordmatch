@@ -223,13 +223,14 @@ const WordMatchGame = () => {
   useEffect(() => {
     console.log("isGameComplete:", isGameComplete);
     console.log("gameCompleted:", gameCompleted);
+    console.log("matchedPairs:", matchedPairs);
     // When all pairs are matched, play the winning sound
     if (isGameComplete && !gameCompleted) {
       setGameCompleted(true);
       setIsModalOpen(true);
       soundManager.playSound("win");
     }
-  }, [isGameComplete, gameCompleted, shuffledCards.length, matchedCards.length]);
+  }, [isGameComplete, gameCompleted, shuffledCards.length, matchedCards.length, matchedPairs]);
 
   const restartGame = () => {
     setMatchedCards([]);
