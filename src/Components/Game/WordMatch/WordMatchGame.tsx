@@ -143,6 +143,7 @@ const WordMatchGame = () => {
   const [difficulty, setDifficulty] = useState<number | null>(1); // null = random
   const [gameCompleted, setGameCompleted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [gameStarted, setGameStarted] = useState(false);
 
   const generateShuffledCards = useCallback((cards: WordCard[]): WordCard[] => {
     const selectedCards = difficulty === null
@@ -216,14 +217,18 @@ const WordMatchGame = () => {
     });
   };
 
+  useEffect(() => {
+    if (shuffledCards.length > 0 && !gameStarted) {
+      setGameStarted(true);  // Spel startar när korten har blandats
+    }
+  }, [gameStarted, shuffledCards]);
+
   const matchedPairs = matchedCards.length / 2;
   //const isGameComplete = shuffledCards.length > 0 && matchedPairs === shuffledCards.length;
-  const isGameComplete = matchedPairs === shuffledCards.length / 2;
+  const isGameComplete = gameStarted && matchedPairs === shuffledCards.length / 2;
 console.log(matchedPairs, shuffledCards.length / 2);
 
 useEffect(() => {
-  console.log("shuffledCards:", shuffledCards);
-  console.log("shuffledCards.length:", shuffledCards.length);
   console.log("matchedPairs:", matchedPairs);
   console.log("shuffledCards.length / 2:", shuffledCards.length / 2);
   console.log("isGameComplete:", isGameComplete);
@@ -233,7 +238,7 @@ useEffect(() => {
     setIsModalOpen(true);
     soundManager.playSound("win");
   }
-}, [isGameComplete, gameCompleted, matchedPairs, shuffledCards.length, shuffledCards]);
+}, [matchedPairs, shuffledCards.length, gameStarted, gameCompleted, isGameComplete]);
 
   const restartGame = () => {
     setMatchedCards([]);
