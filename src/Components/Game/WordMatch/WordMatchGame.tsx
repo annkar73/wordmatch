@@ -223,11 +223,11 @@ const WordMatchGame = () => {
   useEffect(() => {
     // When all pairs are matched, play the winning sound
     if (isGameComplete && !gameCompleted) {
-      soundManager.playSound("win");
       setGameCompleted(true);
       setIsModalOpen(true);
+      soundManager.playSound("win");
     }
-  }, [isGameComplete, gameCompleted]);
+  }, [isGameComplete, gameCompleted, shuffledCards.length, matchedCards.length]);
 
   const restartGame = () => {
     setMatchedCards([]);
